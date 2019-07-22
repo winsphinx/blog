@@ -1,7 +1,6 @@
 language: go
 # go:
 #  - "1.8"  # 指定Golang 1.8
-# Specify which branches to build using a safelist
 # 分支白名单限制：只有 master 分支的提交才会触发构建
 branches:
   only:
@@ -24,13 +23,12 @@ after_script:
   - git add .
   - git commit -m "Update Blog By TravisCI With Build $TRAVIS_BUILD_NUMBER"
   # Github Pages
-  - git push --force --quiet "https://$GITHUB_TOKEN@${GH_REF}" master:master
-  # Github Pages
-  - git push --quiet "https://$GITHUB_TOKEN@${GH_REF}" master:master --tags
+  - git push --force "https://$GITHUB_TOKEN@${GH_REF}" master:gh-pages
+  # - git push --quiet "https://$GITHUB_TOKEN@${GH_REF}" master:master --tags
 env:
  global:
    # Github Pages
-   - GH_REF: https://github.com/winsphinx/blog
+   - GH_REF: github.com/winsphinx/blog
 deploy:
   provider: pages # 重要，指定这是一份github pages的部署配置
   skip-cleanup: true # 重要，不能省略
