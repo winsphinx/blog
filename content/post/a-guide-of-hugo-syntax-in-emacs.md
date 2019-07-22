@@ -1,14 +1,13 @@
 +++
 title = "A Guide of Hugo Syntax in Emacs"
 date = 2019-07-20T09:22:00+08:00
-lastmod = 2019-07-23T18:08:48+08:00
-tags = ["emacs", "org", "hugo"]
-categories = ["Blog"]
+lastmod = 2019-11-02T08:38:25+08:00
+tags = ["emacs", "org", "hugo", "blog"]
+categories = ["技术"]
 draft = false
-weight = 1001
 +++
 
-本文提供一些例子，用于参考。
+本文提供一些 Hugo Syntax 例子。
 
 <!--more-->
 
@@ -50,17 +49,17 @@ weight = 1001
 
 ```text
 - 用 =-，+= 都可以。
-  - 无序列表支持多级列表
+  - 无序列表支持多级嵌套列表
   - 只要缩进就行
-    - 再次缩进又是一层
-+ 再次回到第一层
+    - 再次缩进又是一层级
++ 再次回到第一层级
 ```
 
 -   用 `-，+` 都可以。
-    -   无序列表支持多级列表
+    -   无序列表支持多级嵌套列表
     -   只要缩进就行
-        -   再次缩进又是一层
--   再次回到第一层
+        -   再次缩进又是一层级
+-   再次回到第一层级
 
 
 ### 有序列表 {#有序列表}
@@ -68,15 +67,13 @@ weight = 1001
 ```text
 1. 数字并不代表真实序号。
 2. 系统自动给出编号。
-6. [@6] 需要手工编号，用 =[@N]= 。
-7. 默认不支持多级列表格式。
+6. [@6] 需要手工编号，用 [@N] 。
 ```
 
 <ol class="org-ol">
 <li>数字并不代表真实序号。</li>
 <li>系统自动给出编号。</li>
-<li value="6">需要手工编号，用 `[@N]` 。</li>
-<li>默认不支持多级列表格式。</li>
+<li value="6">需要手工编号，用 [@N] 。</li>
 </ol>
 
 
@@ -88,6 +85,8 @@ weight = 1001
 -   这是行内公式(inline equation)的例子，用 `$...$` 或 `\(...\)` 包括：如 \\(E=mc^2\\) ，或是 \\(e^{i\pi}+1=0\\)。
 -   这是行间公式(displayed equation)的例子，用 `$$...$$` 或 `\[...\]` 包括： \\[\cos\theta=1- \frac {2\*(\tan\alpha')^2\*(\tan\gamma')^2} {(\tan\alpha'\*\tan\gamma')^2+(\tan\alpha')^2+(\tan\gamma')^2}\\]
 -   或是直接用 `\begin{equation}...\end{equation}` ：
+
+<!--listend-->
 
 ```text
      \begin{equation}
@@ -200,6 +199,8 @@ weight = 1001
 
 -   代码及输出文字
 
+<!--listend-->
+
 ```C
   #include "stdlib.h"
   int main(int argc, char **argv) {
@@ -214,6 +215,8 @@ Hello World!
 
 -   代码及输出图表
 
+<!--listend-->
+
 ```plantuml
   爱丽丝 -> 鲍勃: 实线箭头
   爱丽丝 ->> 鲍勃: 实线空心箭头
@@ -225,4 +228,4 @@ Hello World!
   爱丽丝 <-> 鲍勃: 双向箭头
 ```
 
-{{< figure src="/ox-hugo/plantuml-fig.png" >}}
+{{< figure src="/ox-hugo/plantuml.png" >}}
