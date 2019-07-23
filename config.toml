@@ -1,5 +1,6 @@
 baseURL = "https://winsphinx.github.io/blog/"
-title = "Ma vie"
+defaultContentLanguage = "zh-cn"
+title = "Cogito, ergo sum"
 enableRobotsTXT = true
 enableEmoji = true
 theme = "jane"
@@ -10,7 +11,7 @@ paginate = 8              # Number of articles displayed on the homepage  # 首�
 rssLimit = 20             # Limit Entry Count to Rss file                 # 限制 Rss 文章输出数量
 disqusShortname = ""      # disqus_shortname
 googleAnalytics = ""      # UA-XXXXXXXX-X
-copyright = ""            # default: author.name                          # 默认为下面配置的author.name 
+copyright = ""            # default: author.name                          # 默认为下面配置的author.name
 enableGitInfo = true      # use git commit log to generate lastmod record # 可根据 Git 中的提交生成最近更新记录。
 # uglyURLs = true         # more info: https://gohugo.io/content-management/urls/#ugly-urls
 
@@ -29,10 +30,10 @@ PygmentsOptions = "linenos=table"
 
 # language support # en / zh-cn / other... translations present in i18n/
 defaultContentLanguage = "en"           # Default language to use
-# [languages.en]
-#   languageCode = "en"
-# [languages.zh-cn]
-#   languageCode = "zh-cn"
+[languages.en]
+  languageCode = "en"
+[languages.zh-cn]
+  languageCode = "zh-cn"
 
 [author]                  # essential                     # 必需
   name = "winsphinx"
@@ -62,11 +63,6 @@ defaultContentLanguage = "en"           # Default language to use
   weight = 40
   identifier = "tags"
   url = "./tags/"
-[[menu.main]]
-  name = "About"
-  weight = 50
-  identifier = "about"
-  url = "./about/"
 
 [params]
   debug = false             # If true, load `eruda.min.js`. See https://github.com/liriliri/eruda
@@ -75,9 +71,9 @@ defaultContentLanguage = "en"           # Default language to use
   rssFullContent = true     # if false, Rss feed instead of the summary
 
   # site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）
-  logoTitle = ""            # default: the title value    # 默认值: 上面设置的title值
-  # keywords = ["Hugo", "theme","jane"]
-  description = "Hugo theme jane example site."
+  # logoTitle = ""          # default: the title value    # 默认值: 上面设置的title值
+  # keywords = ["","",""]
+  # description = ""
 
   # paginate of archives, tags and categories             # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值
   archive-paginate = 16
@@ -93,7 +89,7 @@ defaultContentLanguage = "en"           # Default language to use
   moreMeta = true
 
   # show language chooser in menu
-  showMenuLanguageChooser = true
+  showMenuLanguageChooser = false
 
   showAuthorInfo = true # show author info below the article
 
@@ -102,9 +98,10 @@ defaultContentLanguage = "en"           # Default language to use
   toc = true                                                                            # 是否开启目录
   photoswipe = true         # see https://github.com/dimsemenov/PhotoSwipe              # 是否启用PhotoSwipe（图片可点击）
   bootcdn = false           # In china. @Deprecated: use [params.publicCDN]             # 是否使用bootcdn(@Deprecated: 请使用[params.publicCDN])
-  mathjax = true            # see https://www.mathjax.org/                              # 是否使用mathjax（数学公式）
-  # contentCopyright = '<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>'
-  contentCopyright  = ""
+  mathjax = true            # see https://www.mathjax.org/
+  katex = true              # see https://github.com/KaTeX/KaTeX
+  contentCopyright = '<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank"><img alt="CC BY-NC-SA 4.0" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>'
+  # contentCopyright  = ""
 
   changyanAppid = ""        # Changyan app id             # 畅言
   changyanAppkey = ""       # Changyan app key
@@ -147,8 +144,8 @@ defaultContentLanguage = "en"           # Default language to use
     clientId = ""           # Your client ID
     clientSecret = ""       # Your client secret
 
-  [params.livere]          	#LiveRe comment. see https://www.livere.com/
-	  uid = ""
+  [params.livere]           #LiveRe comment. see https://www.livere.com/
+    uid = ""
 
   [params.search.google]    # google custom search, see https://cse.google.com
     enable = false
@@ -178,19 +175,20 @@ defaultContentLanguage = "en"           # Default language to use
 
   [params.social]                                         # 社交链接
     a-email = "mailto:winsphinx@gmail.com"
-    # b-stack-overflow = "http://localhost:1313"
-    # c-twitter = "http://localhost:1313"
-    # d-facebook = "http://localhost:1313"
-    # e-linkedin = "http://localhost:1313"
-    # f-google = "http://localhost:1313"
+    b-stack-overflow = "https://stackoverflow.com"
+    c-twitter = "https://twitter.com/winsphinx"
+    d-facebook = "https://facebook.com/winsphinx"
+    e-linkedin = "https://www.linkedin.com"
+    f-google = "https://www.google.com"
     g-github = "https://github.com/winsphinx"
-    # h-weibo = "https://weibo.com/u/1831407990"
-    # i-zhihu = "https://www.zhihu.com/people/winsphinx"
-    # j-douban = "https://www.douban.com/people/82580811"
-    # k-pocket = "http://localhost:1313"
-    # l-tumblr = "http://localhost:1313"
-    # m-instagram = "http://localhost:1313"
-    # n-gitlab = "http://localhost:1313"
-    # o-goodreads = "http://localhost:1313"
-    # p-coding = "http://localhost:1313"
-    # q-bilibili = "http://localhost:1313"
+    h-weibo = "https://weibo.com/u/1831407990"
+    i-zhihu = "https://www.zhihu.com"
+    j-douban = "https://www.douban.com"
+    k-pocket = "https://app.getpocket.com"
+    l-tumblr = "https://winsphinx.tumblr.com"
+    m-instagram = "https://www.instagram.com/winsphinx"
+    n-gitlab = "https://gitlab.com/winsphinx"
+    o-goodreads = "https://www.goodreads.com"
+    p-coding = "https://coding.net"
+    q-bilibili = "https://www.bilibili.com"
+    r-codeforces = "https://codeforces.com"
