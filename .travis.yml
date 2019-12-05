@@ -5,7 +5,9 @@ branches:
     - master
 install:
   # 安装最新的hugo
-  - go get github.com/gohugoio/hugo
+  # - go get github.com/gohugoio/hugo
+  - wget https://github.com/gohugoio/hugo/releases/download/v0.59.1/hugo_0.59.1_Linux-64bit.deb
+  - sudo dpkg -i hugo*.deb
   # 安装主题
   - git clone https://github.com/xianmin/hugo-theme-jane.git --depth=1 themes/jane
 script:
