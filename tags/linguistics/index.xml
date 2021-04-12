@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linguistics on Cogito, ergo sum</title>
+    <link>https://winsphinx.github.io/blog/tags/linguistics/</link>
+    <description>Recent content in linguistics on Cogito, ergo sum</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 13 Aug 2020 20:15:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://winsphinx.github.io/blog/tags/linguistics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>语系图谱</title>
+      <link>https://winsphinx.github.io/blog/post/language-family/</link>
+      <pubDate>Thu, 13 Aug 2020 20:15:00 +0800</pubDate>
+      
+      <guid>https://winsphinx.github.io/blog/post/language-family/</guid>
+      <description>&lt;p&gt;整理了一个世界各语系图谱。层级为：语系——语族——语系——语种，其下方言不再展开。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>读史蒂芬·平克语言系列</title>
+      <link>https://winsphinx.github.io/blog/post/reading-steven-pinker-languages-series/</link>
+      <pubDate>Fri, 22 May 2020 20:26:00 +0800</pubDate>
+      
+      <guid>https://winsphinx.github.io/blog/post/reading-steven-pinker-languages-series/</guid>
+      <description>&lt;p&gt;史蒂芬·平克（Steven Pinker），加拿大语言学家。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>I Love You in Many Languages</title>
+      <link>https://winsphinx.github.io/blog/post/i-love-you-in-many-languages/</link>
+      <pubDate>Sat, 21 Sep 2019 20:43:00 +0800</pubDate>
+      
+      <guid>https://winsphinx.github.io/blog/post/i-love-you-in-many-languages/</guid>
+      <description>&lt;p&gt;首先，通过这个小例子，来学习几门语言中的肯定句、一般疑问句、否定句、特殊疑问句。&lt;/p&gt;
+
+&lt;p&gt;其次，通过这个模型，来研究探讨一下信息熵的估算。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

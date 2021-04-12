@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>science on Cogito, ergo sum</title>
+    <link>https://winsphinx.github.io/blog/tags/science/</link>
+    <description>Recent content in science on Cogito, ergo sum</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 13 Oct 2020 18:21:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://winsphinx.github.io/blog/tags/science/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>读三体系列</title>
+      <link>https://winsphinx.github.io/blog/post/reading-three-bodies-series/</link>
+      <pubDate>Tue, 13 Oct 2020 18:21:00 +0800</pubDate>
+      
+      <guid>https://winsphinx.github.io/blog/post/reading-three-bodies-series/</guid>
+      <description>&lt;p&gt;刘慈欣，中国科幻作家。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
