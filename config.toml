@@ -192,3 +192,6 @@ defaultContentLanguage = "en"           # Default language to use
     p-coding = "https://coding.net"
     q-bilibili = "https://www.bilibili.com"
     r-codeforces = "https://codeforces.com"
+    s-mastodon = "https://mastodon.social"
+    t-youtube = "https://www.youtube.com"
+    u-twitch = "https://www.twitch.tv"
