@@ -3,13 +3,13 @@
 
 这次的特色是，利用 Github Actions 来定时自动运行脚本，达到每日更新的目的。"><meta property="og:type" content="article"><meta property="og:url" content="https://winsphinx.github.io/blog/post/using-pmdaria-to-forecast-covid-19/"><meta property="article:published_time" content="2021-04-06T19:38:00+08:00"><meta property="article:modified_time" content="2021-04-06T19:56:35+08:00"><meta itemprop=name content="Using pmdaria to Forecast COVID-19"><meta itemprop=description content="之前写过两篇预测 COVID-19 的方法，这次用个“偷懒”的办法，直接采用 pmdaria 来自动调整参数，用来预测分析。
 
-这次的特色是，利用 Github Actions 来定时自动运行脚本，达到每日更新的目的。"><meta itemprop=datePublished content="2021-04-06T19:38:00&#43;08:00"><meta itemprop=dateModified content="2021-04-06T19:56:35&#43;08:00"><meta itemprop=wordCount content="969"><meta itemprop=keywords content="Python,COVID-19,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Using pmdaria to Forecast COVID-19"><meta name=twitter:description content="之前写过两篇预测 COVID-19 的方法，这次用个“偷懒”的办法，直接采用 pmdaria 来自动调整参数，用来预测分析。
+这次的特色是，利用 Github Actions 来定时自动运行脚本，达到每日更新的目的。"><meta itemprop=datePublished content="2021-04-06T19:38:00&#43;08:00"><meta itemprop=dateModified content="2021-04-06T19:56:35&#43;08:00"><meta itemprop=wordCount content="989"><meta itemprop=keywords content="Python,COVID-19,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Using pmdaria to Forecast COVID-19"><meta name=twitter:description content="之前写过两篇预测 COVID-19 的方法，这次用个“偷懒”的办法，直接采用 pmdaria 来自动调整参数，用来预测分析。
 
 这次的特色是，利用 Github Actions 来定时自动运行脚本，达到每日更新的目的。"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=https://winsphinx.github.io/blog/ class=logo>Cogito, ergo sum</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/>Home</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/post/>Archives</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/categories/>Categories</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/tags/>Tags</a></li></ul></nav><link rel=stylesheet href=https://winsphinx.github.io/blog/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=https://winsphinx.github.io/blog/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=https://winsphinx.github.io/blog/ class=logo>Cogito, ergo sum</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/>Home</a></li><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/tags/>Tags</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>Using pmdaria to Forecast COVID-19</h1><div class=post-meta><time datetime=2021-04-06 class=post-time>2021-04-06</time><div class=post-category><a href=https://winsphinx.github.io/blog/categories/%E6%8A%80%E6%9C%AF/>技术</a></div><span class=more-meta>约 969 字</span>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=https://winsphinx.github.io/blog/ class=logo>Cogito, ergo sum</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/>Home</a></li><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/tags/>Tags</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>Using pmdaria to Forecast COVID-19</h1><div class=post-meta><time datetime=2021-04-06 class=post-time>2021-04-06</time><div class=post-category><a href=https://winsphinx.github.io/blog/categories/%E6%8A%80%E6%9C%AF/>技术</a></div><span class=more-meta>约 989 字</span>
 <span class=more-meta>预计阅读 2 分钟</span>
 <span id=busuanzi_container_page_pv>| 阅读 <span id=busuanzi_value_page_pv></span></span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#首先是-python-脚本>首先是 Python 脚本</a></li><li><a href=#然后是-github-actions-脚本>然后是 Github Actions 脚本</a></li></ul></li></ul></nav></div></div><div class=post-content><p>之前写过两篇预测 COVID-19 的方法，这次用个“偷懒”的办法，直接采用 pmdaria 来自动调整参数，用来预测分析。</p><p>这次的特色是，利用 Github Actions 来定时自动运行脚本，达到每日更新的目的。</p><h2 id=首先是-python-脚本>首先是 Python 脚本</h2><p>Python 脚本总体思路是，从网上获取数据，再利用 pmdarima 自动选择参数并作出预测，最后利用 matplotlib 生成预测的图像。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=lnt>  1
 </span><span class=lnt>  2
@@ -120,13 +120,33 @@
 </span><span class=lnt>107
 </span><span class=lnt>108
 </span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=ch>#!/usr/bin/env python</span>
 <span class=c1># -*- coding: utf-8 -*-</span>
 
 <span class=kn>import</span> <span class=nn>codecs</span>
 <span class=kn>import</span> <span class=nn>os</span>
 <span class=kn>import</span> <span class=nn>re</span>
-<span class=kn>from</span> <span class=nn>concurrent.futures.thread</span> <span class=kn>import</span> <span class=n>ThreadPoolExecutor</span>
+<span class=kn>from</span> <span class=nn>concurrent.futures</span> <span class=kn>import</span> <span class=n>ThreadPoolExecutor</span>
 
 <span class=kn>import</span> <span class=nn>matplotlib.pyplot</span> <span class=kn>as</span> <span class=nn>plt</span>
 <span class=kn>import</span> <span class=nn>pandas</span> <span class=kn>as</span> <span class=nn>pd</span>
@@ -197,23 +217,37 @@
     <span class=c1># plt.fill_between(forecasting.index, pred_ci[:, 0], pred_ci[:, 1], color=&#34;black&#34;, alpha=.25)</span>
 
     <span class=n>plt</span><span class=o>.</span><span class=n>legend</span><span class=p>()</span>
-    <span class=n>plt</span><span class=o>.</span><span class=n>ticklabel_format</span><span class=p>(</span><span class=n>style</span><span class=o>=</span><span class=s1>&#39;plain&#39;</span><span class=p>,</span> <span class=n>axis</span><span class=o>=</span><span class=s1>&#39;y&#39;</span><span class=p>)</span>
+    <span class=n>plt</span><span class=o>.</span><span class=n>ticklabel_format</span><span class=p>(</span><span class=n>style</span><span class=o>=</span><span class=s2>&#34;plain&#34;</span><span class=p>,</span> <span class=n>axis</span><span class=o>=</span><span class=s2>&#34;y&#34;</span><span class=p>)</span>
     <span class=n>plt</span><span class=o>.</span><span class=n>rcParams</span><span class=p>[</span><span class=s2>&#34;font.sans-serif&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;Microsoft YaHei&#34;</span><span class=p>]</span>
     <span class=k>if</span> <span class=n>isDaily</span><span class=p>:</span>
-        <span class=n>plt</span><span class=o>.</span><span class=n>title</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;每日新增预测 - {country}</span><span class=se>\n</span><span class=s2>ARIMA {model.model_.order}x{model.model_.seasonal_order} (R2 = {r2:.6f})&#34;</span><span class=p>)</span>
-        <span class=n>plt</span><span class=o>.</span><span class=n>savefig</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=s2>&#34;figures&#34;</span><span class=p>,</span> <span class=n>f</span><span class=s2>&#34;covid-{adjust_name(country)}-daily.svg&#34;</span><span class=p>),</span> <span class=n>bbox_inches</span><span class=o>=</span><span class=s2>&#34;tight&#34;</span><span class=p>)</span>
+        <span class=n>plt</span><span class=o>.</span><span class=n>title</span><span class=p>(</span>
+            <span class=n>f</span><span class=s2>&#34;每日新增预测 - {country}</span><span class=se>\n</span><span class=s2>ARIMA {model.model_.order}x{model.model_.seasonal_order} (R2 = {r2:.6f})&#34;</span>
+        <span class=p>)</span>
+        <span class=n>plt</span><span class=o>.</span><span class=n>savefig</span><span class=p>(</span>
+            <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=s2>&#34;figures&#34;</span><span class=p>,</span> <span class=n>f</span><span class=s2>&#34;covid-{adjust_name(country)}-daily.svg&#34;</span><span class=p>),</span>
+            <span class=n>bbox_inches</span><span class=o>=</span><span class=s2>&#34;tight&#34;</span><span class=p>,</span>
+        <span class=p>)</span>
     <span class=k>else</span><span class=p>:</span>
-        <span class=n>plt</span><span class=o>.</span><span class=n>title</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;累计确诊预测 - {country}</span><span class=se>\n</span><span class=s2>ARIMA {model.model_.order}x{model.model_.seasonal_order} (R2 = {r2:.6f})&#34;</span><span class=p>)</span>
-        <span class=n>plt</span><span class=o>.</span><span class=n>savefig</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=s2>&#34;figures&#34;</span><span class=p>,</span> <span class=n>f</span><span class=s2>&#34;covid-{adjust_name(country)}.svg&#34;</span><span class=p>),</span> <span class=n>bbox_inches</span><span class=o>=</span><span class=s2>&#34;tight&#34;</span><span class=p>)</span>
+        <span class=n>plt</span><span class=o>.</span><span class=n>title</span><span class=p>(</span>
+            <span class=n>f</span><span class=s2>&#34;累计确诊预测 - {country}</span><span class=se>\n</span><span class=s2>ARIMA {model.model_.order}x{model.model_.seasonal_order} (R2 = {r2:.6f})&#34;</span>
+        <span class=p>)</span>
+        <span class=n>plt</span><span class=o>.</span><span class=n>savefig</span><span class=p>(</span>
+            <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=s2>&#34;figures&#34;</span><span class=p>,</span> <span class=n>f</span><span class=s2>&#34;covid-{adjust_name(country)}.svg&#34;</span><span class=p>),</span>
+            <span class=n>bbox_inches</span><span class=o>=</span><span class=s2>&#34;tight&#34;</span><span class=p>,</span>
+        <span class=p>)</span>
 
 
 <span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
     <span class=c1># 准备数据</span>
-    <span class=n>df</span> <span class=o>=</span> <span class=n>pd</span><span class=o>.</span><span class=n>read_csv</span><span class=p>(</span><span class=s2>&#34;https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv&#34;</span><span class=p>)</span>
-         <span class=o>.</span><span class=n>drop</span><span class=p>(</span><span class=n>columns</span><span class=o>=</span><span class=p>[</span><span class=s2>&#34;Lat&#34;</span><span class=p>,</span> <span class=s2>&#34;Long&#34;</span><span class=p>])</span>
-         <span class=o>.</span><span class=n>groupby</span><span class=p>(</span><span class=s2>&#34;Country/Region&#34;</span><span class=p>)</span>
-         <span class=o>.</span><span class=n>sum</span><span class=p>()</span>
-         <span class=o>.</span><span class=n>transpose</span><span class=p>()</span>
+    <span class=n>df</span> <span class=o>=</span> <span class=p>(</span>
+        <span class=n>pd</span><span class=o>.</span><span class=n>read_csv</span><span class=p>(</span>
+            <span class=s2>&#34;https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv&#34;</span>
+        <span class=p>)</span>
+        <span class=o>.</span><span class=n>drop</span><span class=p>(</span><span class=n>columns</span><span class=o>=</span><span class=p>[</span><span class=s2>&#34;Lat&#34;</span><span class=p>,</span> <span class=s2>&#34;Long&#34;</span><span class=p>])</span>
+        <span class=o>.</span><span class=n>groupby</span><span class=p>(</span><span class=s2>&#34;Country/Region&#34;</span><span class=p>)</span>
+        <span class=o>.</span><span class=n>sum</span><span class=p>()</span>
+        <span class=o>.</span><span class=n>transpose</span><span class=p>()</span>
+    <span class=p>)</span>
     <span class=n>df</span><span class=o>.</span><span class=n>index</span> <span class=o>=</span> <span class=n>pd</span><span class=o>.</span><span class=n>DatetimeIndex</span><span class=p>(</span><span class=n>df</span><span class=o>.</span><span class=n>index</span><span class=o>.</span><span class=n>map</span><span class=p>(</span><span class=n>adjust_date</span><span class=p>))</span>
 
     <span class=n>countries</span> <span class=o>=</span> <span class=n>df</span><span class=o>.</span><span class=n>columns</span><span class=o>.</span><span class=n>to_list</span><span class=p>()</span>
@@ -223,7 +257,13 @@
         <span class=n>pool</span><span class=o>.</span><span class=n>map</span><span class=p>(</span><span class=n>draw</span><span class=p>,</span> <span class=n>countries</span><span class=p>)</span>
 
     <span class=c1># 编制索引</span>
-    <span class=k>with</span> <span class=n>codecs</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=s2>&#34;README.md&#34;</span><span class=p>,</span> <span class=s2>&#34;w&#34;</span><span class=p>,</span> <span class=s1>&#39;utf-8&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+    <span class=k>with</span> <span class=n>codecs</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=s2>&#34;README.md&#34;</span><span class=p>,</span> <span class=s2>&#34;w&#34;</span><span class=p>,</span> <span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+        <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span>
+            <span class=s2>&#34;[![check status](https://github.com/winsphinx/covid/actions/workflows/check.yml/badge.svg)](https://github.com/winsphinx/covid/actions/workflows/check.yml)</span><span class=se>\n</span><span class=s2>&#34;</span>
+        <span class=p>)</span>
+        <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span>
+            <span class=s2>&#34;[![build status](https://github.com/winsphinx/covid/actions/workflows/build.yml/badge.svg)](https://github.com/winsphinx/covid/actions/workflows/build.yml)</span><span class=se>\n</span><span class=s2>&#34;</span>
+        <span class=p>)</span>
         <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s2>&#34;# COVID-19 Forecasting</span><span class=se>\n\n</span><span class=s2>&#34;</span><span class=p>)</span>
         <span class=k>for</span> <span class=n>country</span> <span class=ow>in</span> <span class=n>countries</span><span class=p>:</span>
             <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;## {country}</span><span class=se>\n\n</span><span class=s2>&#34;</span><span class=p>)</span>
@@ -304,7 +344,7 @@
 </span><span class=w>        </span>branch<span class=p>:</span><span class=w> </span>${{<span class=w> </span>github.ref<span class=w> </span>}}</code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
 <span class=item-content>winsphinx</span></p><p class=copyright-item><span class=item-title>上次更新</span>
 <span class=item-content>2021-04-06
-<a href=https://github.com/winsphinx/blog/commit/d62a4036439429d15234915b9c0c7c365edd056a title="[原创] 再次预测COVID">(d62a403)</a><br>[原创] 再次预测COVID</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<a href=https://github.com/winsphinx/blog/commit/58bd53217f4a32a2aa30712bedfd88597c942da6 title="[原创] 再次预测COVID">(58bd532)</a><br>[原创] 再次预测COVID</span></p><p class=copyright-item><span class=item-title>许可协议</span>
 <span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank><img alt="CC BY-NC-SA 4.0" style=border-width:0 src=https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png></a></span></p></div><footer class=post-footer><div class=post-tags><a href=https://winsphinx.github.io/blog/tags/python/>Python</a>
 <a href=https://winsphinx.github.io/blog/tags/covid-19/>COVID-19</a></div><nav class=post-nav><a class=prev href=https://winsphinx.github.io/blog/post/automatically-creating-pdf-from-latex-with-github-actions/><i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18"><path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417l277.93508-310.326815c11.338233-12.190647 11.035334-32.285311-.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"/></svg></i><span class="prev-text nav-default">Automatically Creating PDF from LaTeX with Github Actions</span>
 <span class="prev-text nav-mobile">上一篇</span></a>
