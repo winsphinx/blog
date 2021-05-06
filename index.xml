@@ -697,13 +697,15 @@ sudo systemctl list-units -a &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -
 &lt;/table&gt;
 &lt;h2 id=&#34;多文件编辑&#34;&gt;多文件编辑&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;首先需要安装 &lt;code&gt;rg&lt;/code&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;, &lt;code&gt;ag&lt;/code&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;, &lt;code&gt;ack&lt;/code&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; 等任意一个搜索工具。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;使用 &lt;code&gt;SPC s s&lt;/code&gt; (&lt;code&gt;M-x helm-swoop&lt;/code&gt;)查找&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;，还可以进一步：&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;用 &lt;code&gt;SPC s b&lt;/code&gt; (&lt;code&gt;M-x spacemacs/helm-buffers-smart-do-search&lt;/code&gt;)在同一 buffer 中查找；&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;用 &lt;code&gt;SPC s d&lt;/code&gt; (&lt;code&gt;M-x spacemacs/helm-dir-smart-do-search&lt;/code&gt;)在同一目录下查找；&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;用 &lt;code&gt;SPC s p&lt;/code&gt; 或 &lt;code&gt;SPC /&lt;/code&gt; (&lt;code&gt;M-x spacemacs/helm-project-smart-do-search&lt;/code&gt;)在同一项目中查找；&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;用 &lt;code&gt;SPC s f&lt;/code&gt; (&lt;code&gt;M-x spacemacs/helm-files-smart-do-search&lt;/code&gt;)在指定文件中查找。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;将查找结果用 &lt;code&gt;C-c C-e&lt;/code&gt; 导出到单独 buffer&lt;/p&gt;
+&lt;li&gt;首先需要安装 &lt;code&gt;rg&lt;/code&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;, &lt;code&gt;ag&lt;/code&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;, &lt;code&gt;ack&lt;/code&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; 等任意一个搜索工具。&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;SPC s s&lt;/code&gt; (&lt;code&gt;M-x helm-swoop&lt;/code&gt;)查找&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;，还可以进一步：
+&lt;ul&gt;
+&lt;li&gt;用 &lt;code&gt;SPC s b&lt;/code&gt; (&lt;code&gt;M-x spacemacs/helm-buffers-smart-do-search&lt;/code&gt;)在同一 buffer 中查找；&lt;/li&gt;
+&lt;li&gt;用 &lt;code&gt;SPC s d&lt;/code&gt; (&lt;code&gt;M-x spacemacs/helm-dir-smart-do-search&lt;/code&gt;)在同一目录下查找；&lt;/li&gt;
+&lt;li&gt;用 &lt;code&gt;SPC s p&lt;/code&gt; 或 &lt;code&gt;SPC /&lt;/code&gt; (&lt;code&gt;M-x spacemacs/helm-project-smart-do-search&lt;/code&gt;)在同一项目中查找；&lt;/li&gt;
+&lt;li&gt;用 &lt;code&gt;SPC s f&lt;/code&gt; (&lt;code&gt;M-x spacemacs/helm-files-smart-do-search&lt;/code&gt;)在指定文件中查找。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;将查找结果用 &lt;code&gt;C-c C-e&lt;/code&gt; 导出到单独 buffer
 &lt;ul&gt;
 &lt;li&gt;在这个新 buffer 中使用 &lt;code&gt;SPC s e&lt;/code&gt; ，将这个 buffer 当作单文件，按照上面的方法继续编辑。当然还可以用其他各种方式编辑；&lt;/li&gt;
 &lt;li&gt;在编辑完成后用 &lt;code&gt;C-c C-c&lt;/code&gt; 保存，或 &lt;code&gt;C-c C-k&lt;/code&gt; 取消编辑。&lt;/li&gt;
