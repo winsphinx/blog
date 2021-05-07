@@ -74,7 +74,7 @@
 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description></item><item><title>Using pmdaria to Forecast COVID-19</title><link>https://winsphinx.github.io/blog/post/using-pmdaria-to-forecast-covid-19/</link><pubDate>Tue, 06 Apr 2021 19:38:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/using-pmdaria-to-forecast-covid-19/</guid><description>&lt;p&gt;之前写过两篇&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;预测 COVID-19 的方法，这次用个“偷懒”的办法，直接采用 pmdaria 来自动调整参数，用来预测分析。&lt;/p&gt;
-&lt;p&gt;这次的特色是，利用 Github Actions 来定时自动运行脚本，达到每日更新的目的。&lt;/p&gt;
+&lt;p&gt;这次的特色是，利用 Github Actions 来定时自动运行脚本，达到&lt;a href=&#34;https://github.com/winsphinx/covid&#34;&gt;每日更新&lt;/a&gt;的目的。&lt;/p&gt;
 &lt;h2 id=&#34;首先是-python-脚本&#34;&gt;首先是 Python 脚本&lt;/h2&gt;
 &lt;p&gt;Python 脚本总体思路是，从网上获取数据，再利用 pmdarima 自动选择参数并作出预测，最后利用 matplotlib 生成预测的图像。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -723,8 +723,8 @@ sudo systemctl list-units -a &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -
 &lt;/table&gt;
 &lt;h2 id=&#34;多文件编辑&#34;&gt;多文件编辑&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;首先需要安装 &lt;code&gt;rg&lt;/code&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;, &lt;code&gt;ag&lt;/code&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;, &lt;code&gt;ack&lt;/code&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; 等任意一个搜索工具。&lt;/li&gt;
-&lt;li&gt;使用 &lt;code&gt;SPC s s&lt;/code&gt; (&lt;code&gt;M-x helm-swoop&lt;/code&gt;)查找&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;，还可以进一步：
+&lt;li&gt;首先需要安装 &lt;code&gt;grep&lt;/code&gt;, &lt;code&gt;rg&lt;/code&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;, &lt;code&gt;ag&lt;/code&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;, &lt;code&gt;ack&lt;/code&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;, &lt;code&gt;pt&lt;/code&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt; 等任意一个搜索工具。&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;SPC s s&lt;/code&gt; (&lt;code&gt;M-x helm-swoop&lt;/code&gt;)查找&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:5&#34;&gt;&lt;a href=&#34;#fn:5&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;，还可以进一步：
 &lt;ul&gt;
 &lt;li&gt;用 &lt;code&gt;SPC s b&lt;/code&gt; (&lt;code&gt;M-x spacemacs/helm-buffers-smart-do-search&lt;/code&gt;)在同一 buffer 中查找；&lt;/li&gt;
 &lt;li&gt;用 &lt;code&gt;SPC s d&lt;/code&gt; (&lt;code&gt;M-x spacemacs/helm-dir-smart-do-search&lt;/code&gt;)在同一目录下查找；&lt;/li&gt;
@@ -746,8 +746,10 @@ sudo systemctl list-units -a &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -
 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li id=&#34;fn:3&#34;&gt;&lt;a href=&#34;https://github.com/beyondgrep/ack3&#34;&gt;https://github.com/beyondgrep/ack3&lt;/a&gt;
 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:4&#34;&gt;这里用 helm 为例，ivy 也有类似的方法：使用 &lt;code&gt;C-s&lt;/code&gt; 或者 &lt;code&gt;SPC s s&lt;/code&gt; 或者 &lt;code&gt;M-x counsel-rg|ag|ack&lt;/code&gt; 同样可以查找出多个匹配，然后用 &lt;code&gt;C-x C-o&lt;/code&gt; 导出结果，用 &lt;code&gt;C-x C-q&lt;/code&gt; 进入编辑模式。编辑完成后用 &lt;code&gt;C-c C-c&lt;/code&gt; 保存，或 &lt;code&gt;C-c C-k&lt;/code&gt; 取消编辑。
+&lt;li id=&#34;fn:4&#34;&gt;&lt;a href=&#34;https://github.com/monochromegane/the%5Fplatinum%5Fsearcher&#34;&gt;https://github.com/monochromegane/the%5Fplatinum%5Fsearcher&lt;/a&gt;
 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:4&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:5&#34;&gt;这里用 helm 为例，ivy 也有类似的操作：使用 &lt;code&gt;C-s&lt;/code&gt; 或者 &lt;code&gt;SPC s s&lt;/code&gt; 或者 &lt;code&gt;M-x counsel-{grep|rg|ag|ack|pt}&lt;/code&gt; 同样可以查找出多个匹配，然后用 &lt;code&gt;C-c C-o&lt;/code&gt; 导出结果，用 &lt;code&gt;C-x C-q&lt;/code&gt; 进入编辑模式。编辑完成后用 &lt;code&gt;C-c C-c&lt;/code&gt; 保存，或 &lt;code&gt;C-c C-k&lt;/code&gt; 取消编辑。
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:5&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description></item><item><title>BASE64</title><link>https://winsphinx.github.io/blog/post/base64/</link><pubDate>Sat, 16 Jan 2021 14:23:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/base64/</guid><description>&lt;blockquote&gt;
 &lt;p&gt;Base64 是一种基于 64 个可打印字符来表示二进制数据的表示方法。由于 \(2^6=64\) ，所以每 6 个比特为一个单元，对应某个可打印字符。3 个字节有 24 个比特，对应于 4 个 Base64 单元，即 3 个字节可由 4 个可打印字符来表示。
