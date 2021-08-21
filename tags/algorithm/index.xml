@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>algorithm on Cogito, ergo sum</title><link>https://winsphinx.github.io/blog/tags/algorithm/</link><description>Recent content in algorithm on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 18 Jul 2021 19:12:00 +0800</lastBuildDate><atom:link href="https://winsphinx.github.io/blog/tags/algorithm/index.xml" rel="self" type="application/rss+xml"/><item><title>三阶魔方步骤</title><link>https://winsphinx.github.io/blog/post/three-order-rubik-cube-steps/</link><pubDate>Sun, 18 Jul 2021 19:12:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/three-order-rubik-cube-steps/</guid><description>&lt;p&gt;首先介绍一下本文中用到的定义：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;根据国际标准，白色的对面是黄色；&lt;/li&gt;
+&lt;li&gt;中心块，只有一种颜色；&lt;/li&gt;
+&lt;li&gt;棱块，两种颜色；&lt;/li&gt;
+&lt;li&gt;角块，三种颜色；&lt;/li&gt;
+&lt;li&gt;六个面，分别的是顶面、底面、左面、右面、正面、背面；&lt;/li&gt;
+&lt;li&gt;横向的称为层，顶层、中层、底层；&lt;/li&gt;
+&lt;li&gt;纵向的称为列，左列，中列、右列；&lt;/li&gt;
+&lt;li&gt;一次右手操作：上左下右（右列上翻、顶层左转、右列下翻，顶层右转）&lt;/li&gt;
+&lt;li&gt;一次左手操作：上右下左（左列上翻、顶层右转、左列下翻、顶部左转）&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>自然语言与机器语言的语序对比</title><link>https://winsphinx.github.io/blog/post/word-order/</link><pubDate>Sun, 27 Jun 2021 19:56:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/word-order/</guid><description>&lt;p&gt;本文简单探讨一下碳基生物与硅基生物的语言的语序。&lt;/p&gt;</description></item></channel></rss>
