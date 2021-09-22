@@ -1,8 +1,8 @@
-<!doctype html><html lang=zh-cn itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>selenium 笔记 - Cogito, ergo sum</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,user-scalable=yes"><meta name=MobileOptimized content="width"><meta name=HandheldFriendly content="true"><meta name=applicable-device content="pc,mobile"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=mobile-web-app-capable content="yes"><meta name=author content="winsphinx"><meta name=description content="Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，实现自动化操作。"><meta name=generator content="Hugo 0.59.1"><link rel=canonical href=https://winsphinx.github.io/blog/post/selenium-notes/><link rel=icon href=https://winsphinx.github.io/blog/favicon.ico><link rel=stylesheet href=https://winsphinx.github.io/blog/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media=screen crossorigin=anonymous><link rel=stylesheet href=https://winsphinx.github.io/blog/css/custom.css><meta property="og:title" content="selenium 笔记"><meta property="og:description" content="Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，实现自动化操作。"><meta property="og:type" content="article"><meta property="og:url" content="https://winsphinx.github.io/blog/post/selenium-notes/"><meta property="article:published_time" content="2021-08-20T18:41:00+08:00"><meta property="article:modified_time" content="2021-08-31T18:51:35+08:00"><meta itemprop=name content="selenium 笔记"><meta itemprop=description content="Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，实现自动化操作。"><meta itemprop=datePublished content="2021-08-20T18:41:00&#43;08:00"><meta itemprop=dateModified content="2021-08-31T18:51:35&#43;08:00"><meta itemprop=wordCount content="1039"><meta itemprop=keywords content="Python,selenium,"><meta name=twitter:card content="summary"><meta name=twitter:title content="selenium 笔记"><meta name=twitter:description content="Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，实现自动化操作。"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=https://winsphinx.github.io/blog/ class=logo>Cogito, ergo sum</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/>Home</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/post/>Archives</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/categories/>Categories</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/tags/>Tags</a></li></ul></nav><link rel=stylesheet href=https://winsphinx.github.io/blog/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=https://winsphinx.github.io/blog/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<!doctype html><html lang=zh-cn itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>selenium 笔记 - Cogito, ergo sum</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,user-scalable=yes"><meta name=MobileOptimized content="width"><meta name=HandheldFriendly content="true"><meta name=applicable-device content="pc,mobile"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=mobile-web-app-capable content="yes"><meta name=author content="winsphinx"><meta name=description content="Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，实现自动化操作。"><meta name=generator content="Hugo 0.59.1"><link rel=canonical href=https://winsphinx.github.io/blog/post/selenium-notes/><link rel=icon href=https://winsphinx.github.io/blog/favicon.ico><link rel=stylesheet href=https://winsphinx.github.io/blog/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media=screen crossorigin=anonymous><link rel=stylesheet href=https://winsphinx.github.io/blog/css/custom.css><meta property="og:title" content="selenium 笔记"><meta property="og:description" content="Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，实现自动化操作。"><meta property="og:type" content="article"><meta property="og:url" content="https://winsphinx.github.io/blog/post/selenium-notes/"><meta property="article:published_time" content="2021-08-20T18:41:00+08:00"><meta property="article:modified_time" content="2021-08-31T18:51:35+08:00"><meta itemprop=name content="selenium 笔记"><meta itemprop=description content="Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，实现自动化操作。"><meta itemprop=datePublished content="2021-08-20T18:41:00&#43;08:00"><meta itemprop=dateModified content="2021-08-31T18:51:35&#43;08:00"><meta itemprop=wordCount content="1283"><meta itemprop=keywords content="Python,selenium,"><meta name=twitter:card content="summary"><meta name=twitter:title content="selenium 笔记"><meta name=twitter:description content="Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，实现自动化操作。"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=https://winsphinx.github.io/blog/ class=logo>Cogito, ergo sum</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/>Home</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/post/>Archives</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/categories/>Categories</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/tags/>Tags</a></li></ul></nav><link rel=stylesheet href=https://winsphinx.github.io/blog/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=https://winsphinx.github.io/blog/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=https://winsphinx.github.io/blog/ class=logo>Cogito, ergo sum</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/>Home</a></li><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/tags/>Tags</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>selenium 笔记</h1><div class=post-meta><time datetime=2021-08-20 class=post-time>2021-08-20</time><div class=post-category><a href=https://winsphinx.github.io/blog/categories/%E6%8A%80%E6%9C%AF/>技术</a></div><span class=more-meta>约 1039 字</span>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=https://winsphinx.github.io/blog/ class=logo>Cogito, ergo sum</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/>Home</a></li><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://winsphinx.github.io/blog/tags/>Tags</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>selenium 笔记</h1><div class=post-meta><time datetime=2021-08-20 class=post-time>2021-08-20</time><div class=post-category><a href=https://winsphinx.github.io/blog/categories/%E6%8A%80%E6%9C%AF/>技术</a></div><span class=more-meta>约 1283 字</span>
 <span class=more-meta>预计阅读 3 分钟</span>
 <span id=busuanzi_container_page_pv>| 阅读 <span id=busuanzi_value_page_pv></span></span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#安装>安装</a><ul><li><a href=#安装-selenium>安装 selenium</a></li><li><a href=#安装驱动>安装驱动</a></li></ul></li><li><a href=#应用>应用</a><ul><li><a href=#基础>基础</a></li><li><a href=#定位>定位</a><ul><li><a href=#页面等待>页面等待</a></li></ul></li><li><a href=#控制>控制</a><ul><li><a href=#页面>页面</a></li><li><a href=#键盘>键盘</a></li><li><a href=#鼠标>鼠标</a></li></ul></li></ul></li></ul></li></ul></nav></div></div><div class=post-content><p>Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，实现自动化操作。</p><h2 id=安装>安装</h2><h3 id=安装-selenium>安装 selenium</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>pip install selenium</code></pre></td></tr></table></div></div><h3 id=安装驱动>安装驱动</h3><table><thead><tr><th>浏览器</th><th>驱动</th></tr></thead><tbody><tr><td>Firefox</td><td>geckodriver</td></tr><tr><td>Chrome</td><td>chromedriver</td></tr><tr><td>Edge</td><td>edgedriver</td></tr><tr><td>IE</td><td>IEDriver</td></tr><tr><td>Opera</td><td>operadriver</td></tr><tr><td>PhantomJS</td><td>phantomjs</td></tr></tbody></table><h2 id=应用>应用</h2><h3 id=基础>基础</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=lnt> 1
@@ -28,6 +28,9 @@
 </span><span class=lnt>21
 </span><span class=lnt>22
 </span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>selenium</span> <span class=kn>import</span> <span class=n>webdriver</span>
 <span class=c1># 对应不同的浏览器</span>
 <span class=n>driver</span> <span class=o>=</span> <span class=n>webdriver</span><span class=o>.</span><span class=n>Firefox</span><span class=p>()</span>     <span class=c1># Firefox 浏览器</span>
@@ -42,9 +45,12 @@
 
 <span class=c1># 获取特定信息</span>
 <span class=n>driver</span><span class=o>.</span><span class=n>title</span>  <span class=c1># 标题</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>name</span>  <span class=c1># 浏览器名称</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>orientation</span>  <span class=c1># 设备方向</span>
 <span class=n>driver</span><span class=o>.</span><span class=n>page_source</span>  <span class=c1># 源码</span>
 <span class=n>driver</span><span class=o>.</span><span class=n>current_url</span>  <span class=c1># 当前 url</span>
-<span class=n>driver</span><span class=o>.</span><span class=n>save_screenshot</span><span class=p>(</span><span class=s2>&#34;filename.png&#34;</span><span class=p>)</span>  <span class=c1># 页面截图</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>current_window_handle</span>  <span class=c1># 当前窗口句柄</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>window_handles</span>  <span class=c1># 所有窗口句柄</span>
 
 <span class=c1># 关闭页面</span>
 <span class=n>driver</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
@@ -95,18 +101,52 @@
 </span><span class=lnt>43
 </span><span class=lnt>44
 </span><span class=lnt>45
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=c1># 各种选择元素的方法</span>
-<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_id</span><span class=p>()</span>
-<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_name</span><span class=p>()</span>
-<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_class_name</span><span class=p>()</span>
-<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_tag_name</span><span class=p>()</span>
-<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_link_text</span><span class=p>()</span>
-<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_partial_link_text</span><span class=p>()</span>
-<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_xpath</span><span class=p>()</span>
-<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_css_selector</span><span class=p>()</span>
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=c1># 选择元素的方法</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_id</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_name</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_class_name</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_tag_name</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_link_text</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_partial_link_text</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_xpath</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_css_selector</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
 
-<span class=c1># 另一种选择元素的方法</span>
+<span class=c1># 选择多个元素的方法，返回列表</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements_by_id</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements_by_name</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements_by_class_name</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements_by_tag_name</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements_by_link_text</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements_by_partial_link_text</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements_by_xpath</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements_by_css_selector</span><span class=p>(</span><span class=n>value</span><span class=p>)</span>
+
+<span class=c1># 另一种选择元素（组）的方法</span>
 <span class=kn>from</span> <span class=nn>selenium.webdriver.common.by</span> <span class=kn>import</span> <span class=n>By</span>
+
 <span class=n>driver</span><span class=o>.</span><span class=n>find_element</span><span class=p>(</span><span class=n>by</span><span class=o>=</span><span class=n>By</span><span class=o>.</span><span class=n>ID</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
 <span class=n>driver</span><span class=o>.</span><span class=n>find_element</span><span class=p>(</span><span class=n>by</span><span class=o>=</span><span class=n>By</span><span class=o>.</span><span class=n>NAME</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
 <span class=n>driver</span><span class=o>.</span><span class=n>find_element</span><span class=p>(</span><span class=n>by</span><span class=o>=</span><span class=n>By</span><span class=o>.</span><span class=n>CLASS_NAME</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
@@ -116,15 +156,27 @@
 <span class=n>driver</span><span class=o>.</span><span class=n>find_element</span><span class=p>(</span><span class=n>by</span><span class=o>=</span><span class=n>By</span><span class=o>.</span><span class=n>XPATH</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
 <span class=n>driver</span><span class=o>.</span><span class=n>find_element</span><span class=p>(</span><span class=n>by</span><span class=o>=</span><span class=n>By</span><span class=o>.</span><span class=n>CSS_SELECTOR</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
 
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements</span><span class=p>(</span><span class=n>by</span><span class=o>=</span><span class=n>By</span><span class=o>.</span><span class=n>ID</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements</span><span class=p>(</span><span class=n>by</span><span class=o>=</span><span class=n>By</span><span class=o>.</span><span class=n>NAME</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements</span><span class=p>(</span><span class=n>by</span><span class=o>=</span><span class=n>By</span><span class=o>.</span><span class=n>CLASS_NAME</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements</span><span class=p>(</span><span class=n>by</span><span class=o>=</span><span class=n>By</span><span class=o>.</span><span class=n>TAG_NAME</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements</span><span class=p>(</span><span class=n>by</span><span class=o>=</span><span class=n>By</span><span class=o>.</span><span class=n>LINK_TEXT</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements</span><span class=p>(</span><span class=n>by</span><span class=o>=</span><span class=n>By</span><span class=o>.</span><span class=n>PARTIAL_LINK_TEXT</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements</span><span class=p>(</span><span class=n>by</span><span class=o>=</span><span class=n>By</span><span class=o>.</span><span class=n>XPATH</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_elements</span><span class=p>(</span><span class=n>by</span><span class=o>=</span><span class=n>By</span><span class=o>.</span><span class=n>CSS_SELECTOR</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
+
 <span class=c1># 举例</span>
 <span class=c1># 获取 class=&#34;nums&#34; 的对象的文本</span>
-<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_class_name</span><span class=p>(</span><span class=s1>&#39;nums&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>text</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_class_name</span><span class=p>(</span><span class=s2>&#34;nums&#34;</span><span class=p>)</span><span class=o>.</span><span class=n>text</span>
 
 <span class=c1># 获取 id=&#34;account&#34; 的对象的属性的值</span>
 <span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_id</span><span class=p>(</span><span class=s2>&#34;account&#34;</span><span class=p>)</span><span class=o>.</span><span class=n>get_attribute</span><span class=p>(</span><span class=s2>&#34;value&#34;</span><span class=p>)</span>
 
 <span class=c1># 定位到 id=&#34;submit&#34; 的按钮并点击</span>
 <span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_id</span><span class=p>(</span><span class=s2>&#34;submit&#34;</span><span class=p>)</span><span class=o>.</span><span class=n>click</span><span class=p>()</span>
+
+<span class=c1># 或者直接提交</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_id</span><span class=p>(</span><span class=s2>&#34;submit&#34;</span><span class=p>)</span><span class=o>.</span><span class=n>submit</span><span class=p>()</span>
 
 <span class=c1># 或者也可以按回车键提交</span>
 <span class=kn>from</span> <span class=nn>selenium.webdriver.common.keys</span> <span class=kn>import</span> <span class=n>Keys</span>
@@ -194,21 +246,21 @@
 <span class=c1># 内置的判断条件，可以直接在 until/until_not 中使用</span>
 <span class=n>title_is</span>
 <span class=n>title_contains</span>
-<span class=n>presence_of_element_located</span>
-<span class=n>visibility_of_element_located</span>
 <span class=n>visibility_of</span>
+<span class=n>visibility_of_element_located</span>
+<span class=n>invisibility_of_element_located</span>
+<span class=n>presence_of_element_located</span>
 <span class=n>presence_of_all_elements_located</span>
 <span class=n>text_to_be_present_in_element</span>
 <span class=n>text_to_be_present_in_element_value</span>
 <span class=n>frame_to_be_available_and_switch_to_it</span>
-<span class=n>invisibility_of_element_located</span>
 <span class=n>element_to_be_clickable</span>
-<span class=n>staleness_of</span>
 <span class=n>element_to_be_selected</span>
 <span class=n>element_located_to_be_selected</span>
 <span class=n>element_selection_state_to_be</span>
 <span class=n>element_located_selection_state_to_be</span>
-<span class=n>alert_is_present</span></code></pre></td></tr></table></div></div><h3 id=控制>控制</h3><h4 id=页面>页面</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=lnt> 1
+<span class=n>alert_is_present</span>
+<span class=n>staleness_of</span></code></pre></td></tr></table></div></div><h3 id=控制>控制</h3><h4 id=页面>页面</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -252,15 +304,27 @@
 </span><span class=lnt>42
 </span><span class=lnt>43
 </span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=c1># 控制浏览器窗口大小</span>
 <span class=n>driver</span><span class=o>.</span><span class=n>set_window_size</span><span class=p>(</span><span class=mi>480</span><span class=p>,</span> <span class=mi>800</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>maximize_windows</span><span class=p>()</span>  <span class=c1># 最大化</span>
 
-<span class=c1># 浏览器后退，前进</span>
-<span class=n>driver</span><span class=o>.</span><span class=n>back</span><span class=p>()</span>
-<span class=n>driver</span><span class=o>.</span><span class=n>forward</span><span class=p>()</span>
-
-<span class=c1># 刷新</span>
-<span class=n>driver</span><span class=o>.</span><span class=n>refresh</span><span class=p>()</span>
+<span class=c1># 浏览器页面控制</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>back</span><span class=p>()</span>  <span class=c1># 后退</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>forward</span><span class=p>()</span>  <span class=c1># 前进</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>refresh</span><span class=p>()</span>  <span class=c1># 刷新</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>  <span class=c1># 关闭</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>quit</span><span class=p>()</span>  <span class=c1># 退出</span>
 
 <span class=c1># 切换框架</span>
 <span class=n>driver</span><span class=o>.</span><span class=n>switch_to_frame</span><span class=p>(</span><span class=s2>&#34;frameName&#34;</span><span class=p>)</span>
@@ -282,9 +346,12 @@
 <span class=c1># 选择下拉菜单</span>
 <span class=kn>from</span> <span class=nn>selenium.webdriver.support.ui</span> <span class=kn>import</span> <span class=n>Select</span>
 <span class=n>select</span> <span class=o>=</span> <span class=n>Select</span><span class=p>(</span><span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_name</span><span class=p>(</span><span class=s2>&#34;status&#34;</span><span class=p>))</span>
-<span class=n>select</span><span class=o>.</span><span class=n>select_by_index</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>  <span class=c1># 使用索引值</span>
-<span class=n>select</span><span class=o>.</span><span class=n>select_by_value</span><span class=p>(</span><span class=s2>&#34;0&#34;</span><span class=p>)</span>  <span class=c1># 使用属性值</span>
-<span class=n>select</span><span class=o>.</span><span class=n>select_by_visible_text</span><span class=p>(</span><span class=sa>u</span><span class=s2>&#34;选项三&#34;</span><span class=p>)</span>  <span class=c1># 使用文本值</span>
+<span class=n>select</span><span class=o>.</span><span class=n>select_by_index</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>  <span class=c1># 按索引值选择</span>
+<span class=n>select</span><span class=o>.</span><span class=n>select_by_value</span><span class=p>(</span><span class=s2>&#34;0&#34;</span><span class=p>)</span>  <span class=c1># 按属性值选择</span>
+<span class=n>select</span><span class=o>.</span><span class=n>select_by_visible_text</span><span class=p>(</span><span class=sa>u</span><span class=s2>&#34;选项三&#34;</span><span class=p>)</span>  <span class=c1># 按文本值选择</span>
+<span class=n>deselect</span><span class=o>.</span><span class=n>select_by_index</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>  <span class=c1># 按索引值取消选择</span>
+<span class=n>deselect</span><span class=o>.</span><span class=n>select_by_value</span><span class=p>(</span><span class=s2>&#34;0&#34;</span><span class=p>)</span>  <span class=c1># 按属性值取消选择</span>
+<span class=n>deselect</span><span class=o>.</span><span class=n>select_by_visible_text</span><span class=p>(</span><span class=sa>u</span><span class=s2>&#34;选项三&#34;</span><span class=p>)</span>  <span class=c1># 按文本值取消选择</span>
 
 <span class=c1># 处理 cookie</span>
 <span class=n>driver</span><span class=o>.</span><span class=n>get_cookie</span><span class=p>(</span><span class=n>cookieName</span><span class=p>)</span>  <span class=c1># 获取某个 cookie</span>
@@ -295,7 +362,14 @@
 
 <span class=c1># 调用 JavaScript</span>
 <span class=n>js</span><span class=o>=</span><span class=s2>&#34;window.scrollTo(100,450);&#34;</span>
-<span class=n>driver</span><span class=o>.</span><span class=n>execute_script</span><span class=p>(</span><span class=n>js</span><span class=p>)</span></code></pre></td></tr></table></div></div><h4 id=键盘>键盘</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=lnt> 1
+<span class=n>driver</span><span class=o>.</span><span class=n>execute_script</span><span class=p>(</span><span class=n>js</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>execute_async_script</span><span class=p>(</span><span class=n>js</span><span class=p>)</span>
+
+<span class=c1># 页面截图</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>save_screenshot</span><span class=p>(</span><span class=n>filename</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>get_screenshot_as_file</span><span class=p>(</span><span class=n>filename</span><span class=p>)</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>get_screenshot_as_base64</span><span class=p>()</span>
+<span class=n>driver</span><span class=o>.</span><span class=n>get_screenshot_as_png</span><span class=p>()</span></code></pre></td></tr></table></div></div><h4 id=键盘>键盘</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -351,6 +425,19 @@
 </span><span class=lnt>25
 </span><span class=lnt>26
 </span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=c1># 导入 ActionChains 类</span>
 <span class=kn>from</span> <span class=nn>selenium.webdriver</span> <span class=kn>import</span> <span class=n>ActionChains</span>
 
@@ -377,10 +464,23 @@
 <span class=c1># 将 ac1 拖拽到 ac2 位置</span>
 <span class=n>ac1</span> <span class=o>=</span> <span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_xpath</span><span class=p>(</span><span class=s2>&#34;elementD&#34;</span><span class=p>)</span>
 <span class=n>ac2</span> <span class=o>=</span> <span class=n>driver</span><span class=o>.</span><span class=n>find_element_by_xpath</span><span class=p>(</span><span class=s2>&#34;elementE&#34;</span><span class=p>)</span>
-<span class=n>ActionChains</span><span class=p>(</span><span class=n>driver</span><span class=p>)</span><span class=o>.</span><span class=n>drag_and_drop</span><span class=p>(</span><span class=n>ac1</span><span class=p>,</span> <span class=n>ac2</span><span class=p>)</span><span class=o>.</span><span class=n>perform</span><span class=p>()</span></code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=n>ActionChains</span><span class=p>(</span><span class=n>driver</span><span class=p>)</span><span class=o>.</span><span class=n>drag_and_drop</span><span class=p>(</span><span class=n>ac1</span><span class=p>,</span> <span class=n>ac2</span><span class=p>)</span><span class=o>.</span><span class=n>perform</span><span class=p>()</span>
+
+<span class=c1># 可用的有</span>
+<span class=n>click</span>
+<span class=n>click_and_hold</span>
+<span class=n>double_click</span>
+<span class=n>drag_and_drop</span>
+<span class=n>key_down</span>
+<span class=n>key_up</span>
+<span class=n>move_to_element</span>
+<span class=n>perform</span>
+<span class=n>release</span>
+<span class=n>send_keys</span>
+<span class=n>send_keys_to_element</span></code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
 <span class=item-content>winsphinx</span></p><p class=copyright-item><span class=item-title>上次更新</span>
 <span class=item-content>2021-08-31
-<a href=https://github.com/winsphinx/blog/commit/e9d68fb4d0e6b663aeb66e4a8abbad39e7bc8203 title="[原创] selenium">(e9d68fb)</a><br>[原创] selenium</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<a href=https://github.com/winsphinx/blog/commit/bd51a7be7309232a97e0b8fdbacd82b3d5096326 title="[原创] selenium">(bd51a7b)</a><br>[原创] selenium</span></p><p class=copyright-item><span class=item-title>许可协议</span>
 <span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank><img alt="CC BY-NC-SA 4.0" style=border-width:0 src=https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png></a></span></p></div><footer class=post-footer><div class=post-tags><a href=https://winsphinx.github.io/blog/tags/python/>Python</a>
 <a href=https://winsphinx.github.io/blog/tags/selenium/>selenium</a></div><nav class=post-nav><a class=next href=https://winsphinx.github.io/blog/post/three-order-rubik-cube-steps/><span class="next-text nav-default">三阶魔方步骤</span>
 <span class="prev-text nav-mobile">下一篇</span>
