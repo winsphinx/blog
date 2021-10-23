@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://winsphinx.github.io/blog/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 23 Sep 2021 19:10:00 +0800</lastBuildDate><atom:link href="https://winsphinx.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Spacemace Keys</title><link>https://winsphinx.github.io/blog/post/spacemace-keys/</link><pubDate>Thu, 23 Sep 2021 19:10:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/spacemace-keys/</guid><description>&lt;p&gt;整理了 Spacemacs 的一些常用键。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://winsphinx.github.io/blog/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 23 Oct 2021 18:57:00 +0800</lastBuildDate><atom:link href="https://winsphinx.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Learning Hy</title><link>https://winsphinx.github.io/blog/post/learning-hy/</link><pubDate>Sat, 23 Oct 2021 18:57:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/learning-hy/</guid><description>&lt;p&gt;Hy is a lisp dialect built on top of python. This is achieved by converting hy code to python’s abstract syntax tree (ast). This allows hy to call native python code or python to call native hy code as well.&lt;/p&gt;
+&lt;h2 id=&#34;基础&#34;&gt;基础&lt;/h2&gt;
+&lt;h2 id=&#34;练习&#34;&gt;练习&lt;/h2&gt;
+&lt;p&gt;学以致用，随手写了一个抓取必应壁纸的小程序。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-hy&#34; data-lang=&#34;hy&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-hy&#34; data-lang=&#34;hy&#34;&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;import &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;os&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;re&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;requests&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;setv &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;URL&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;https://www.bing.com/&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;setv &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;NAME&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;-&amp;gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;re.compile&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;url\(/th\?id=(.*?\.jpg).*\)&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;.search&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;-&amp;gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;requests.get&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;URL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)))&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;.group&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)))&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;setv &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;ADDRESS&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;URL&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;th?id=&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;NAME&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;FILE&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;os.path.join&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;os.getcwd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;wallpapers&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;NAME&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;wb&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;.write&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;FILE&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;-&amp;gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;requests.get&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ADDRESS&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>Spacemace Keys</title><link>https://winsphinx.github.io/blog/post/spacemace-keys/</link><pubDate>Thu, 23 Sep 2021 19:10:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/spacemace-keys/</guid><description>&lt;p&gt;整理了 Spacemacs 的一些常用键。&lt;/p&gt;
 &lt;h2 id=&#34;git&#34;&gt;git&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;SPC g s&lt;/code&gt;&lt;/p&gt;
 &lt;table&gt;
@@ -3165,39 +3184,4 @@ itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
 &lt;h2 id=&#34;心智探奇&#34;&gt;&lt;span class=&#34;org-todo todo TODO&#34;&gt;TODO&lt;/span&gt; 心智探奇&lt;/h2&gt;
 &lt;p&gt;人类心智的起源与进化&lt;/p&gt;
 &lt;h2 id=&#34;白板&#34;&gt;&lt;span class=&#34;org-todo todo TODO&#34;&gt;TODO&lt;/span&gt; 白板&lt;/h2&gt;
-&lt;p&gt;科学和常识所揭示的人性奥秘&lt;/p&gt;</description></item><item><title>Emacs GDB</title><link>https://winsphinx.github.io/blog/post/emacs-gdb/</link><pubDate>Wed, 15 Apr 2020 21:17:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/emacs-gdb/</guid><description>&lt;p&gt;Use Emacs GDB to debug c/c++ programs.&lt;/p&gt;
-&lt;h2 id=&#34;prepare-compile&#34;&gt;Prepare: Compile&lt;/h2&gt;
-&lt;p&gt;Compile c/cpp with option &lt;code&gt;-g&lt;/code&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;gcc prog.c -g -o proc&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;or in Makefile:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;CFLAGS=&amp;ldquo;-g&amp;rdquo; ./configure &amp;amp;&amp;amp; make&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;start-run-gdb&#34;&gt;Start: Run gdb&lt;/h2&gt;
-&lt;h3 id=&#34;run-gdb&#34;&gt;Run gdb&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;M-x gdb&lt;/code&gt; to select a file.&lt;/p&gt;
-&lt;h3 id=&#34;set-mode&#34;&gt;Set mode&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;gdb-mamy-windows&lt;/code&gt; to switch single/multi windows mode.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;gdb-restore-windows&lt;/code&gt; to restore windows.&lt;/p&gt;
-&lt;h2 id=&#34;debug-set-breakpoint&#34;&gt;Debug: Set breakpoint&lt;/h2&gt;
-&lt;h3 id=&#34;set-remove-breakpoint&#34;&gt;Set/Remove breakpoint&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;C-x C-a C-b&lt;/code&gt; or &lt;code&gt;gud-break&lt;/code&gt; to set a breakpoint.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;C-x C-a C-d&lt;/code&gt; or &lt;code&gt;gud-remove&lt;/code&gt; to remove a breakpoint.&lt;/p&gt;
-&lt;h3 id=&#34;run&#34;&gt;Run&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;gud-go&lt;/code&gt; to run, and stop on the breakpoint.&lt;/p&gt;
-&lt;h3 id=&#34;next-step&#34;&gt;Next/Step&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;C-x C-a C-n&lt;/code&gt; or &lt;code&gt;gud-next&lt;/code&gt; to run a function.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;C-x C-a C-s&lt;/code&gt; or &lt;code&gt;gud-step&lt;/code&gt; to run into a function.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;C-x C-a C-f&lt;/code&gt; or &lt;code&gt;gud-finish&lt;/code&gt; to finish a function.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;C-x C-a C-u&lt;/code&gt; or &lt;code&gt;gud-until&lt;/code&gt; to run until the cursor line.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;C-x C-a C-r&lt;/code&gt; or &lt;code&gt;gud-cont&lt;/code&gt; to continue to run.&lt;/p&gt;
-&lt;h2 id=&#34;view-watch-variables&#34;&gt;View: Watch variables&lt;/h2&gt;
-&lt;h3 id=&#34;in-the-default-locals-buffer&#34;&gt;In the default locals buffer&lt;/h3&gt;
-&lt;p&gt;If not shown, &lt;code&gt;gdb-display-locals-buffer&lt;/code&gt; to toggle.&lt;/p&gt;
-&lt;h3 id=&#34;in-the-speedbar-buffer&#34;&gt;In the speedbar buffer&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;C-x C-a C-w&lt;/code&gt; or &lt;code&gt;gud-watch&lt;/code&gt; to add a variables.&lt;/p&gt;
-&lt;h3 id=&#34;on-mouse-over&#34;&gt;On mouse over&lt;/h3&gt;
-&lt;p&gt;If not shown, &lt;code&gt;gud-tooltip-mode&lt;/code&gt; to toggle.&lt;/p&gt;
-&lt;h2 id=&#34;io-set-io-or-redirect&#34;&gt;IO: Set IO or redirect&lt;/h2&gt;
-&lt;h3 id=&#34;default-io-buffer&#34;&gt;Default IO buffer&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;gdb-use-separate-io-buffer&lt;/code&gt; to toggle.&lt;/p&gt;
-&lt;h3 id=&#34;redirect-to-files&#34;&gt;Redirect to files&lt;/h3&gt;
-&lt;p&gt;In &lt;strong&gt;gdb&lt;/strong&gt; buffer type: *run &amp;lt; file.in &amp;gt; file.out&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;科学和常识所揭示的人性奥秘&lt;/p&gt;</description></item></channel></rss>
