@@ -741,15 +741,15 @@
 &lt;td&gt;跳转近期目录&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</description></item><item><title>selenium 笔记</title><link>https://winsphinx.github.io/blog/post/selenium-notes/</link><pubDate>Fri, 20 Aug 2021 18:41:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/selenium-notes/</guid><description>&lt;p&gt;Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，实现自动化操作。&lt;/p&gt;
+&lt;/table&gt;</description></item><item><title>selenium 笔记</title><link>https://winsphinx.github.io/blog/post/selenium-notes/</link><pubDate>Fri, 20 Aug 2021 18:41:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/selenium-notes/</guid><description>&lt;p&gt;Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，实现自动化操作。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
 &lt;h3 id=&#34;安装-selenium&#34;&gt;安装 selenium&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;pip install selenium&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;pip install selenium&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;h3 id=&#34;安装驱动&#34;&gt;安装驱动&lt;/h3&gt;
@@ -1792,167 +1792,167 @@
 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description></item><item><title>aria2</title><link>https://winsphinx.github.io/blog/post/aria2/</link><pubDate>Wed, 17 Mar 2021 20:16:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/aria2/</guid><description>&lt;blockquote&gt;
-&lt;p&gt;aria2 是一个自由、开源、轻量级多协议和多源的命令行下载工具。它支持 HTTP/HTTPS、FTP、SFTP、 BitTorrent 和 Metalink 协议。aria2 可以通过内建的 JSON-RPC 和 XML-RPC 接口来操纵。&lt;/p&gt;
+&lt;p&gt;aria2 是一个自由、开源、轻量级多协议和多源的命令行下载工具。它支持 HTTP/HTTPS、FTP、SFTP、 BitTorrent 和 Metalink 协议。aria2 可以通过内建的 JSON-RPC 和 XML-RPC 接口来操纵。 &lt;br/&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;aria2-特性&#34;&gt;aria2 特性&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;支持 HTTP/HTTPS GET&lt;/li&gt;
-&lt;li&gt;支持 HTTP 代理&lt;/li&gt;
-&lt;li&gt;支持 HTTP BASIC 认证&lt;/li&gt;
-&lt;li&gt;支持 HTTP 代理认证&lt;/li&gt;
-&lt;li&gt;支持 FTP （主动、被动模式）&lt;/li&gt;
-&lt;li&gt;通过 HTTP 代理的 FTP（GET 命令行或者隧道）&lt;/li&gt;
-&lt;li&gt;分段下载&lt;/li&gt;
-&lt;li&gt;支持 Cookie&lt;/li&gt;
-&lt;li&gt;可以作为守护进程运行。&lt;/li&gt;
-&lt;li&gt;支持使用 fast 扩展的 BitTorrent 协议&lt;/li&gt;
-&lt;li&gt;支持在多文件 torrent 中选择文件&lt;/li&gt;
-&lt;li&gt;支持 Metalink 3.0 版本（HTTP/FTP/BitTorrent）&lt;/li&gt;
-&lt;li&gt;限制下载、上传速度&lt;/li&gt;
+&lt;li&gt;支持 HTTP/HTTPS GET &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;支持 HTTP 代理 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;支持 HTTP BASIC 认证 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;支持 HTTP 代理认证 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;支持 FTP （主动、被动模式） &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;通过 HTTP 代理的 FTP（GET 命令行或者隧道） &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;分段下载 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;支持 Cookie &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;可以作为守护进程运行。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;支持使用 fast 扩展的 BitTorrent 协议 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;支持在多文件 torrent 中选择文件 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;支持 Metalink 3.0 版本（HTTP/FTP/BitTorrent） &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;限制下载、上传速度 &lt;br/&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;aria2-使用&#34;&gt;aria2 使用&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;下载单个文件&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;下载单个文件 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt; aria2c LINK&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt; aria2c LINK&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;下载多个文件&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;下载多个文件 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt; aria2c -Z LINK1 LINK2
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt; aria2c -Z LINK1 LINK2
 aria2c -Z -P LINK&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;,2&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 用 -P扩展&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;下载更名&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;下载更名 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt; aria2c LINK -o NAME&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt; aria2c LINK -o NAME&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;限速下载&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;限速下载 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt; aria2c --max-download-limit&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;500k LINK&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt; aria2c --max-download-limit&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;500k LINK&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;续传&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;续传 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt; aria2c -c LINK&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt; aria2c -c LINK&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;按列表文件下载&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;按列表文件下载 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt; aria2c -i LISTFILE&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt; aria2c -i LISTFILE&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;多连接下载&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;多连接下载 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt; aria2c -xN LINK&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt; aria2c -xN LINK&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;多线程下载&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;多线程下载 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt; aria2c -sN LINK&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt; aria2c -sN LINK&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;下载 BitTorrent 种子文件、磁力链接&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;下载 BitTorrent 种子文件、磁力链接 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt; aria2c filename.torrent
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt; aria2c filename.torrent
 aria2c &lt;span class=&#34;s1&#34;&gt;&amp;#39;magnet:metalink&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;下载 BitTorrent 种子文件、磁力链接中的某个/某些文件&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;下载 BitTorrent 种子文件、磁力链接中的某个/某些文件 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt; aria2c -S filename.torrent &lt;span class=&#34;c1&#34;&gt;# 先获取文件列表&lt;/span&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt; aria2c -S filename.torrent &lt;span class=&#34;c1&#34;&gt;# 先获取文件列表&lt;/span&gt;
 aria2c --select-file&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;-3,6 filename.torrent &lt;span class=&#34;c1&#34;&gt;# 下载其中编号为1，2，3，6的文件&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>配置打印机</title><link>https://winsphinx.github.io/blog/post/configure-printer/</link><pubDate>Tue, 16 Feb 2021 18:21:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/configure-printer/</guid><description>&lt;p&gt;入手了一台 REDMI AX6 路由器后，突然发现，现在换个路由器不仅仅需要配置路由器本身，还有一系列的设备都需要重新配置。&lt;/p&gt;
+&lt;/ul&gt;</description></item><item><title>配置打印机</title><link>https://winsphinx.github.io/blog/post/configure-printer/</link><pubDate>Tue, 16 Feb 2021 18:21:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/configure-printer/</guid><description>&lt;p&gt;入手了一台 REDMI AX6 路由器后，突然发现，现在换个路由器不仅仅需要配置路由器本身，还有一系列的设备都需要重新配置。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;配置路由器&#34;&gt;配置路由器&lt;/h2&gt;
-&lt;p&gt;直接用电脑搜索对应的 WIFI 登录，这时候不需要密码，然后按照提示配置账号和密码，再重新设定 WIFI SSID，由于 AX6 支持 2.4G 和 5G，所以配了两个。重启路由器后顺利登录新建的 WIFI，路由器配置完成。&lt;/p&gt;
-&lt;p&gt;配置难度：超简单&lt;/p&gt;
+&lt;p&gt;直接用电脑搜索对应的 WIFI 登录，这时候不需要密码，然后按照提示配置账号和密码，再重新设定 WIFI SSID，由于 AX6 支持 2.4G 和 5G，所以配了两个。重启路由器后顺利登录新建的 WIFI，路由器配置完成。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;配置难度：超简单 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;配置手机电脑电视机&#34;&gt;配置手机电脑电视机&lt;/h2&gt;
-&lt;p&gt;连入网路，输入密码，事就这样成了。&lt;/p&gt;
-&lt;p&gt;配置难度：傻瓜式&lt;/p&gt;
+&lt;p&gt;连入网路，输入密码，事就这样成了。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;配置难度：傻瓜式 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;配置其他智能家电&#34;&gt;配置其他智能家电&lt;/h2&gt;
-&lt;p&gt;用手机进 APP 后，逐个连接配置扫地机器人、智能台灯、网络存储等设备，事就这样成了。&lt;/p&gt;
-&lt;p&gt;这里学到了一个小知识：我一直以为 windows 的映射网络驱动器时，自带的 samba 是不支持主机名解析的，之前一直配置的是静态 IP。这次试了一下主机名居然也连上了，不知是不是这几年来 Windows 10 版本更新的原因，还是由于网络存储的固件升级了。&lt;/p&gt;
-&lt;p&gt;配置难度：费时间&lt;/p&gt;
+&lt;p&gt;用手机进 APP 后，逐个连接配置扫地机器人、智能台灯、网络存储等设备，事就这样成了。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;这里学到了一个小知识：我一直以为 windows 的映射网络驱动器时，自带的 samba 是不支持主机名解析的，之前一直配置的是静态 IP。这次试了一下主机名居然也连上了，不知是不是这几年来 Windows 10 版本更新的原因，还是由于网络存储的固件升级了。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;配置难度：费时间 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;配置打印机&#34;&gt;配置打印机&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;闷头一通乱打，小怪全部清场；天空一声巨响，BOSS 闪亮登场。&lt;/p&gt;
+&lt;p&gt;闷头一通乱打，小怪全部清场；天空一声巨响，BOSS 闪亮登场。 &lt;br/&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;——配置 Lenovo LJ2268W 打印机花了不少时间，也费了不少脑细胞。特此记录一下：&lt;/p&gt;
+&lt;p&gt;——配置 Lenovo LJ2268W 打印机花了不少时间，也费了不少脑细胞。特此记录一下： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;由于 WIFI 换了，连不上打印机，因此首先需要重置打印机。
+&lt;li&gt;由于 WIFI 换了，连不上打印机，因此首先需要重置打印机。 &lt;br/&gt;
 &lt;ul&gt;
-&lt;li&gt;首先按住按钮 6 秒，关机。&lt;/li&gt;
-&lt;li&gt;翻起上盖，进入重置模式，再按住按钮，先是红灯闪烁，然后变成橙色，重置完成，这时会自动打印出一张配置清单。&lt;/li&gt;
-&lt;li&gt;盖好盖子，再按照清单的步骤逐项配置，最重要的是将网络连上。&lt;/li&gt;
-&lt;li&gt;连上 WIFI 后，用浏览器登录打印机的 IP，进入 web 配置页面。&lt;/li&gt;
-&lt;li&gt;为了后续能顺利使用，将打印机的 IP 改成固定 IP 模式，要不然每次打印机重启后 IP 变动，就会找不到打印机。既可以在打印机的配置页面里设置静态 IP，也可以在路由器的 DHCP 配置里设置静态 IP。&lt;/li&gt;
+&lt;li&gt;首先按住按钮 6 秒，关机。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;翻起上盖，进入重置模式，再按住按钮，先是红灯闪烁，然后变成橙色，重置完成，这时会自动打印出一张配置清单。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;盖好盖子，再按照清单的步骤逐项配置，最重要的是将网络连上。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;连上 WIFI 后，用浏览器登录打印机的 IP，进入 web 配置页面。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;为了后续能顺利使用，将打印机的 IP 改成固定 IP 模式，要不然每次打印机重启后 IP 变动，就会找不到打印机。既可以在打印机的配置页面里设置静态 IP，也可以在路由器的 DHCP 配置里设置静态 IP。 &lt;br/&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;安装驱动程序：&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;安装驱动程序： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Windows 下直接使用官方的安装包，由于懒得找 USB 连接线，直接采用 WIFI 安装方式，一路下一步顺利安装完成。&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Linux（manjaro）中，步骤如下：&lt;/p&gt;
+&lt;li&gt;Windows 下直接使用官方的安装包，由于懒得找 USB 连接线，直接采用 WIFI 安装方式，一路下一步顺利安装完成。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Linux（manjaro）中，步骤如下： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;安装 cups（Common Unix Printing System）&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;安装 cups（Common Unix Printing System） &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt; sudo yay -S cups
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt; sudo yay -S cups
 sudo yay -S manjaro-printer system-config-printer &lt;span class=&#34;c1&#34;&gt;# 可选&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;启动服务&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;启动服务 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
@@ -1962,7 +1962,7 @@ sudo yay -S manjaro-printer system-config-printer &lt;span class=&#34;c1&#34;&gt
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt; sudo systemctl disable --now org.cups.cupsd.socket
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt; sudo systemctl disable --now org.cups.cupsd.socket
 sudo systemctl disable --now org.cups.cupsd.service
 sudo systemctl disable --now org.cups.cupsd.path
 sudo systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; --now cups.service
@@ -1971,20 +1971,20 @@ sudo systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; --now cups.pat
 sudo systemctl list-units -a &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -i cups &lt;span class=&#34;c1&#34;&gt;# 检查运行状态&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;正常来说这时候就可以打印了。如果不成功，则需要手动配置：&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;正常来说这时候就可以打印了。如果不成功，则需要手动配置： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;进入 cups 的配置页面&lt;a href=&#34;http://localhost:631&#34;&gt;http://localhost:631&lt;/a&gt;，用 web 方式添加打印机。&lt;/li&gt;
-&lt;li&gt;也可以用 &lt;code&gt;system-config-printer&lt;/code&gt; 进入 &lt;code&gt;Print Settings&lt;/code&gt; 使用图形界面配置。&lt;/li&gt;
+&lt;li&gt;进入 cups 的配置页面&lt;a href=&#34;http://localhost:631&#34;&gt;http://localhost:631&lt;/a&gt;，用 web 方式添加打印机。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;也可以用 &lt;code&gt;system-config-printer&lt;/code&gt; 进入 &lt;code&gt;Print Settings&lt;/code&gt; 使用图形界面配置。 &lt;br/&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;手机（Android）中，步骤如下：&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;手机（Android）中，步骤如下： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;在电脑浏览器用 Web 方式登录打印机的 IP 地址，在“远程打印”标签页中，选择“更新二维码并打印”，打印出最新的二维码。&lt;/li&gt;
-&lt;li&gt;手机上安装 App，扫码连接。&lt;/li&gt;
+&lt;li&gt;在电脑浏览器用 Web 方式登录打印机的 IP 地址，在“远程打印”标签页中，选择“更新二维码并打印”，打印出最新的二维码。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;手机上安装 App，扫码连接。 &lt;br/&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;配置难度：费脑子&lt;/p&gt;</description></item><item><title>Emacs 多点编辑</title><link>https://winsphinx.github.io/blog/post/emacs-multiple-cursors-edit/</link><pubDate>Mon, 08 Feb 2021 17:59:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/emacs-multiple-cursors-edit/</guid><description>&lt;p&gt;Emacs 可以方便地对单文件实现多点编辑，也可以对多个文件同时多点编辑。&lt;/p&gt;
+&lt;p&gt;配置难度：费脑子 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>Emacs 多点编辑</title><link>https://winsphinx.github.io/blog/post/emacs-multiple-cursors-edit/</link><pubDate>Mon, 08 Feb 2021 17:59:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/emacs-multiple-cursors-edit/</guid><description>&lt;p&gt;Emacs 可以方便地对单文件实现多点编辑，也可以对多个文件同时多点编辑。&lt;/p&gt;
 &lt;h2 id=&#34;单文件编辑&#34;&gt;单文件编辑&lt;/h2&gt;
 &lt;p&gt;光标放在要编辑的内容上，用 &lt;code&gt;SPC s e&lt;/code&gt; (&lt;code&gt;M-x evil-iedit-state/iedit-mode&lt;/code&gt;)进入 &lt;code&gt;iedit&lt;/code&gt; 编辑模式。&lt;/p&gt;
 &lt;h3 id=&#34;选择模式&#34;&gt;选择模式&lt;/h3&gt;
