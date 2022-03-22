@@ -1,4 +1,4 @@
-name: Github Pages
+name: posts-commit
 
 on:
   push:
@@ -6,15 +6,16 @@ on:
       - master  # Set a branch to deploy
 
 jobs:
-  deploy:
+  commit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
-      - name: Setup Hugo
+      - name: Setup
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.59.1'
@@ -22,7 +23,15 @@ jobs:
       - name: Build
         run:  hugo --minify
 
-      - name: Deploy
+      - name: Commit
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cleanup
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 30
+          keep_minimum_runs: 6
