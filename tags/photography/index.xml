@@ -1,24 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>photography on Cogito, ergo sum</title><link>https://winsphinx.github.io/blog/tags/photography/</link><description>Recent content in photography on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 14 Sep 2019 20:25:00 +0800</lastBuildDate><atom:link href="https://winsphinx.github.io/blog/tags/photography/index.xml" rel="self" type="application/rss+xml"/><item><title>The Moon and The Earth</title><link>https://winsphinx.github.io/blog/post/the-moon-and-the-earth/</link><pubDate>Sat, 14 Sep 2019 20:25:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/the-moon-and-the-earth/</guid><description>&lt;p>中秋节发图一般大概是这样的——&lt;/p>
-&lt;link rel="stylesheet" href="https://winsphinx.github.io/blog/css/hugo-easy-gallery.css" />
-&lt;div class="box">
-&lt;figure itemprop="associatedMedia"
-itemscope itemtype="http://schema.org/ImageObject" >
-&lt;div class="img">
-&lt;img itemprop="thumbnail" src="https://winsphinx.github.io/blog/ox-hugo/moon.png" />
-&lt;/div>
-&lt;a href="https://winsphinx.github.io/blog/ox-hugo/moon.png" itemprop="contentUrl">&lt;/a>
-&lt;/figure>
-&lt;/div>
-&lt;p>（来源：摄于 2019 年中秋晚，f/8，1/500s，ISO200）&lt;/p>
-&lt;p>我来发个这样的——&lt;/p>
-&lt;div class="box">
-&lt;figure itemprop="associatedMedia"
-itemscope itemtype="http://schema.org/ImageObject" >
-&lt;div class="img">
-&lt;img itemprop="thumbnail" src="https://winsphinx.github.io/blog/ox-hugo/earth.png" />
-&lt;/div>
-&lt;a href="https://winsphinx.github.io/blog/ox-hugo/earth.png" itemprop="contentUrl">&lt;/a>
-&lt;/figure>
-&lt;/div>
-&lt;p>（来源：向日葵 8 号气象卫星，UTC:201909130330）&lt;/p>
-&lt;p>比起关注月球，还是先关注自己的地球母亲吧。&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>photography on Cogito, ergo sum</title><link>https://winsphinx.github.io/blog/tags/photography/</link><description>Recent content in photography on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 14 Sep 2019 20:25:00 +0800</lastBuildDate><atom:link href="https://winsphinx.github.io/blog/tags/photography/index.xml" rel="self" type="application/rss+xml"/><item><title>The Moon and The Earth</title><link>https://winsphinx.github.io/blog/post/the-moon-and-the-earth/</link><pubDate>Sat, 14 Sep 2019 20:25:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/the-moon-and-the-earth/</guid><description>&lt;p&gt;中秋节发图一般大概是这样的——&lt;/p&gt;
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure itemprop=&#34;associatedMedia&#34;
+itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+&lt;div class=&#34;img&#34;&gt;
+&lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://winsphinx.github.io/blog/ox-hugo/moon.png&#34; /&gt;
+&lt;/div&gt;
+&lt;a href=&#34;https://winsphinx.github.io/blog/ox-hugo/moon.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;p&gt;（来源：摄于 2019 年中秋晚，f/8，1/500s，ISO200）&lt;/p&gt;
+&lt;p&gt;我来发个这样的——&lt;/p&gt;
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure itemprop=&#34;associatedMedia&#34;
+itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+&lt;div class=&#34;img&#34;&gt;
+&lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://winsphinx.github.io/blog/ox-hugo/earth.png&#34; /&gt;
+&lt;/div&gt;
+&lt;a href=&#34;https://winsphinx.github.io/blog/ox-hugo/earth.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;p&gt;（来源：向日葵 8 号气象卫星，UTC:201909130330）&lt;/p&gt;
+&lt;p&gt;比起关注月球，还是先关注自己的地球母亲吧。&lt;/p&gt;</description></item></channel></rss>
