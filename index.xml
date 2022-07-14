@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://winsphinx.github.io/blog/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 27 Jun 2022 21:28:00 +0800</lastBuildDate><atom:link href="https://winsphinx.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Happy Birthday</title><link>https://winsphinx.github.io/blog/post/happy-birthday/</link><pubDate>Mon, 27 Jun 2022 21:28:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/happy-birthday/</guid><description>&lt;p&gt;Happy Birthday to Myself! &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://winsphinx.github.io/blog/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 27 Jun 2022 21:28:00 +0800</lastBuildDate><atom:link href="https://winsphinx.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Happy Birthday</title><link>https://winsphinx.github.io/blog/post/happy-birthday/</link><pubDate>Mon, 27 Jun 2022 21:28:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/happy-birthday/</guid><description>&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-lilypond&#34; data-lang=&#34;lilypond&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-lilypond&#34; data-lang=&#34;lilypond&#34;&gt;music = {
+\time 3/4
+r4 r g8 g
+&amp;lt;c a&amp;gt;4 g c&amp;#39;
+&amp;lt;g, b&amp;gt;2 g8 g
+a4 g d&amp;#39;
+&amp;lt;c c&amp;#39;&amp;gt;2 g8 g
+g&amp;#39;4 e&amp;#39; c&amp;#39;
+&amp;lt;c b&amp;gt; a f&amp;#39;8 f&amp;#39;
+&amp;lt;c e&amp;#39;&amp;gt;4 c&amp;#39; d&amp;#39;
+&amp;lt;c c&amp;#39;&amp;gt;2.
+\bar &amp;#34;|.&amp;#34;
+}
+\new StaffGroup &amp;lt;&amp;lt;
+\new Staff {
+\clef &amp;#34;treble_8&amp;#34;
+\music
+}
+\new TabStaff {
+\music
+}
+&amp;gt;&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;
 &lt;div class=&#34;box&#34;&gt;
 &lt;figure itemprop=&#34;associatedMedia&#34;
