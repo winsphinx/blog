@@ -23,10 +23,32 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-lilypond&#34; data-lang=&#34;lilypond&#34;&gt;music = {
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-lilypond&#34; data-lang=&#34;lilypond&#34;&gt;\version &amp;#34;2.22.2&amp;#34;
+\header {
+title = &amp;#34;Happy Birthday&amp;#34;
+composer = &amp;#34;--&amp;#34;
+tagline = ##f % disable default footer
+}
+melody = {
+\clef &amp;#34;treble_8&amp;#34;
 \time 3/4
+\tempo 4=110
+\key c \major
 r4 r g8 g
 &amp;lt;c a&amp;gt;4 g c&amp;#39;
 &amp;lt;g, b&amp;gt;2 g8 g
@@ -35,18 +57,20 @@ a4 g d&amp;#39;
 g&amp;#39;4 e&amp;#39; c&amp;#39;
 &amp;lt;c b&amp;gt; a f&amp;#39;8 f&amp;#39;
 &amp;lt;c e&amp;#39;&amp;gt;4 c&amp;#39; d&amp;#39;
-&amp;lt;c c&amp;#39;&amp;gt;2.
-\bar &amp;#34;|.&amp;#34;
+&amp;lt;c c&amp;#39;&amp;gt;2 \bar &amp;#34;|.&amp;#34;
 }
-\new StaffGroup &amp;lt;&amp;lt;
+\score {
+&amp;lt;&amp;lt;
 \new Staff {
-\clef &amp;#34;treble_8&amp;#34;
-\music
+\melody
 }
 \new TabStaff {
-\music
+\melody
 }
-&amp;gt;&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&amp;gt;&amp;gt;
+\layout { }
+\midi { }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;
