@@ -51,7 +51,6 @@ title = &amp;#34;Happy Birthday&amp;#34;
 tagline = ##f % disable default footer
 }
 melody = {
-\clef &amp;#34;treble_8&amp;#34;
 \time 3/4
 \tempo 4=110
 \key c \major
@@ -76,6 +75,7 @@ g&amp;#39;4 e&amp;#39; c&amp;#39;
 \score {
 &amp;lt;&amp;lt;
 \new Staff {
+\clef &amp;#34;treble_8&amp;#34;
 \melody
 }
 \new TabStaff {
