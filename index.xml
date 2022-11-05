@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://winsphinx.github.io/blog/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 16 Oct 2022 20:20:00 +0800</lastBuildDate><atom:link href="https://winsphinx.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>大唐盛世</title><link>https://winsphinx.github.io/blog/post/the-flourishing-age/</link><pubDate>Sun, 16 Oct 2022 20:20:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/the-flourishing-age/</guid><description>&lt;p&gt;大唐盛世是中华民族悠久历史中最为辉煌的篇章，政治开明，思想解放，疆域辽阔，国防巩固，民族和睦，国富民强，人才济济，文化璀璨，好一派繁荣昌盛的盛世景象。 &lt;br/&gt;&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;\begin{gather}
+&lt;p&gt;\begin{equation}
+\begin{gather}
 石壕吏 \&lt;br /&gt;
 杜甫
-\end{gather}&lt;/p&gt;
-&lt;p&gt;\begin{gather}
+\end{gather}
+\end{equation}
+\begin{gather}
 暮投石壕村，有吏夜捉人。\\&lt;/p&gt;
 &lt;p&gt;老翁逾墙走，老妇出门看。\\&lt;/p&gt;
 &lt;p&gt;吏呼一何怒，妇啼一何苦。\\&lt;/p&gt;
