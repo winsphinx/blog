@@ -167,6 +167,8 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;version&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
@@ -176,7 +178,7 @@
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;image&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;lscr.io/linuxserver/nextcloud&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;latest&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;restart&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;unless-stopped&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;ports&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;7788:5212&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;7788:443&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;environment&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;PUID=&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;PGID=&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
@@ -188,6 +190,8 @@
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;volumes&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;./NextCloud/config&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;/config&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;./NextCloud/data&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;/data&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;depends_on&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;mariadb&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;mariadb&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;container_name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;mariadb&lt;span class=&#34;w&#34;&gt;
@@ -206,7 +210,7 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id=&#34;配置数据库&#34;&gt;配置数据库&lt;/h2&gt;
-&lt;p&gt;按照上述脚本，应该已经在 MariaDB 中创建了一个数据库，名称是 nextcloud，以及相应的用户 nextcloud。可以检查一下。如果有问题也可以手动创建和修改。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;按照上述脚本，应该已经在 MariaDB 中创建了一个数据库，名称是 nextcloud，以及相应的用户 nextcloud。如果有需要也可以手动创建和修改。 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -224,7 +228,7 @@
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 进入mariadb的docker&lt;/span&gt;
 docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; -it mariadb /bin/sh
 &lt;span class=&#34;c1&#34;&gt;# 在docker内部登录数据库&lt;/span&gt;
-mariadb -u root -p&amp;lt;MY_PASSWORD&amp;gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+mariadb -u root -p&amp;lt;MY_ROOT_PASSWORD&amp;gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 创建用户&lt;/span&gt;
 create user &lt;span class=&#34;s1&#34;&gt;&amp;#39;nextcloud&amp;#39;&lt;/span&gt;@&lt;span class=&#34;s1&#34;&gt;&amp;#39;%&amp;#39;&lt;/span&gt; identified by &lt;span class=&#34;s1&#34;&gt;&amp;#39;my_password&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 创建数据库&lt;/span&gt;
@@ -255,6 +259,7 @@ character &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;o&
 &lt;p&gt;然后在浏览器中打开&lt;a href=&#34;http://ip:8088&#34;&gt;http://ip:8088&lt;/a&gt;, 来创建数据库和用户。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;配置-nextcloud&#34;&gt;配置 NextCloud&lt;/h2&gt;
 &lt;p&gt;在浏览器登录&lt;a href=&#34;https://ip:7788&#34;&gt;https://ip:7788&lt;/a&gt;, 设置管理员用户名和密码，在数据库选项中选择 MariaDB，填写数据库用户名、密码、数据库名称、数据库容器名:端口（按照第二步这些已经能自动配置完成），确定即可完成。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ssl-证书问题&#34;&gt;&lt;span class=&#34;org-todo todo TODO&#34;&gt;TODO&lt;/span&gt; SSL 证书问题&lt;/h3&gt;
 &lt;p&gt;对于 https 证书不安全的提示，用以下命令可以生成自签名证书来解决： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -271,6 +276,7 @@ character &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;o&
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;其中的 &lt;code&gt;localhost&lt;/code&gt; 用主机名替换，主机名用 &lt;code&gt;hostname&lt;/code&gt; 获取。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;htst-问题&#34;&gt;&lt;span class=&#34;org-todo todo TODO&#34;&gt;TODO&lt;/span&gt; HTST 问题&lt;/h3&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
