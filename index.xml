@@ -300,7 +300,7 @@ character &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;o&
 &lt;p&gt;如果我们还对自己的“非必要需求”充满耻感，不敢为此争取，并把“非必要需求”推向未来，我们就依然还生活在疫情里。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;如果我们还眷恋和期待着他人和组织的保护和管束，连基本的自由都不能习惯，怯于拥抱，我们就依然还生活在疫情里。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;疫情总有一天会过去，但如果我们不能从内心真正清算疫情带来的“后遗症”，我们就依然还生活在疫情里。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;我们不能永远生活在“疫情”里，我们总要走出牢笼，奔向自由。然而，当自由来临的时候，我们准备好了吗？ &lt;br/&gt;&lt;/p&gt;</description></item><item><title>OpenWrt</title><link>https://winsphinx.github.io/blog/post/openwrt/</link><pubDate>Fri, 11 Nov 2022 11:11:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/openwrt/</guid><description>&lt;p&gt;OpenWrt 是一个相对 mini 的 Linux 发行版，本文简单介绍在虚拟机上安装 OpenWrt。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;我们不能永远生活在“疫情”里，我们总要走出牢笼，奔向自由。然而，当自由来临的时候，我们准备好了吗？ &lt;br/&gt;&lt;/p&gt;</description></item><item><title>OpenWrt in Hyper-V</title><link>https://winsphinx.github.io/blog/post/openwrt/</link><pubDate>Fri, 11 Nov 2022 11:11:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/openwrt/</guid><description>&lt;p&gt;OpenWrt 是一个相对 mini 的 Linux 发行版，通常作为路由器的系统。本文简单介绍在虚拟机上安装 OpenWrt。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;下载与编译&#34;&gt;下载与编译&lt;/h2&gt;
 &lt;p&gt;从 &lt;a href=&#34;https://github.com/openwrt/openwrt&#34;&gt;https://github.com/openwrt/openwrt&lt;/a&gt; 下载后，执行以下命令更新包： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -324,13 +324,28 @@ character &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;o&
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;选择平台为 x86。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;目标文件格式根据虚拟机平台选择，我选择 Hyper-V。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;记得选择 luci，选 luci 后就会有配置页面。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;目标文件格式根据虚拟机平台选择，这里选择 Hyper-V。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;选择 luci，随后就会有 GUI 配置页面。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;编译注意用非 root 用户编译，​&lt;code&gt;make V=99&lt;/code&gt; 开始编译，第一次编译会比较慢，因为要下载开源包。编译完成后会在 bin 目录生成 vhdx 文件，该文件可以 hyper-V 中加载运行。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;设置与运行&#34;&gt;设置与运行&lt;/h2&gt;
 &lt;p&gt;在 Hyper-V 中，新建一个虚拟机，选第一代，虚拟文件选上面生成的 vhdx 文件。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;建立虚拟机后，设置网络使用内部网络，并开启“启用 MAC 欺骗”。再取消“自动检查点”，设置“始终自启动”。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;启动虚拟机，编辑 &lt;code&gt;/etc/config/networks&lt;/code&gt; 文件，设置 &lt;code&gt;lan&lt;/code&gt; 字段中的 IP 为本网段的 IP。最后使用浏览器打开此 IP，进入 openwrt 设置页面。 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>大唐盛世</title><link>https://winsphinx.github.io/blog/post/the-flourishing-age/</link><pubDate>Sun, 16 Oct 2022 20:20:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/the-flourishing-age/</guid><description>&lt;p&gt;大唐盛世是中华民族悠久历史中最为辉煌的篇章，政治开明，思想解放，疆域辽阔，国防巩固，民族和睦，国富民强，人才济济，文化璀璨，好一派繁荣昌盛的盛世景象。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;建立虚拟机后，设置网络使用内部网络，并开启“启用 MAC 欺骗”。再取消“自动检查点”，设置为“始终自启动”。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;启动虚拟机，编辑 &lt;code&gt;/etc/config/networks&lt;/code&gt; 文件，设置 &lt;code&gt;lan&lt;/code&gt; 字段中的 IP 为本网段的 IP。使用 &lt;code&gt;service network restart&lt;/code&gt; 重启服务，或者直接 &lt;code&gt;reboot&lt;/code&gt; 重启系统。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;最后使用浏览器打开此 IP，进入 openwrt 设置页面。如果无法打开，可能是没有安装 &lt;code&gt;uhttpd&lt;/code&gt; ，手工安装并启动一下： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;opkg update
+opkg install uhttpd
+service uhttpd &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt;
+service uhttpd start&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>大唐盛世</title><link>https://winsphinx.github.io/blog/post/the-flourishing-age/</link><pubDate>Sun, 16 Oct 2022 20:20:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/the-flourishing-age/</guid><description>&lt;p&gt;大唐盛世是中华民族悠久历史中最为辉煌的篇章，政治开明，思想解放，疆域辽阔，国防巩固，民族和睦，国富民强，人才济济，文化璀璨，好一派繁荣昌盛的盛世景象。 &lt;br/&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;style&gt;.org-center { margin-left: auto; margin-right: auto; text-align: center; }&lt;/style&gt;
 &lt;div class=&#34;org-center&#34;&gt;
