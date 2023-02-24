@@ -323,9 +323,9 @@ character &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;o&
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;make menuconfig&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;选择平台为 x86。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;目标文件格式根据虚拟机平台选择，这里选择 Hyper-V。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;选择 luci，随后就会有 GUI 配置页面。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;选择 &lt;code&gt;Target System&lt;/code&gt; 为 x86，​&lt;code&gt;Subtarget&lt;/code&gt; 选择 Generic 或者 x86-64 均可。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;目标文件格式 &lt;code&gt;Target Images&lt;/code&gt; 根据虚拟机平台选择，这里选择 Hyper-V(VHDX)。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;选择 &lt;code&gt;luci&lt;/code&gt;​，随后就会有 GUI 配置页面。其他按需配置。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;编译注意用非 root 用户编译，​&lt;code&gt;make V=99&lt;/code&gt; 开始编译，第一次编译会比较慢，因为要下载开源包。编译完成后会在 bin 目录生成 vhdx 文件，该文件可以 hyper-V 中加载运行。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;设置与运行&#34;&gt;设置与运行&lt;/h2&gt;
 &lt;p&gt;在 Hyper-V 中，新建一个虚拟机，选第一代，虚拟文件选上面生成的 vhdx 文件。 &lt;br/&gt;&lt;/p&gt;
