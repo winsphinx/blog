@@ -1,44 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://winsphinx.github.io/blog/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 28 Feb 2023 18:52:00 +0800</lastBuildDate><atom:link href="https://winsphinx.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>诗</title><link>https://winsphinx.github.io/blog/post/poems/</link><pubDate>Tue, 28 Feb 2023 18:52:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/poems/</guid><description>&lt;p&gt;摘抄两首德语诗。 &lt;br/&gt;&lt;/p&gt;
 &lt;hr /&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;*Die das Fleisch wegnehmen vom Tisch*
-/Bertolt Brecht/
-Die das Fleisch wegnehmen vom Tisch,
-lehren Zufriedenheit.
-Die, fürdie die Gabe bestimmt ist,
-verlangen Opfermut.
-Die Sattgefressenen sprechen zu den Hungernden
-von den großen Zeiten, die kommenwerden.
-Die das Reich in den Abgrund führen,
-nennen das Regieren zu schwer
-für den einfachen Mann.&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;div class=&#34;verse&#34;&gt;
+**Die das Fleisch wegnehmen vom Tisch** &lt;br/&gt;&lt;br /&gt;
+&amp;nbsp;&lt;br/&gt;&lt;br /&gt;
+_Bertolt Brecht_ &lt;br/&gt;&lt;br /&gt;
+&amp;nbsp;&lt;br/&gt;&lt;br /&gt;
+Die das Fleisch wegnehmen vom Tisch, &lt;br/&gt;&lt;br /&gt;
+&amp;nbsp;&lt;br/&gt;&lt;br /&gt;
+lehren Zufriedenheit. &lt;br/&gt;&lt;br /&gt;
+&amp;nbsp;&lt;br/&gt;&lt;br /&gt;
+Die, fürdie die Gabe bestimmt ist, &lt;br/&gt;&lt;br /&gt;
+&amp;nbsp;&lt;br/&gt;&lt;br /&gt;
+verlangen Opfermut. &lt;br/&gt;&lt;br /&gt;
+&amp;nbsp;&lt;br/&gt;&lt;br /&gt;
+Die Sattgefressenen sprechen zu den Hungernden &lt;br/&gt;&lt;br /&gt;
+&amp;nbsp;&lt;br/&gt;&lt;br /&gt;
+von den großen Zeiten, die kommenwerden. &lt;br/&gt;&lt;br /&gt;
+&amp;nbsp;&lt;br/&gt;&lt;br /&gt;
+Die das Reich in den Abgrund führen, &lt;br/&gt;&lt;br /&gt;
+&amp;nbsp;&lt;br/&gt;&lt;br /&gt;
+nennen das Regieren zu schwer &lt;br/&gt;&lt;br /&gt;
+&amp;nbsp;&lt;br/&gt;&lt;br /&gt;
+für den einfachen Mann. &lt;br/&gt;&lt;br /&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;style&gt;.org-center { margin-left: auto; margin-right: auto; text-align: left; }&lt;/style&gt;
+&lt;style&gt;.org-center { margin-left: auto; margin-right: auto; text-align: center; }&lt;/style&gt;
 &lt;div class=&#34;org-center&#34;&gt;
 **那些把肉从桌上拿走的人** &lt;br/&gt;
 _贝托尔特·布莱希特_ &lt;br/&gt;
@@ -53,7 +38,7 @@ _贝托尔特·布莱希特_ &lt;br/&gt;
 不能胜任。 &lt;br/&gt;
 &lt;/div&gt;
 &lt;hr /&gt;
-&lt;style&gt;.org-center { margin-left: auto; margin-right: auto; text-align: left; }&lt;/style&gt;
+&lt;style&gt;.org-center { margin-left: auto; margin-right: auto; text-align: center; }&lt;/style&gt;
 &lt;div class=&#34;org-center&#34;&gt;
 **Habe ich geschwiegen** &lt;br/&gt;
 _Martin Niemoller_ &lt;br/&gt;
