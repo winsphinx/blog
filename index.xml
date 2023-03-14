@@ -2190,7 +2190,7 @@ itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
 &lt;td&gt;列出书签&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</description></item><item><title>selenium 笔记</title><link>https://winsphinx.github.io/blog/post/selenium-notes/</link><pubDate>Fri, 20 Aug 2021 18:41:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/selenium-notes/</guid><description>&lt;p&gt;Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，实现自动化操作。 &lt;br/&gt;&lt;/p&gt;
+&lt;/table&gt;</description></item><item><title>Selenium 笔记</title><link>https://winsphinx.github.io/blog/post/selenium-notes/</link><pubDate>Fri, 20 Aug 2021 18:41:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/selenium-notes/</guid><description>&lt;p&gt;Selenium 可以根据我们的指令，让浏览器自动加载页面，获取需要的数据，实现自动化操作。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
 &lt;h3 id=&#34;安装-selenium&#34;&gt;安装 selenium&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
