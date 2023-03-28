@@ -114,28 +114,6 @@ gab es keinen mehr, der protestieren konnte. &lt;br/&gt;&lt;/p&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;docker network create nextcloud&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;如果偏好图形化界面，可以通过 portainer 用 GUI 来操作。 &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;docker run -d &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --name portainer &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --restart&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;always &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -p &lt;span class=&#34;m&#34;&gt;9443&lt;/span&gt;:9443 &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v /var/run/docker.sock:/var/run/docker.sock &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v portainer_data:/data &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; portainer/portainer-ce:latest&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;然后在浏览器登录&lt;a href=&#34;https://ip:9443&#34;&gt;https://ip:9443&lt;/a&gt;, 按照界面提示登录系统、创建网络、安装容器。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;安装容器&#34;&gt;安装容器&lt;/h2&gt;
 &lt;p&gt;这里选用的 linuxserver 的镜像，相比官方的镜像多了一些性能的优化和额外的功能。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;首先安装 MariaDB： &lt;br/&gt;&lt;/p&gt;
@@ -208,7 +186,59 @@ gab es keinen mehr, der protestieren konnte. &lt;br/&gt;&lt;/p&gt;
 &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; lscr.io/linuxserver/nextcloud:latest&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;如果使用 GUI，可以在 portainer 中用 stack 来安装（此时会自动创建网络，因此可以跳过第一步）： &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;配置数据库&#34;&gt;配置数据库&lt;/h2&gt;
+&lt;p&gt;按照上述脚本，应该已经在 MariaDB 中创建了一个数据库，名称是 nextcloud，以及相应的用户 nextcloud。如果有需要也可以手动创建和修改。 &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 进入mariadb的docker&lt;/span&gt;
+docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; -it mariadb /bin/sh
+&lt;span class=&#34;c1&#34;&gt;# 在docker内部登录数据库&lt;/span&gt;
+mariadb -u root -p&amp;lt;MY_ROOT_PASSWORD&amp;gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 创建用户&lt;/span&gt;
+create user &lt;span class=&#34;s1&#34;&gt;&amp;#39;nextcloud&amp;#39;&lt;/span&gt;@&lt;span class=&#34;s1&#34;&gt;&amp;#39;%&amp;#39;&lt;/span&gt; identified by &lt;span class=&#34;s1&#34;&gt;&amp;#39;my_password&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 创建数据库&lt;/span&gt;
+create database nextcloud
+character &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;collate&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;utf8bm4_general_ci&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;附记-gui-方式安装&#34;&gt;附记：GUI 方式安装&lt;/h2&gt;
+&lt;p&gt;如果偏好图形化界面，可以通过 GUI 来操作。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;首先是安装 portainer： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;docker run -d &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --name portainer &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --restart&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;always &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -p &lt;span class=&#34;m&#34;&gt;9443&lt;/span&gt;:9443 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v /var/run/docker.sock:/var/run/docker.sock &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v portainer_data:/data &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; portainer/portainer-ce:latest&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;然后在浏览器登录&lt;a href=&#34;https://ip:9443&#34;&gt;https://ip:9443&lt;/a&gt;, 按照界面提示登录系统、创建网络、安装容器。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;在 portainer 中用 stack 来安装，此时会自动创建网络： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -287,35 +317,7 @@ gab es keinen mehr, der protestieren konnte. &lt;br/&gt;&lt;/p&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;./NextCloud/mariadb&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;/config&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h2 id=&#34;配置数据库&#34;&gt;配置数据库&lt;/h2&gt;
-&lt;p&gt;按照上述脚本，应该已经在 MariaDB 中创建了一个数据库，名称是 nextcloud，以及相应的用户 nextcloud。如果有需要也可以手动创建和修改。 &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 进入mariadb的docker&lt;/span&gt;
-docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; -it mariadb /bin/sh
-&lt;span class=&#34;c1&#34;&gt;# 在docker内部登录数据库&lt;/span&gt;
-mariadb -u root -p&amp;lt;MY_ROOT_PASSWORD&amp;gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# 创建用户&lt;/span&gt;
-create user &lt;span class=&#34;s1&#34;&gt;&amp;#39;nextcloud&amp;#39;&lt;/span&gt;@&lt;span class=&#34;s1&#34;&gt;&amp;#39;%&amp;#39;&lt;/span&gt; identified by &lt;span class=&#34;s1&#34;&gt;&amp;#39;my_password&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# 创建数据库&lt;/span&gt;
-create database nextcloud
-character &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;collate&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;utf8bm4_general_ci&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;这些步骤也可以通过 adminer 用 GUI 来操作。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;数据库也可以通过 adminer 来操作。 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -334,7 +336,7 @@ character &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;o&
 &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; adminer&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;然后在浏览器中打开&lt;a href=&#34;http://ip:8088&#34;&gt;http://ip:8088&lt;/a&gt;, 来创建数据库和用户。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;然后在浏览器中打开&lt;a href=&#34;http://ip:8088&#34;&gt;http://ip:8088&lt;/a&gt;, 来创建数据库和用户。记得格式选择 &lt;code&gt;utf8bm4-general-ci&lt;/code&gt;​。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;配置-nextcloud&#34;&gt;配置 NextCloud&lt;/h2&gt;
 &lt;p&gt;在浏览器登录&lt;a href=&#34;https://ip:7788&#34;&gt;https://ip:7788&lt;/a&gt;, 设置管理员用户名和密码，在数据库选项中选择 MariaDB，填写数据库用户名、密码、数据库名称、数据库容器名:端口（按照第二步这些已经能自动配置完成），确定即可完成。 &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;ssl-证书问题&#34;&gt;&lt;span class=&#34;org-todo todo TODO&#34;&gt;TODO&lt;/span&gt; SSL 证书问题&lt;/h3&gt;
