@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://winsphinx.github.io/blog/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 13 Jul 2023 19:05:00 +0800</lastBuildDate><atom:link href="https://winsphinx.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>爬了个虫</title><link>https://winsphinx.github.io/blog/post/fetch-a-site/</link><pubDate>Thu, 13 Jul 2023 19:05:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/fetch-a-site/</guid><description>&lt;p&gt;今天学了点 XPath 的用法，顺便爬了些图片。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;xpath&#34;&gt;XPath&lt;/h2&gt;
 &lt;h3 id=&#34;节点&#34;&gt;节点&lt;/h3&gt;
+&lt;p&gt;在 XPath 中，有七种类型的节点：元素、属性、文本、命名空间、处理指令、注释以及文档（根）节点。 &lt;br/&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -47,6 +48,7 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h3 id=&#34;谓语&#34;&gt;谓语&lt;/h3&gt;
 &lt;p&gt;谓语被嵌在方括号中，用来查找某个特定的节点或者包含某个指定的值的节点。 &lt;br/&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
