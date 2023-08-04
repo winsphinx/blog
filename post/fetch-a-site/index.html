@@ -122,10 +122,10 @@
 
 
 <span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
-    <span class=n>wallpaper_names</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;mygirl&#34;</span><span class=p>,</span> <span class=s2>&#34;xiuren&#34;</span><span class=p>,</span> <span class=s2>&#34;xiaoyu&#34;</span><span class=p>,</span> <span class=s2>&#34;imiss&#34;</span><span class=p>]</span>
+    <span class=n>names</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;mygirl&#34;</span><span class=p>,</span> <span class=s2>&#34;xiuren&#34;</span><span class=p>,</span> <span class=s2>&#34;xiaoyu&#34;</span><span class=p>,</span> <span class=s2>&#34;imiss&#34;</span><span class=p>]</span>
 
     <span class=k>with</span> <span class=n>concurrent</span><span class=o>.</span><span class=n>futures</span><span class=o>.</span><span class=n>ThreadPoolExecutor</span><span class=p>()</span> <span class=k>as</span> <span class=n>executor</span><span class=p>:</span>
-        <span class=n>futures</span> <span class=o>=</span> <span class=p>[</span><span class=n>executor</span><span class=o>.</span><span class=n>submit</span><span class=p>(</span><span class=n>Wallpaper</span><span class=p>(</span><span class=n>name</span><span class=p>)</span><span class=o>.</span><span class=n>fetch</span><span class=p>)</span> <span class=k>for</span> <span class=n>name</span> <span class=ow>in</span> <span class=n>wallpaper_names</span><span class=p>]</span>
+        <span class=n>futures</span> <span class=o>=</span> <span class=p>[</span><span class=n>executor</span><span class=o>.</span><span class=n>submit</span><span class=p>(</span><span class=n>Wallpaper</span><span class=p>(</span><span class=n>name</span><span class=p>)</span><span class=o>.</span><span class=n>fetch</span><span class=p>)</span> <span class=k>for</span> <span class=n>name</span> <span class=ow>in</span> <span class=n>names</span><span class=p>]</span>
 
     <span class=k>for</span> <span class=n>future</span> <span class=ow>in</span> <span class=n>concurrent</span><span class=o>.</span><span class=n>futures</span><span class=o>.</span><span class=n>as_completed</span><span class=p>(</span><span class=n>futures</span><span class=p>):</span>
         <span class=k>try</span><span class=p>:</span>
@@ -134,7 +134,7 @@
             <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;Exception occurred: {e}&#34;</span><span class=p>)</span></code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
 <span class=item-content>winsphinx</span></p><p class=copyright-item><span class=item-title>上次更新</span>
 <span class=item-content>2023-07-13
-<a href=https://github.com/winsphinx/blog/commit/1f6377e05fb1a4c496b90fbf1641828cf0596fe4 title="[原创] xpath">(1f6377e)</a><br>[原创] xpath</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<a href=https://github.com/winsphinx/blog/commit/378d5aec4996381b5e20bd4c41240b20c5b416d6 title="[原创] xpath">(378d5ae)</a><br>[原创] xpath</span></p><p class=copyright-item><span class=item-title>许可协议</span>
 <span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank><img alt="CC BY-NC-SA 4.0" style=border-width:0 src=https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png></a></span></p></div><footer class=post-footer><div class=post-tags><a href=https://winsphinx.github.io/blog/tags/python/>Python</a>
 <a href=https://winsphinx.github.io/blog/tags/xpath/>xpath</a></div><nav class=post-nav><a class=next href=https://winsphinx.github.io/blog/post/reading-the-chronicles-of-narnia/><span class="next-text nav-default">读纳尼亚传奇</span>
 <span class="prev-text nav-mobile">下一篇</span>
