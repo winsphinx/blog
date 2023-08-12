@@ -64,14 +64,14 @@
 </span><span class=w>        </span>with<span class=p>:</span><span class=w>
 </span><span class=w>          </span>context<span class=p>:</span><span class=w> </span>.<span class=w>
 </span><span class=w>          </span>push<span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
-</span><span class=w>          </span>tags<span class=p>:</span><span class=w> </span>winsphinx/toolbox<span class=p>:</span>latest<span class=w>
+</span><span class=w>          </span>tags<span class=p>:</span><span class=w> </span>Username/Imagename<span class=p>:</span>latest<span class=w>
 </span><span class=w>
 </span><span class=w>      </span>-<span class=w> </span>name<span class=p>:</span><span class=w> </span>Docker<span class=w> </span>Hub<span class=w> </span>Description<span class=w>
 </span><span class=w>        </span>uses<span class=p>:</span><span class=w> </span>peter-evans/dockerhub-description@v3<span class=w>
 </span><span class=w>        </span>with<span class=p>:</span><span class=w>
 </span><span class=w>          </span>username<span class=p>:</span><span class=w> </span>${{<span class=w> </span>secrets.DOCKERHUB_USERNAME<span class=w> </span>}}<span class=w>
 </span><span class=w>          </span>password<span class=p>:</span><span class=w> </span>${{<span class=w> </span>secrets.DOCKERHUB_PASSWORD<span class=w> </span>}}<span class=w>
-</span><span class=w>          </span>repository<span class=p>:</span><span class=w> </span>&lt;Username&gt;/&lt;Imagename&gt;</code></pre></td></tr></table></div></div><h2 id=在-github>在 Github</h2><p>这个镜像会生成在<a href=https://ghcr.io>https://ghcr.io</a> ，可以通过 GitHub 项目的 <em>Packages</em> 访问，与 GitHub 的关联更紧密，比如会自动使用 GitHub 的 README，以及版本管理功能。<br></p><p><strong>注意点</strong>​：<br></p><ul><li>需要在项目仓库的 Settings - Actions - General 中，要打开 <code>Read adnd write permission</code>​。<br></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=lnt> 1
+</span><span class=w>          </span>repository<span class=p>:</span><span class=w> </span>Username/Imagename</code></pre></td></tr></table></div></div><h2 id=在-github>在 Github</h2><p>这个镜像会生成在<a href=https://ghcr.io>https://ghcr.io</a> ，可以通过 GitHub 项目的 <em>Packages</em> 访问，与 GitHub 的关联会更紧密，比如能自动使用 GitHub 的 README，以及版本管理功能。<br></p><p><strong>注意点</strong>​：<br></p><ul><li>需要在项目仓库的 Settings - Actions - General 中，打开 <code>Read adnd write permission</code>​。<br></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -126,10 +126,10 @@
 </span><span class=w>        </span>with<span class=p>:</span><span class=w>
 </span><span class=w>          </span>context<span class=p>:</span><span class=w> </span>.<span class=w>
 </span><span class=w>          </span>push<span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
-</span><span class=w>          </span>tags<span class=p>:</span><span class=w> </span>ghcr.io/&lt;Username&gt;/&lt;Reponame&gt;<span class=p>:</span>latest</code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+</span><span class=w>          </span>tags<span class=p>:</span><span class=w> </span>ghcr.io/Username/Imagename<span class=p>:</span>latest</code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
 <span class=item-content>winsphinx</span></p><p class=copyright-item><span class=item-title>上次更新</span>
 <span class=item-content>2023-08-12
-<a href=https://github.com/winsphinx/blog/commit/59d5f1bf16aa7684a3b0e5891c98eb5d1a36da71 title="[笔记] Docker w/ Github Actions">(59d5f1b)</a><br>[笔记] Docker w/ Github Actions</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<a href=https://github.com/winsphinx/blog/commit/cd3e22695ea57370293d0498cbfe15002d3b6b0a title="[笔记] Docker w/ Github Actions">(cd3e226)</a><br>[笔记] Docker w/ Github Actions</span></p><p class=copyright-item><span class=item-title>许可协议</span>
 <span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank><img alt="CC BY-NC-SA 4.0" style=border-width:0 src=https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png></a></span></p></div><footer class=post-footer><div class=post-tags><a href=https://winsphinx.github.io/blog/tags/docker/>Docker</a>
 <a href=https://winsphinx.github.io/blog/tags/ci/>CI</a></div><nav class=post-nav><a class=next href=https://winsphinx.github.io/blog/post/fetch-a-site/><span class="next-text nav-default">爬了个虫</span>
 <span class="prev-text nav-mobile">下一篇</span>
