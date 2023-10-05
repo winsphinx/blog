@@ -63,6 +63,7 @@ mixer_type &amp;#34;software&amp;#34;
 &lt;p&gt;把这个 mpd.conf 文件 放在 ~/.config/mpd/ 下，并用 touch 建好对应的文件。然后运行一下 mpd 看看能不能顺利启动。一般错误有以下几个原因： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;上述新建的文件没对应或者访问权限问题 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;端口 6600 被占用，用 &lt;code&gt;ss -tpl | grep 6600&lt;/code&gt; 查看 &lt;br/&gt;&lt;/li&gt;
 &lt;li&gt;用户名、用户组不匹配 &lt;br/&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;audio_output&lt;/code&gt; 配置不正确 &lt;br/&gt;&lt;/li&gt;
 &lt;/ul&gt;
