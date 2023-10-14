@@ -162,7 +162,201 @@ systemctl --user start mpd.socket&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;li id=&#34;fn:6&#34;&gt;&lt;a href=&#34;https://github.com/jcorporation/myMPD&#34;&gt;https://github.com/jcorporation/myMPD&lt;/a&gt; &lt;br/&gt;
 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:6&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>Build Docker with Github Actions</title><link>https://winsphinx.github.io/blog/post/build-docker-with-github-actions/</link><pubDate>Sat, 12 Aug 2023 15:54:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/build-docker-with-github-actions/</guid><description>&lt;p&gt;本文介绍两种利用 Github Actions 生成 Docker 镜像的方法。 &lt;br/&gt;&lt;/p&gt;
+&lt;/div&gt;</description></item><item><title>LVM</title><link>https://winsphinx.github.io/blog/post/lvm/</link><pubDate>Sat, 16 Sep 2023 15:27:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/lvm/</guid><description>&lt;p&gt;在某服务器上，我用 &lt;code&gt;fdisk -l&lt;/code&gt; 查看为硬盘容量为 3T，但用 &lt;code&gt;df&lt;/code&gt; 查看只有 200G。这是什么原因呢？ &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;经分析，​&lt;code&gt;fdisk -l&lt;/code&gt; 命令显示的是硬盘分区表中的分区大小，而 &lt;code&gt;df&lt;/code&gt; 命令显示的是文件系统大小，中间还涉及了 LVM。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;总的流程是，先用 fdisk 分区，再用 LVM 分卷，再建文件系统。 &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;fdisk&#34;&gt;fdisk&lt;/h2&gt;
+&lt;p&gt;fdisk 是一个常用的磁盘分区工具，可以用来创建、删除、调整磁盘分区。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;查看磁盘分区信息&#34;&gt;查看磁盘分区信息&lt;/h3&gt;
+&lt;p&gt;使用 fdisk 命令查看磁盘分区信息。例如，查看 /dev/sda 磁盘的分区信息： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;fdisk -l /dev/sda&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;创建新分区&#34;&gt;创建新分区&lt;/h3&gt;
+&lt;p&gt;使用 fdisk 命令创建新分区。例如，创建一个新的主分区： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;fdisk /dev/sda
+n
+p&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这个命令会进入 fdisk 的交互模式，按照提示输入分区的起始扇区和结束扇区即可。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;删除分区&#34;&gt;删除分区&lt;/h3&gt;
+&lt;p&gt;使用 fdisk 命令删除分区。例如，删除 /dev/sda1 分区： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;fdisk /dev/sda
+d
+&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这个命令会进入 fdisk 的交互模式，输入要删除的分区号即可。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;调整分区大小&#34;&gt;调整分区大小&lt;/h3&gt;
+&lt;p&gt;使用 fdisk 命令调整分区大小。例如，将 /dev/sda1 分区的大小增加 10GB： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;fdisk /dev/sda
+d
+&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+n
+p
+&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;m&#34;&gt;2048&lt;/span&gt;
++10G&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这个命令会进入 fdisk 的交互模式，先删除原来的分区，然后创建一个新的分区，按照提示输入分区的起始扇区和结束扇区即可。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;保存分区信息&#34;&gt;保存分区信息&lt;/h3&gt;
+&lt;p&gt;使用 fdisk 命令保存分区信息。例如，保存对 /dev/sda 的分区修改： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;fdisk /dev/sda
+w&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;lvm&#34;&gt;LVM&lt;/h2&gt;
+&lt;p&gt;LVM（Logical Volume Manager）是一种逻辑卷管理器，它可以将多个物理硬盘上的分区合并成一个或多个逻辑卷，从而提供更灵活的存储管理方式。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;创建物理卷&#34;&gt;创建物理卷&lt;/h3&gt;
+&lt;p&gt;使用 pvcreate 命令创建物理卷。例如，创建 /dev/sdb1 分区为物理卷： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;pvcreate /dev/sdb1&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;创建卷组&#34;&gt;创建卷组&lt;/h3&gt;
+&lt;p&gt;使用 vgcreate 命令创建卷组。例如，创建名为 myvg 的卷组，将 /dev/sdb1 分区加入卷组： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;vgcreate myvg /dev/sdb1&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;创建逻辑卷&#34;&gt;创建逻辑卷&lt;/h3&gt;
+&lt;p&gt;使用 lvcreate 命令创建逻辑卷。例如，创建名为 mylv 的逻辑卷，大小为 10GB： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;lvcreate -L 10G -n mylv myvg&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;格式化逻辑卷&#34;&gt;格式化逻辑卷&lt;/h3&gt;
+&lt;p&gt;使用 mkfs 命令格式化逻辑卷。例如，将 mylv 逻辑卷格式化为 ext4 文件系统： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;mkfs.ext4 /dev/myvg/mylv&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;挂载逻辑卷&#34;&gt;挂载逻辑卷&lt;/h3&gt;
+&lt;p&gt;使用 mount 命令挂载逻辑卷。例如，将 mylv 逻辑卷挂载到 /mnt/mylv 目录： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;mount /dev/myvg/mylv /mnt/mylv&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;调整逻辑卷大小&#34;&gt;调整逻辑卷大小&lt;/h3&gt;
+&lt;p&gt;使用 lvresize 命令调整逻辑卷大小。例如，将 mylv 逻辑卷扩大到 20GB： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;lvresize -L 20G /dev/myvg/mylv&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;删除逻辑卷&#34;&gt;删除逻辑卷&lt;/h3&gt;
+&lt;p&gt;使用 lvremove 命令删除逻辑卷。例如，删除名为 mylv 的逻辑卷： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;lvremove /dev/myvg/mylv&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;resize2fs&#34;&gt;resize2fs&lt;/h2&gt;
+&lt;p&gt;resize2fs 是一个用于调整 ext2/ext3/ext4 文件系统大小的命令。它可以将文件系统扩大或缩小到指定的大小。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;检查文件系统&#34;&gt;检查文件系统&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;resize2fs -p /dev/sda1&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这个命令会检查 /dev/sda1 分区的文件系统是否有错误。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;扩大文件系统大小&#34;&gt;扩大文件系统大小&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;resize2fs /dev/sda1&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这个命令会将 /dev/sda1 分区的文件系统扩大到分区的最大可用空间。 &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;resize2fs /dev/sda1 10G&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这个命令会将 /dev/sda1 分区的文件系统扩大到 10GB。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;缩小文件系统大小&#34;&gt;缩小文件系统大小&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;resize2fs /dev/sda1 5G&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这个命令会将 /dev/sda1 分区的文件系统缩小到 5GB。 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>Build Docker with Github Actions</title><link>https://winsphinx.github.io/blog/post/build-docker-with-github-actions/</link><pubDate>Sat, 12 Aug 2023 15:54:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/build-docker-with-github-actions/</guid><description>&lt;p&gt;本文介绍两种利用 Github Actions 生成 Docker 镜像的方法。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;在-dockerhub&#34;&gt;在 DockerHub&lt;/h2&gt;
 &lt;p&gt;这个镜像会生成在&lt;a href=&#34;https://hub.docker.com&#34;&gt;https://hub.docker.com&lt;/a&gt; ，这是大多数的选择。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意点&lt;/strong&gt;​： &lt;br/&gt;&lt;/p&gt;
@@ -2190,37 +2384,4 @@ itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
 &lt;p&gt;…… &lt;br/&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</description></item><item><title>二话</title><link>https://winsphinx.github.io/blog/post/two/</link><pubDate>Tue, 22 Feb 2022 22:22:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/two/</guid><description>&lt;p&gt;今天是 2022 年 2 月 22 日，农历正月二十二，又适逢星期二。在这样一个很“二”的日子里，作为一个很“二”的人，便有了一些很“二”的话。 &lt;br/&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;关于战争 &lt;br/&gt;
-&lt;ul&gt;
-&lt;li&gt;敌人的敌人，不见得是朋友。兔子、老鹰、毛熊，三者之间，没有友谊。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;一边是“友谊”，一边是“正义”。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;站在左边被右边打，站在右边被左边打，站在中间被两边打。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;一个国家在摸着石头过河，一个国家在搬起石头砸自己的脚，看来目前建材市场需求很旺盛。 &lt;br/&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;关于疫情 &lt;br/&gt;
-&lt;ul&gt;
-&lt;li&gt;三年前大家防的是新冠病毒，现如今大家防的是新冠病人。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;三年前还没有疫苗凭绿码出行，现如今基本都打了疫苗还凭绿码 + 行程码 + 核酸检测报告，出门如同出国。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;三年前有个同学自己第一个做作业，现如今其他同学都开始交作业了，这个同学还在做作业。真不愧是卷国人。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;国外是既停止集中娱乐，也停止集中办公，国内是只停止集中娱乐，不停止集中办公，这一定是由于国外疫情比国内严重的缘故。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;禁止聚集，然后聚集做核酸。可能是只要到了核酸采集点，就会处于百毒不侵的状态。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;三年过去了，特效药没发明，却发明了一大堆名词：无症状感染者、时空伴随、精准防控、社区基本面清零、……只要词语用得好，没有困难打不倒。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;“青春才几年，疫情占三年。”对于这些上网课大学生而言，今后填学历，该写“全日制”呢，还是“函授”？ &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Be positive. Be patient.&lt;/em&gt; 翻译成“成为阳性，成为病人”，应该没问题吧？ &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;今日封五城，明日封十城，然后得一夕安寝。起视四境，而新冠又至。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;凡染新冠者，虽远必诛。新冠患者，是病人呢，还是犯人？ &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;得了新冠，按照目前的医疗水平，不见得会病死，但按照目前的防疫措施，一定会社死。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;要不惜一起代价保护人民，即使这代价是人民。 &lt;br/&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;关于工作 &lt;br/&gt;
-&lt;ul&gt;
-&lt;li&gt;只要你努力工作，办事靠谱，从来不向领导提要求，不给领导添麻烦，时间久了你会发现，你得到的不是领导的信任和肯定，而是一堆烂事和杂事。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;只要你乐于助人，团结同事，面对别人的请求，每次都热心给予帮助，时间久了你会发现，你得到的不是同事的友好和支持，而是越来越多的请求。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;只要你有责任有担当，敢于在工作出现问题的时候站出来，时间久了你会发现，你得到的不是领导的赞许和同事们的敬佩，而是别人无情甩过来的锅。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;在工作中，如果遇到瓶颈不要害怕畏缩，只要努力克服，你会发现，上面还有瓶盖。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;延迟退休，不是由于劳动力不足了，而是因为养老金不够了。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;一边是 996 愈演愈烈，一边是失业者……不，应该叫“灵活就业者”越来越多。 &lt;br/&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item></channel></rss>
+&lt;/blockquote&gt;</description></item></channel></rss>
