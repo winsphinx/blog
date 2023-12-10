@@ -144,7 +144,7 @@ defaultContentLanguage = "en"           # Default language to use
     clientId = ""           # Your client ID
     clientSecret = ""       # Your client secret
 
-  [params.livere]           #LiveRe comment. see https://www.livere.com/
+  [params.livere]           # LiveRe comment. see https://www.livere.com/
     uid = ""
 
   [params.search.google]    # google custom search, see https://cse.google.com
