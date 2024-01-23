@@ -157,7 +157,7 @@ defaultContentLanguage = "en"           # Default language to use
     alipay = "/path/to/your/alipay-qr-code.png"           # 支付宝二维码
 
   [params.counter.busuanzi]   # a Chinese visitor counter # 不蒜子计数器
-    enable = true
+    enable = false
 
   [params.counter.leancloud]  # Chinese leancloud visitor counter  # leancloud 计数器
     enable = false
