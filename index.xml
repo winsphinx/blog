@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://winsphinx.github.io/blog/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 20 Jan 2024 17:57:00 +0800</lastBuildDate><atom:link href="https://winsphinx.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>VPS</title><link>https://winsphinx.github.io/blog/post/vps/</link><pubDate>Sat, 20 Jan 2024 17:57:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/vps/</guid><description>&lt;p&gt;购买了一台 VPS，安装成 ubuntu 系统，配置了一些安全措施，记录如下： &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;配置-public-key&#34;&gt;配置 public key&lt;/h2&gt;
-&lt;p&gt;不使用密码登录，而是使用 ssh key。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;不使用账号-密码方式登录，而是使用公钥-私钥模式。 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -11,7 +11,7 @@
 &lt;/div&gt;
 &lt;p&gt;把 &lt;code&gt;id_rsa.pub&lt;/code&gt; 的内容拷贝进去。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;锁定-ssh&#34;&gt;锁定 ssh&lt;/h2&gt;
-&lt;p&gt;修改 ssh 的配置，禁止使用密码 ssh，禁止使用 root 账号 ssh。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;修改 ssh 的配置，禁止使用密码登录 ssh，禁止使用 root 账号登录 ssh。 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -42,7 +42,7 @@ fail2ban-client &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; ssh banip x.x.x.
 fail2ban-client &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; ssh unbanip x.x.x.x&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;通过 &lt;code&gt;/var/log/fail2ban.log&lt;/code&gt; 查看日志。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;通过 &lt;code&gt;/var/log/fail2ban.log&lt;/code&gt; 和 &lt;code&gt;auth.log&lt;/code&gt; 查看日志。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;设置-ufw&#34;&gt;设置 ufw&lt;/h2&gt;
 &lt;p&gt;ubuntu 内置了 ufw。 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
