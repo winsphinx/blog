@@ -82,7 +82,7 @@
 &lt;li&gt;默认关闭传输数据加密和压缩，按需配置​&lt;code&gt;transport.useEncryption&lt;/code&gt;​、​&lt;code&gt;transport.useCompression&lt;/code&gt;​来开启。 &lt;br/&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
-&lt;p&gt;上述使用的是命令行开启服务，为例方便起见可配置成自启动模式。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;上述使用的是命令行开启服务，为方便起见可配置成自启动模式。 &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;在 Linux 下可以使用 systemd 将其配置为服务，从而用 systemd 命令来方便地管理。以 frps 为例，frpc 类似参考： &lt;br/&gt;&lt;/li&gt;
 &lt;/ul&gt;
