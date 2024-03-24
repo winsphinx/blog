@@ -635,9 +635,63 @@ netsh advfirewall firewall delete rule &lt;span class=&#34;nv&#34;&gt;name&lt;/s
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;在 alist 管理的存储界面中，添加本地挂载。建议电影和电视剧分两个目录挂载，方便分类观看。我在电视上安装了 kodi，使用的是 alist 的 webdav 链接。 &lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;字幕&#34;&gt;&lt;span class=&#34;org-todo todo TODO&#34;&gt;TODO&lt;/span&gt; 字幕&lt;/h2&gt;
-&lt;p&gt;近期由于某种不知道的原因，各种字幕网站基本上都没法用，后续再折腾这一部分内容。 &lt;br/&gt;
-&lt;a href=&#34;https://github.com/ChineseSubFinder/ChineseSubFinder&#34;&gt;https://github.com/ChineseSubFinder/ChineseSubFinder&lt;/a&gt; &lt;br/&gt;&lt;/p&gt;</description></item><item><title>折腾 MPD</title><link>https://winsphinx.github.io/blog/post/mpd/</link><pubDate>Thu, 05 Oct 2023 19:06:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/mpd/</guid><description>&lt;p&gt;mpd&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;（Music Player Daemon），是一种音乐播放器守护进程，它可以在后台运行，不需要图形界面，可以通过网络或本地连接控制它。 &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;chinesesubfinder&#34;&gt;ChineseSubFinder&lt;/h2&gt;
+&lt;p&gt;中文字幕是观看非母语影视不可缺少的一个环节，所以自动下载字幕非常有必要。 &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;version&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;chinesesubfinder&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;image&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;allanpk716/chinesesubfinder&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;container_name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;chinesesubfinder&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;restart&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;unless-stopped&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;environment&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;PUID=&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;PGID=&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;PERMS=&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;TZ=Asia/Shanghai&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;UMASK=&lt;span class=&#34;m&#34;&gt;022&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;volumes&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;./config&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;/config&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;$HOME/Videos&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;/media&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;ports&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;m&#34;&gt;19035&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;19035&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;m&#34;&gt;19037&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;19037&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;networks&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;network&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;networks&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;network&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;multimediacenter&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;第一次启动这个容器耗时比较久，起来后的设置倒是简单，配置正确的媒体路径就基本上不用管了。只不过有很多字幕还是缺失，这大概不是目前技术能解决的问题了。 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>折腾 MPD</title><link>https://winsphinx.github.io/blog/post/mpd/</link><pubDate>Thu, 05 Oct 2023 19:06:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/mpd/</guid><description>&lt;p&gt;mpd&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;（Music Player Daemon），是一种音乐播放器守护进程，它可以在后台运行，不需要图形界面，可以通过网络或本地连接控制它。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;mpd 支持多种音频格式，包括 MP3、FLAC、AAC、WAV 等，可以通过插件扩展其功能。mpd 可以通过各种客户端控制，如 mpc&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;、ncmpc&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;、Cantata&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt; 等。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;服务端&#34;&gt;服务端&lt;/h2&gt;
 &lt;p&gt;mpd 的安装可以直接用软件包管理方式来安装，不过安装完后的配置还是要花一点时间。我的配置文件简化后如下： &lt;br/&gt;&lt;/p&gt;
