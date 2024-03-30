@@ -65,7 +65,7 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt; &amp;lt;prefix&amp;gt; s # 选择session
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;lt;prefix&amp;gt; s # 选择session
 &amp;lt;prefix&amp;gt; $ # 重命名session
 &amp;lt;prefix&amp;gt; C-z # 挂起session
 &amp;lt;prefix&amp;gt; d # 退出session
@@ -94,7 +94,7 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt; &amp;lt;prefix&amp;gt; ! # 把pane提升为window
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;lt;prefix&amp;gt; ! # 把pane提升为window
 &amp;lt;prefix&amp;gt; &amp;#34; # 垂直分割window
 &amp;lt;prefix&amp;gt; % # 水平分割window
 &amp;lt;prefix&amp;gt; o # 轮选pane
@@ -255,7 +255,7 @@ run &amp;#39;~/.tmux/plugins/tpm/tpm&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt; &amp;lt;prefix&amp;gt; [ # 进入复制模式，用光标定位到起点，按空格开始，移动光标选择，按回车结束
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;lt;prefix&amp;gt; [ # 进入复制模式，用光标定位到起点，按空格开始，移动光标选择，按回车结束
 &amp;lt;prefix&amp;gt; ] # 进入粘贴模式
 &amp;lt;prefix&amp;gt; = # 选择剪切板条目
 &amp;lt;prefix&amp;gt; : # 进入命令行&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
