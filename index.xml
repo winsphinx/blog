@@ -2,7 +2,7 @@
 &lt;p&gt;tmux 的主要功能包括： &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;会话-sessions&#34;&gt;会话（Sessions）&lt;/h2&gt;
 &lt;p&gt;可以创建、重命名、关闭会话，以及在不同会话之间切换。每个会话可以包含多个窗口和窗格。会话可以在后台运行，即使您断开连接也可以保持会话状态。 &lt;br/&gt;
-最简单的方式直接创建，默认的会话名称是 &lt;code&gt;0&lt;/code&gt; ，再次创建会依次编号下去： &lt;br/&gt;&lt;/p&gt;
+最简单的方式直接创建，默认的会话名称是 &lt;code&gt;0&lt;/code&gt; ，再次创建则编号顺延： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -287,7 +287,7 @@ run &amp;#39;~/.tmux/plugins/tpm/tpm&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt
 &lt;span class=&#34;nx&#34;&gt;webServer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;password&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;password&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;使用​&lt;code&gt;frps -c frps.toml&lt;/code&gt;​启动服务，在浏览器登录&lt;a href=&#34;http://server_ip:yyy&#34;&gt;http://server_ip:yyy&lt;/a&gt; 可以查看 frp 的运行情况。防火墙要放行上述端口 xxx、yyy。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;使用​&lt;code&gt;frps -c frps.toml&lt;/code&gt;​启动服务，在浏览器登录 &lt;a href=&#34;http://server_ip:yyy&#34;&gt;http://server_ip:yyy&lt;/a&gt; 可以查看 frp 的运行情况。防火墙要放行上述端口 xxx、yyy。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;frpc&#34;&gt;frpc&lt;/h2&gt;
 &lt;p&gt;frpc 是客户端的程序。配置文件如下： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
