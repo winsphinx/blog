@@ -66,9 +66,9 @@
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;lt;prefix&amp;gt; s # 选择session
-&amp;lt;prefix&amp;gt; $ # 重命名session
+&amp;lt;prefix&amp;gt; $ # 重命名当前session
 &amp;lt;prefix&amp;gt; C-z # 挂起session
-&amp;lt;prefix&amp;gt; d # 退出session
+&amp;lt;prefix&amp;gt; d # 分离session
 &amp;lt;prefix&amp;gt; ( # 切换上一个session
 &amp;lt;prefix&amp;gt; ) # 切换下一个session
 &amp;lt;prefix&amp;gt; c # 创建window
@@ -163,9 +163,6 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;# options
@@ -201,8 +198,6 @@ set -g @dracula-clients-minimum 2
 set -g @plugin &amp;#39;tmux-plugins/tmux-yank&amp;#39;
 ## &amp;lt;prefix&amp;gt; + P to start/stop log, alt-p to capture screen
 set -g @plugin &amp;#39;tmux-plugins/tmux-logging&amp;#39;
-## &amp;lt;prefix&amp;gt; +g to switch session, C to create, X to kill
-set -g @plugin &amp;#39;tmux-plugins/tmux-sessionist&amp;#39;
 ## persist tmux sessions after computer restart
 set -g @plugin &amp;#39;tmux-plugins/tmux-resurrect&amp;#39;
 set -g @resurrect-capture-pane-contents &amp;#39;on&amp;#39;
@@ -214,7 +209,7 @@ set -g @continuum-restore &amp;#39;on&amp;#39;
 run &amp;#39;~/.tmux/plugins/tpm/tpm&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;这是我的配置文件，调整了一些常用键，启用了鼠标，安装了主题和插件。其中： &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;这是我的配置文件，调整了一些常用键，启用了鼠标（虽然我是键盘党，但也不排斥鼠标，毕竟选择窗口、拖动窗口大小之类的操作，用鼠标是最方便的，这也是在上面我没提到此类快捷键的原因），安装了主题和插件。其中： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;tmux plugin manager 来管理插件: &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -242,6 +237,7 @@ run &amp;#39;~/.tmux/plugins/tpm/tpm&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt
 &amp;lt;prefix&amp;gt; alt+P # 获取当前pane全部内容，包括历史内容&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;tmux-resurrect 和 tmux-continuum 用来保存和恢复会话，这样即使重启了机器，打开 tmux 后 session 仍然和之前一样。 &lt;br/&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
 &lt;p&gt;其他一些命令有： &lt;br/&gt;&lt;/p&gt;
