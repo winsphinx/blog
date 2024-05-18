@@ -124,7 +124,8 @@ log &lt;span class=&#34;s2&#34;&gt;&amp;#34;IP地址 &lt;/span&gt;&lt;span class
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id=&#34;运行&#34;&gt;运行&lt;/h2&gt;
-&lt;h3 id=&#34;直接用-dot-block-ip-dot-sh-执行-或者用-nohup-后台执行&#34;&gt;直接用​&lt;code&gt;./block-ip.sh&lt;/code&gt;​执行，或者用 nohup 后台执行。&lt;/h3&gt;
+&lt;h3 id=&#34;直接启动&#34;&gt;直接启动&lt;/h3&gt;
+&lt;p&gt;用​​&lt;code&gt;./block-ip.sh&lt;/code&gt;​执行，或者用 nohup 后台执行。 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -133,11 +134,12 @@ log &lt;span class=&#34;s2&#34;&gt;&amp;#34;IP地址 &lt;/span&gt;&lt;span class
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;nohup ./block-ip.sh &amp;gt; /dev/null &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&amp;gt;&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# 或简写成&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 可简写成&lt;/span&gt;
 nohup ./block-ip.sh &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&amp;gt; /dev/null &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;h3 id=&#34;以服务方式启动&#34;&gt;以服务方式启动&lt;/h3&gt;
+&lt;p&gt;新建​&lt;code&gt;/etc/systemd/system/block-ip.service&lt;/code&gt; &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
