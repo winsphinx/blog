@@ -744,22 +744,24 @@ sudo usermod -p &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt; r
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;vim ~/.ssh/authorized_keys&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;ssh-copy-id -i ~/.ssh/id_rsa.pub user@host&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;把 &lt;code&gt;id_rsa.pub&lt;/code&gt; 的内容拷贝进去。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;使用 -i 参数指定本地的​&lt;code&gt;~/.ssh/id_rsa.pub&lt;/code&gt;​的公钥增加到远程主机的​&lt;code&gt;~/.ssh/authorized_keys&lt;/code&gt;​文件中。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;锁定-ssh&#34;&gt;锁定 ssh&lt;/h2&gt;
-&lt;p&gt;修改 ssh 的配置，禁止使用密码登录 ssh，禁止使用 root 账号登录 ssh。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;修改 ssh 的配置，以下参数分别为：启用密钥登录 ssh，禁用密码登录 ssh，禁用 root 账号登录 ssh。 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;vim /etc/ssh/sshd_config
-PermitRootLogin no
-PasswordAuthentication no&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+PubkeyAuthentication yes
+PasswordAuthentication no
+PermitRootLogin no&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id=&#34;安装-fail2ban&#34;&gt;安装 fail2ban&lt;/h2&gt;
