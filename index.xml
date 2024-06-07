@@ -773,10 +773,12 @@ PermitRootLogin no&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;apt install fail2ban
-systemctl restart fail2ban.service
+systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; fail2ban.service
+systemctl start fail2ban.service
 fail2ban-client status
 fail2ban-client &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; ssh banip x.x.x.x
 fail2ban-client &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; ssh unbanip x.x.x.x&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
