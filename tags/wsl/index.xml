@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>WSL on Cogito, ergo sum</title><link>https://blog.winsphinx.top/tags/wsl/</link><description>Recent content in WSL on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 24 Dec 2023 07:19:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/tags/wsl/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows 下端口转发</title><link>https://blog.winsphinx.top/post/port-forwarding-on-windows/</link><pubDate>Sun, 24 Dec 2023 07:19:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/port-forwarding-on-windows/</guid><description>&lt;p&gt;如图，在 Windows 下安装了一个 WSL 子系统，在 WSL 下运行了一个 Docker，外部网络如果需要访问该 docker，这时候需要用到 Windows 的端口转发。 &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>WSL on Cogito, ergo sum</title><link>https://winsphinx.github.io/blog/tags/wsl/</link><description>Recent content in WSL on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 24 Dec 2023 07:19:00 +0800</lastBuildDate><atom:link href="https://winsphinx.github.io/blog/tags/wsl/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows 下端口转发</title><link>https://winsphinx.github.io/blog/post/port-forwarding-on-windows/</link><pubDate>Sun, 24 Dec 2023 07:19:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/port-forwarding-on-windows/</guid><description>&lt;p&gt;如图，在 Windows 下安装了一个 WSL 子系统，在 WSL 下运行了一个 Docker，外部网络如果需要访问该 docker，这时候需要用到 Windows 的端口转发。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;
 &lt;div class=&#34;box&#34;&gt;
 &lt;figure itemprop=&#34;associatedMedia&#34;
 itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
 &lt;div class=&#34;img&#34;&gt;
-&lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://blog.winsphinx.top/ox-hugo/windows.png&#34; /&gt;
+&lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://winsphinx.github.io/blog/ox-hugo/windows.png&#34; /&gt;
 &lt;/div&gt;
-&lt;a href=&#34;https://blog.winsphinx.top/ox-hugo/windows.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+&lt;a href=&#34;https://winsphinx.github.io/blog/ox-hugo/windows.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
-&lt;br/&gt;&lt;/p&gt;</description></item><item><title>Interoperating between Windows and WSL</title><link>https://blog.winsphinx.top/post/interoperating-between-windows-and-wsl/</link><pubDate>Wed, 16 Oct 2019 18:48:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/interoperating-between-windows-and-wsl/</guid><description>&lt;p&gt;本文简单介绍了 Windows 与 WSL(Windows Subsystem for Linux)之间的互操作。 &lt;br/&gt;&lt;/p&gt;</description></item></channel></rss>
+&lt;br/&gt;&lt;/p&gt;</description></item><item><title>Interoperating between Windows and WSL</title><link>https://winsphinx.github.io/blog/post/interoperating-between-windows-and-wsl/</link><pubDate>Wed, 16 Oct 2019 18:48:00 +0800</pubDate><guid>https://winsphinx.github.io/blog/post/interoperating-between-windows-and-wsl/</guid><description>&lt;p&gt;本文简单介绍了 Windows 与 WSL(Windows Subsystem for Linux)之间的互操作。 &lt;br/&gt;&lt;/p&gt;</description></item></channel></rss>
