@@ -1,4 +1,241 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 30 Jun 2024 09:28:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>大美青海</title><link>https://blog.winsphinx.top/post/qinghai/</link><pubDate>Sun, 30 Jun 2024 09:28:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/qinghai/</guid><description>&lt;p&gt;鼓了很大的勇气，下了很大的决心，决定来一次遥远的旅行。 &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 17 Jul 2024 18:50:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>Home Networking</title><link>https://blog.winsphinx.top/post/home-networking/</link><pubDate>Wed, 17 Jul 2024 18:50:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/home-networking/</guid><description>&lt;p&gt;我有一个海外 VPS&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;用于“各种用途”，又购买了一个小主机 armbian 用于家庭网络&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;的管理。还有一个硬盘盒，通过其自带 samba 服务接入 armbian。此外为了更多的存储又加了一个移动硬盘挂载到 armbian 下。组网架构图如下。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure itemprop=&#34;associatedMedia&#34;
+itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+&lt;div class=&#34;img&#34;&gt;
+&lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://blog.winsphinx.top/ox-hugo/homenetworking.png&#34; /&gt;
+&lt;/div&gt;
+&lt;a href=&#34;https://blog.winsphinx.top/ox-hugo/homenetworking.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;armbian&#34;&gt;armbian&lt;/h2&gt;
+&lt;h3 id=&#34;安装-docker&#34;&gt;安装 docker&lt;/h3&gt;
+&lt;p&gt;鉴于目前 docker 无法下载的现状，修改 &lt;code&gt;/etc/docker/daemon.json&lt;/code&gt; 文件，多加几个镜像总有能用的： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;registry-mirrors&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://docker.m.daocloud.io&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://hub.uuuadc.top&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://dockerhub.jobcher.com&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://dockerhub.icu&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://dockerproxy.com&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://docker.io&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://huecker.io&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;https://dockerhub.timeweb.cloud&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;log-driver&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;json-file&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;log-opts&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;max-size&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;10m&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;max-file&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;10&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;安装-frp-实现内网穿透&#34;&gt;安装 frp 实现内网穿透&lt;/h3&gt;
+&lt;p&gt;因为是家庭宽带是 NAT，所以需要使用 frp 将内网穿透到公网。具体实现见之前&lt;a href=&#34;https://blog.winsphinx.top/post/frp/&#34;&gt;frp&lt;/a&gt;一文。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;安装-ddclient&#34;&gt;安装 ddclient&lt;/h3&gt;
+&lt;p&gt;因为 IPv6 是公网地址，可以直接使用，所以使用 ddclient 实现动态域名解析。我使用的是&lt;a href=&#34;https://dynv6.com/&#34;&gt;https://dynv6.com/&lt;/a&gt; ，在上面创建一个域名，然后在本地的配置文件 &lt;code&gt;/etc/ddclient.conf&lt;/code&gt; 如下： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;nv&#34;&gt;daemon&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;15m
+&lt;span class=&#34;nv&#34;&gt;ssl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;yes
+&lt;span class=&#34;nv&#34;&gt;protocol&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;dyndns2
+&lt;span class=&#34;nv&#34;&gt;server&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;dynv6.com
+&lt;span class=&#34;nv&#34;&gt;usev6&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;, &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;eth0
+&lt;span class=&#34;nv&#34;&gt;login&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;none
+&lt;span class=&#34;nv&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;token&amp;#39;&lt;/span&gt;
+example.dynv6.net&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;然后用 systemctl enable 和 start 该服务。也可以使用 &lt;a href=&#34;https://dash.cloudflare.com/&#34;&gt;https://dash.cloudflare.com/&lt;/a&gt; 实现，相应的配置改为： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;nv&#34;&gt;daemon&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;15m
+&lt;span class=&#34;nv&#34;&gt;ssl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;yes
+&lt;span class=&#34;nv&#34;&gt;protocol&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;cloudflare
+&lt;span class=&#34;nv&#34;&gt;usev6&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;, &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;eth0
+&lt;span class=&#34;nv&#34;&gt;login&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;token
+&lt;span class=&#34;nv&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;token&amp;#39;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;zone&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;mydomain.com
+example.mydomain.com&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这样，后续直接用域名可以方便操作。如：ssh example.dynv6.net 就可以直接登录。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;挂载-samba-服务&#34;&gt;挂载 samba 服务&lt;/h3&gt;
+&lt;p&gt;在 &lt;code&gt;/etc/fstab&lt;/code&gt; 增加一行，实现开机自动挂载 samba： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;//AirDisk/NewDisk-A /mnt/samba cifs username=AirDisk,password=PASSWORD,uid=root,gid=root,iocharset=utf8,file_mode=0777,dir_mode=0777 0 0&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;挂载硬盘&#34;&gt;挂载硬盘&lt;/h3&gt;
+&lt;p&gt;通过 USB 连接移动硬盘，然后是格式化和分区： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;fdisk -l &lt;span class=&#34;c1&#34;&gt;# 查看对应的硬盘设备，我这里是/dev/sdb&lt;/span&gt;
+fdisk /dev/sdb &lt;span class=&#34;c1&#34;&gt;# 分区，`p` 打印分区表，`n` 创建新分区，`w` 写入分区表并退出，我创建了/dev/sdb1&lt;/span&gt;
+mkfs.ext4 /dev/sdb1 &lt;span class=&#34;c1&#34;&gt;# 格式化成ext4 文件系统&lt;/span&gt;
+mkdir /mnt/disk &lt;span class=&#34;c1&#34;&gt;# 创建挂载目录&lt;/span&gt;
+mount /dev/sdb1 /mnt/newdisk &lt;span class=&#34;c1&#34;&gt;# 挂载&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;为了今后开机自动挂载，在 &lt;code&gt;/etc/fstab/&lt;/code&gt; 增加一行： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;/dev/sdb1 /mnt/newdisk ext4 defaults 0 0&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;vps&#34;&gt;VPS&lt;/h2&gt;
+&lt;h3 id=&#34;创建-ssh-主机&#34;&gt;创建 ssh 主机&lt;/h3&gt;
+&lt;p&gt;为了便于使用，在 ~~/.ssh~/config 中增加： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;Host armbianv4
+HostName localhost
+Port 50005
+Host armbianv6
+HostName example.dynv6.net
+Port 22&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;其中，v4 采用的是 frp 内网映射的端口实现转发，v6 使用的是 ddclient 映射的域名。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;挂载-sshfs&#34;&gt;挂载 sshfs&lt;/h3&gt;
+&lt;p&gt;在 VPS 上为了方便，我把 armbian 的常用目录映射到了 VPS。同样是在 &lt;code&gt;/etc/fstab&lt;/code&gt; 增加： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;sshfs#armbianv6:/root/Downloads/ /root/Downloads/ fuse defaults,user,allow_other,reconnect,delay_connect,ConnectTimeout=30,ServerAliveInterval=30 0 0
+sshfs#armbianv6:/mnt/samba/Videos/ /mnt/samba/Videos/ fuse defaults,user,allow_other,reconnect,delay_connect,ConnectTimeout=30,ServerAliveInterval=30 0 0
+sshfs#armbianv6:/mnt/samba/Music/ /mnt/samba/Music/ fuse defaults,user,allow_other,reconnect,delay_connect,ConnectTimeout=30,ServerAliveInterval=30 0 0&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;由于前面在 armbian 上开启了 IPv6 的 DDNS，故此直接使用 armbianv6。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;设置备份&#34;&gt;设置备份&lt;/h3&gt;
+&lt;p&gt;写一个脚本，实现每日自动备份文件到远程。 &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -euo pipefail
+&lt;span class=&#34;c1&#34;&gt;# 设置变量&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;SOURCE_DIR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/root/dockers/&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;DEST_DIR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/mnt/samba/backup/ubuntu/&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;REMOTE_HOST&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;armbianv6&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;SSH_PORT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;22&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;TMP_BACKUP&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/tmp/docker_backup_&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date +&lt;span class=&#34;s1&#34;&gt;&amp;#39;%Y%m%d%H%M%S&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;.tar.gz&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 使用 tar 创建备份&lt;/span&gt;
+tar czf &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; --absolute-names --transform &lt;span class=&#34;s2&#34;&gt;&amp;#34;s|^/root/||&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$SOURCE_DIR&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 使用 rsync 将备份同步到远程服务器&lt;/span&gt;
+rsync -avhP --remove-source-files -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;ssh -p &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$SSH_PORT&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; root@&lt;span class=&#34;nv&#34;&gt;$REMOTE_HOST&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$DEST_DIR&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 在远程服务器上删除旧备份&lt;/span&gt;
+ssh -p &lt;span class=&#34;nv&#34;&gt;$SSH_PORT&lt;/span&gt; root@&lt;span class=&#34;nv&#34;&gt;$REMOTE_HOST&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;cd &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$DEST_DIR&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; &amp;amp;&amp;amp; (ls -t | tail -n +4 | xargs --no-run-if-empty rm -f)&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;然后使用 &lt;code&gt;crontab -e&lt;/code&gt; 增加定时计划： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; * * * /root/scripts/backup.sh &lt;span class=&#34;c1&#34;&gt;# 每天4:04执行备份&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;&lt;a href=&#34;#vps&#34;&gt;VPS&lt;/a&gt; &lt;br/&gt;
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;&lt;a href=&#34;https://blog.winsphinx.top/post/building-home-media-center/&#34;&gt;搭建家庭多媒体中心&lt;/a&gt; &lt;br/&gt;
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item><item><title>大美青海</title><link>https://blog.winsphinx.top/post/qinghai/</link><pubDate>Sun, 30 Jun 2024 09:28:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/qinghai/</guid><description>&lt;p&gt;鼓了很大的勇气，下了很大的决心，决定来一次遥远的旅行。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;第一日-登基&#34;&gt;第一日，登基&lt;/h2&gt;
 &lt;p&gt;呃……登机，一路颠簸——小飞机是真的颠簸——来到西宁。 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;gallery caption-position-bottom caption-effect-slide hover-effect-zoom hover-transition&#34; itemscope itemtype=&#34;http://schema.org/ImageGallery&#34;&gt;
@@ -3257,49 +3494,4 @@ character &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;o&
 &lt;p&gt;如果我们还对自己的“非必要需求”充满耻感，不敢为此争取，并把“非必要需求”推向未来，我们就依然还生活在疫情里。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;如果我们还眷恋和期待着他人和组织的保护和管束，连基本的自由都不能习惯，怯于拥抱，我们就依然还生活在疫情里。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;疫情总有一天会过去，但如果我们不能从内心真正清算疫情带来的“后遗症”，我们就依然还生活在疫情里。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;我们不能永远生活在“疫情”里，我们总要走出牢笼，奔向自由。然而，当自由来临的时候，我们准备好了吗？ &lt;br/&gt;&lt;/p&gt;</description></item><item><title>OpenWrt in Hyper-V</title><link>https://blog.winsphinx.top/post/openwrt/</link><pubDate>Fri, 11 Nov 2022 11:11:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/openwrt/</guid><description>&lt;p&gt;OpenWrt 是一个相对 mini 的 Linux 发行版，通常作为路由器的系统。本文简单介绍在虚拟机上安装 OpenWrt。 &lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;下载与编译&#34;&gt;下载与编译&lt;/h2&gt;
-&lt;p&gt;从 &lt;a href=&#34;https://github.com/openwrt/openwrt&#34;&gt;https://github.com/openwrt/openwrt&lt;/a&gt; 下载后，执行以下命令更新包： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;./scripts/feeds update -a
-./scripts/feeds install -a&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;更新 package，否则 luci 等 package 通过 make menuconfig 不能显示。 &lt;br/&gt;
-使用命令开始编译： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;make menuconfig&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;选择 &lt;code&gt;Target System&lt;/code&gt; 为 x86，​&lt;code&gt;Subtarget&lt;/code&gt; 选择 Generic 或者 x86-64 均可。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;目标文件格式 &lt;code&gt;Target Images&lt;/code&gt; 根据虚拟机平台选择，这里选择 Hyper-V(VHDX)。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;选择 &lt;code&gt;luci&lt;/code&gt;​，随后就会有 GUI 配置页面。其他按需配置。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;编译注意用非 root 用户编译，​&lt;code&gt;make V=99&lt;/code&gt; 开始编译，第一次编译会比较慢，因为要下载开源包。编译完成后会在 bin 目录生成 vhdx 文件，该文件可以 hyper-V 中加载运行。 &lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;设置与运行&#34;&gt;设置与运行&lt;/h2&gt;
-&lt;p&gt;在 Hyper-V 中，新建一个虚拟机，选第一代，虚拟文件选上面生成的 vhdx 文件。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;建立虚拟机后，设置网络使用内部网络，并开启“启用 MAC 欺骗”。再取消“自动检查点”，设置为“始终自启动”。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;启动虚拟机，编辑 &lt;code&gt;/etc/config/networks&lt;/code&gt; 文件，设置 &lt;code&gt;lan&lt;/code&gt; 字段中的 IP 为本网段的 IP。使用 &lt;code&gt;service network restart&lt;/code&gt; 重启服务，或者直接 &lt;code&gt;reboot&lt;/code&gt; 重启系统。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;最后使用浏览器打开此 IP，进入 openwrt 设置页面。如果无法打开，可能是没有安装 &lt;code&gt;uhttpd&lt;/code&gt; ，手工安装并启动一下： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;opkg update
-opkg install uhttpd
-service uhttpd &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt;
-service uhttpd start&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description></item></channel></rss>
+&lt;p&gt;我们不能永远生活在“疫情”里，我们总要走出牢笼，奔向自由。然而，当自由来临的时候，我们准备好了吗？ &lt;br/&gt;&lt;/p&gt;</description></item></channel></rss>
