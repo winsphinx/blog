@@ -1,15 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 17 Jul 2024 18:50:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>Home Networking</title><link>https://blog.winsphinx.top/post/home-networking/</link><pubDate>Wed, 17 Jul 2024 18:50:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/home-networking/</guid><description>&lt;p&gt;我有一个海外 VPS 主机&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;用于实现“各种功能”，又购买了一个小主机 armbian 用于家庭网络&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;的管理。我还有一个硬盘盒，通过其自带 samba 服务接入 armbian。此外为了更多的存储空间又加了一个移动硬盘挂载到 armbian 下。组网架构图如下。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;
-&lt;div class=&#34;box&#34;&gt;
-&lt;figure itemprop=&#34;associatedMedia&#34;
-itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
-&lt;div class=&#34;img&#34;&gt;
-&lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://blog.winsphinx.top/ox-hugo/homenetworking.png&#34; /&gt;
-&lt;/div&gt;
-&lt;a href=&#34;https://blog.winsphinx.top/ox-hugo/homenetworking.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
-&lt;/figure&gt;
-&lt;/div&gt;
-&lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 17 Jul 2024 18:50:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>Home Networking</title><link>https://blog.winsphinx.top/post/home-networking/</link><pubDate>Wed, 17 Jul 2024 18:50:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/home-networking/</guid><description>&lt;p&gt;我有一个海外 &lt;a href=&#34;#vps&#34;&gt;VPS&lt;/a&gt; 主机用于实现“各种功能”，又购买了一个小主机 armbian 用于&lt;a href=&#34;https://blog.winsphinx.top/post/building-home-media-center/&#34;&gt;搭建家庭多媒体中心&lt;/a&gt;。我还有一个硬盘盒，通过其自带 samba 服务接入 armbian。此外还加了一个移动硬盘挂载到 armbian 下。组网架构图如下。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.winsphinx.top/ox-hugo/homenetworking.png&#34; alt=&#34;&#34; /&gt; &lt;br/&gt;
+以下是各个设备的详细配置： &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;armbian&#34;&gt;armbian&lt;/h2&gt;
 &lt;h3 id=&#34;安装-docker&#34;&gt;安装 docker&lt;/h3&gt;
 &lt;p&gt;鉴于目前 docker 镜像无法下载的现状，修改 &lt;code&gt;/etc/docker/daemon.json&lt;/code&gt; 文件，多加几个镜像总有能用的： &lt;br/&gt;&lt;/p&gt;
@@ -55,7 +46,7 @@ itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
 &lt;/div&gt;
 &lt;p&gt;然后 systemctl daemon-reload &amp;amp;&amp;amp; systemctl restart docker 更新并重启 docker 服务。 &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;安装-frp-实现内网穿透&#34;&gt;安装 frp 实现内网穿透&lt;/h3&gt;
-&lt;p&gt;因为是家庭宽带是 NAT，所以需要使用 frp 将内网穿透到公网。具体实现见之前&lt;a href=&#34;https://blog.winsphinx.top/post/frp/&#34;&gt;frp&lt;/a&gt;一文。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;因为是家庭宽带是 NAT，所以需要使用 frp 将内网穿透到公网。具体实现见之前 &lt;a href=&#34;https://blog.winsphinx.top/post/frp/&#34;&gt;frp&lt;/a&gt; 一文。 &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;安装-ddclient&#34;&gt;安装 ddclient&lt;/h3&gt;
 &lt;p&gt;因为 IPv6 是公网地址，可以直接使用，所以使用 ddclient 实现动态域名解析。我使用的是&lt;a href=&#34;https://dynv6.com/&#34;&gt;https://dynv6.com/&lt;/a&gt; ，在上面创建一个域名，然后在本地的配置文件 &lt;code&gt;/etc/ddclient.conf&lt;/code&gt; 如下： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -141,6 +132,53 @@ mount /dev/sdb1 /mnt/disk &lt;span class=&#34;c1&#34;&gt;# 挂载&lt;/span&gt;&l
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;/dev/sdb1 /mnt/disk ext4 defaults 0 0&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;h3 id=&#34;设置备份&#34;&gt;设置备份&lt;/h3&gt;
+&lt;p&gt;写一个脚本，实现每日自动备份文件到 samba 目录。 &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -euo pipefail
+&lt;span class=&#34;c1&#34;&gt;# 设置变量&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;SOURCE_DIR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/root/dockers/&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;DEST_DIR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/mnt/samba/backup/armbian/&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;TMP_BACKUP&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/tmp/docker_backup_&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date +&lt;span class=&#34;s1&#34;&gt;&amp;#39;%Y%m%d%H%M%S&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;.tar.gz&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 使用 tar 创建备份&lt;/span&gt;
+tar czf &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; --absolute-names --transform &lt;span class=&#34;s2&#34;&gt;&amp;#34;s|^/root/||&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$SOURCE_DIR&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 使用 rsync 将备份同步到备份目录&lt;/span&gt;
+rsync -avhP --remove-source-files &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$DEST_DIR&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 在备份目录上删除旧备份&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$DEST_DIR&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ls -t &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n +4 &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; xargs --no-run-if-empty rm -f&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;然后使用 &lt;code&gt;crontab -e&lt;/code&gt; 增加定时计划： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; * * * /root/scripts/backup.sh &lt;span class=&#34;c1&#34;&gt;# 每天4:04执行备份&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;h2 id=&#34;vps&#34;&gt;VPS&lt;/h2&gt;
 &lt;h3 id=&#34;创建-ssh-主机&#34;&gt;创建 ssh 主机&lt;/h3&gt;
 &lt;p&gt;为了便于使用，在 ~~/.ssh~/config 中增加： &lt;br/&gt;&lt;/p&gt;
@@ -164,7 +202,7 @@ Port 22&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;p&gt;其中，v4 采用的是 frp 内网映射的端口实现转发，v6 使用的是 ddclient 映射的域名。 &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;设置-v2ray&#34;&gt;设置 v2ray&lt;/h3&gt;
-&lt;p&gt;小流量自用，不深入研究了，就用 vmess。采用 docker 搭建： &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;小流量自用，不深入研究了，就用 vmess+TCP。采用 docker 搭建： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -224,7 +262,7 @@ sshfs#armbianv6:/mnt/samba/Music/ /mnt/samba/Music/ fuse defaults,user,allow_oth
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;由于前面在 armbian 上开启了 IPv6 的 DDNS，故此直接使用 armbianv6。 &lt;br/&gt;&lt;/p&gt;
-&lt;h3 id=&#34;设置备份&#34;&gt;设置备份&lt;/h3&gt;
+&lt;h3 id=&#34;设置备份-1&#34;&gt;设置备份&lt;/h3&gt;
 &lt;p&gt;写一个脚本，实现每日自动备份文件到远程。 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -274,14 +312,6 @@ ssh -p &lt;span class=&#34;nv&#34;&gt;$SSH_PORT&lt;/span&gt; root@&lt;span class
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; * * * /root/scripts/backup.sh &lt;span class=&#34;c1&#34;&gt;# 每天4:04执行备份&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;footnotes&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;&lt;a href=&#34;#vps&#34;&gt;VPS&lt;/a&gt; &lt;br/&gt;
-&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:2&#34;&gt;&lt;a href=&#34;https://blog.winsphinx.top/post/building-home-media-center/&#34;&gt;搭建家庭多媒体中心&lt;/a&gt; &lt;br/&gt;
-&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
 &lt;/div&gt;</description></item><item><title>大美青海</title><link>https://blog.winsphinx.top/post/qinghai/</link><pubDate>Sun, 30 Jun 2024 09:28:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/qinghai/</guid><description>&lt;p&gt;鼓了很大的勇气，下了很大的决心，决定来一次遥远的旅行。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;第一日-登基&#34;&gt;第一日，登基&lt;/h2&gt;
 &lt;p&gt;呃……登机，一路颠簸——小飞机是真的颠簸——来到西宁。 &lt;br/&gt;&lt;/p&gt;
@@ -1776,11 +1806,9 @@ netsh advfirewall firewall delete rule &lt;span class=&#34;nv&#34;&gt;name&lt;/s
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;version&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;3&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;qbittorrent&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;image&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;linuxserver/qbittorrent&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;container_name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;qbittorrent&lt;span class=&#34;w&#34;&gt;
@@ -1828,11 +1856,9 @@ netsh advfirewall firewall delete rule &lt;span class=&#34;nv&#34;&gt;name&lt;/s
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;version&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;3&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;prowlarr&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;container_name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;prowlarr&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;image&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;lscr.io/linuxserver/prowlarr&lt;span class=&#34;w&#34;&gt;
@@ -1880,11 +1906,9 @@ netsh advfirewall firewall delete rule &lt;span class=&#34;nv&#34;&gt;name&lt;/s
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;version&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;3&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;radarr&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;container_name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;radarr&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;image&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;lscr.io/linuxserver/radarr&lt;span class=&#34;w&#34;&gt;
@@ -1937,11 +1961,9 @@ netsh advfirewall firewall delete rule &lt;span class=&#34;nv&#34;&gt;name&lt;/s
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;version&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;3&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;sonarr&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;container_name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;sonarr&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;image&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;lscr.io/linuxserver/sonarr&lt;span class=&#34;w&#34;&gt;
@@ -2045,11 +2067,9 @@ netsh advfirewall firewall delete rule &lt;span class=&#34;nv&#34;&gt;name&lt;/s
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;version&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;3&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;alist&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;image&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;xhofe/alist-aria2&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;container_name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;alist&lt;span class=&#34;w&#34;&gt;
@@ -2098,11 +2118,9 @@ netsh advfirewall firewall delete rule &lt;span class=&#34;nv&#34;&gt;name&lt;/s
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;version&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;chinesesubfinder&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;image&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;allanpk716/chinesesubfinder&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;container_name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;chinesesubfinder&lt;span class=&#34;w&#34;&gt;
@@ -2251,11 +2269,9 @@ systemctl --user start mpd.socket&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;version&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;myMPD&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;image&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;ghcr.io/jcorporation/mympd/mympd&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;container_name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;mympd&lt;span class=&#34;w&#34;&gt;
@@ -3434,11 +3450,9 @@ character &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;o&
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;version&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;3&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;nextcloud&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;container_name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;nextcloud&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;image&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;lscr.io/linuxserver/nextcloud&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;latest&lt;span class=&#34;w&#34;&gt;
