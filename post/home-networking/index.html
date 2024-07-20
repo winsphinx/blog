@@ -110,9 +110,9 @@ mount /dev/sdb1 /mnt/disk  <span class=c1># 挂载</span></code></pre></td></tr>
 <span class=nb>set</span> -euo pipefail
 
 <span class=c1># 设置变量</span>
-<span class=nv>SOURCE_DIR</span><span class=o>=</span><span class=s2>&#34;/root/dockers/&#34;</span>
+<span class=nv>SOURCE_DIR</span><span class=o>=</span><span class=nv>$HOME</span>
 <span class=nv>DEST_DIR</span><span class=o>=</span><span class=s2>&#34;/mnt/disk/backup/armbian/&#34;</span>
-<span class=nv>TMP_BACKUP</span><span class=o>=</span><span class=s2>&#34;/tmp/docker_backup_</span><span class=k>$(</span>date +<span class=s1>&#39;%Y%m%d%H%M%S&#39;</span><span class=k>)</span><span class=s2>.tar.gz&#34;</span>
+<span class=nv>TMP_BACKUP</span><span class=o>=</span><span class=s2>&#34;/tmp/backup_</span><span class=k>$(</span>date +<span class=s1>&#39;%Y%m%d%H%M%S&#39;</span><span class=k>)</span><span class=s2>.tar.gz&#34;</span>
 
 <span class=c1># 使用 tar 创建备份</span>
 tar czf <span class=nv>$TMP_BACKUP</span> --absolute-names --transform <span class=s2>&#34;s|^/root/||&#34;</span> <span class=nv>$SOURCE_DIR</span>
@@ -409,11 +409,11 @@ sshfs#armbianv6:/mnt/samba/Music/ /mnt/samba/Music/ fuse defaults,user,allow_oth
 <span class=nb>set</span> -euo pipefail
 
 <span class=c1># 设置变量</span>
-<span class=nv>SOURCE_DIR</span><span class=o>=</span><span class=s2>&#34;/root/dockers/&#34;</span>
+<span class=nv>SOURCE_DIR</span><span class=o>=</span><span class=nv>$HOME</span>
 <span class=nv>DEST_DIR</span><span class=o>=</span><span class=s2>&#34;/mnt/disk/backup/ubuntu/&#34;</span>
 <span class=nv>REMOTE_HOST</span><span class=o>=</span><span class=s2>&#34;armbianv6&#34;</span>
 <span class=nv>SSH_PORT</span><span class=o>=</span><span class=m>22</span>
-<span class=nv>TMP_BACKUP</span><span class=o>=</span><span class=s2>&#34;/tmp/docker_backup_</span><span class=k>$(</span>date +<span class=s1>&#39;%Y%m%d%H%M%S&#39;</span><span class=k>)</span><span class=s2>.tar.gz&#34;</span>
+<span class=nv>TMP_BACKUP</span><span class=o>=</span><span class=s2>&#34;/tmp/backup_</span><span class=k>$(</span>date +<span class=s1>&#39;%Y%m%d%H%M%S&#39;</span><span class=k>)</span><span class=s2>.tar.gz&#34;</span>
 
 <span class=c1># 使用 tar 创建备份</span>
 tar czf <span class=nv>$TMP_BACKUP</span> --absolute-names --transform <span class=s2>&#34;s|^/root/||&#34;</span> <span class=nv>$SOURCE_DIR</span>
@@ -426,7 +426,7 @@ ssh -p <span class=nv>$SSH_PORT</span> root@<span class=nv>$REMOTE_HOST</span> <
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=m>4</span> <span class=m>4</span> * * * /root/scripts/backup.sh  <span class=c1># 每天4:04执行备份</span></code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
 <span class=item-content>winsphinx</span></p><p class=copyright-item><span class=item-title>上次更新</span>
 <span class=item-content>2024-07-17
-<a href=https://github.com/winsphinx/blog/commit/dd71ed3e0bfa1663b95dea88bc8a861f8fe95343 title="[原创] 家庭网">(dd71ed3)</a><br>[原创] 家庭网</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<a href=https://github.com/winsphinx/blog/commit/d6fc49597dabba6dce2c77984f5d0950578c1686 title="[原创] 家庭网">(d6fc495)</a><br>[原创] 家庭网</span></p><p class=copyright-item><span class=item-title>许可协议</span>
 <span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank><img alt="CC BY-NC-SA 4.0" style=border-width:0 src=https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png></a></span></p></div><footer class=post-footer><div class=post-tags><a href=https://blog.winsphinx.top/tags/linux/>linux</a>
 <a href=https://blog.winsphinx.top/tags/network/>network</a></div><nav class=post-nav><a class=next href=https://blog.winsphinx.top/post/qinghai/><span class="next-text nav-default">大美青海</span>
 <span class="prev-text nav-mobile">下一篇</span>

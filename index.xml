@@ -159,9 +159,9 @@ mount /dev/sdb1 /mnt/disk &lt;span class=&#34;c1&#34;&gt;# 挂载&lt;/span&gt;&l
 &lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
 &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -euo pipefail
 &lt;span class=&#34;c1&#34;&gt;# 设置变量&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;SOURCE_DIR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/root/dockers/&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;SOURCE_DIR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;
 &lt;span class=&#34;nv&#34;&gt;DEST_DIR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/mnt/disk/backup/armbian/&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;TMP_BACKUP&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/tmp/docker_backup_&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date +&lt;span class=&#34;s1&#34;&gt;&amp;#39;%Y%m%d%H%M%S&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;.tar.gz&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;TMP_BACKUP&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/tmp/backup_&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date +&lt;span class=&#34;s1&#34;&gt;&amp;#39;%Y%m%d%H%M%S&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;.tar.gz&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 使用 tar 创建备份&lt;/span&gt;
 tar czf &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; --absolute-names --transform &lt;span class=&#34;s2&#34;&gt;&amp;#34;s|^/root/||&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$SOURCE_DIR&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 使用 rsync 将备份同步到备份目录&lt;/span&gt;
@@ -517,11 +517,11 @@ sshfs#armbianv6:/mnt/samba/Music/ /mnt/samba/Music/ fuse defaults,user,allow_oth
 &lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
 &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -euo pipefail
 &lt;span class=&#34;c1&#34;&gt;# 设置变量&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;SOURCE_DIR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/root/dockers/&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;SOURCE_DIR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;
 &lt;span class=&#34;nv&#34;&gt;DEST_DIR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/mnt/disk/backup/ubuntu/&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;nv&#34;&gt;REMOTE_HOST&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;armbianv6&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;nv&#34;&gt;SSH_PORT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;22&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;TMP_BACKUP&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/tmp/docker_backup_&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date +&lt;span class=&#34;s1&#34;&gt;&amp;#39;%Y%m%d%H%M%S&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;.tar.gz&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;TMP_BACKUP&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/tmp/backup_&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date +&lt;span class=&#34;s1&#34;&gt;&amp;#39;%Y%m%d%H%M%S&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;.tar.gz&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 使用 tar 创建备份&lt;/span&gt;
 tar czf &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; --absolute-names --transform &lt;span class=&#34;s2&#34;&gt;&amp;#34;s|^/root/||&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$SOURCE_DIR&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 使用 rsync 将备份同步到远程服务器&lt;/span&gt;
