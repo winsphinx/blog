@@ -532,6 +532,17 @@ rsync -avhP --remove-source-files -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;ssh
 ssh -p &lt;span class=&#34;nv&#34;&gt;$SSH_PORT&lt;/span&gt; root@&lt;span class=&#34;nv&#34;&gt;$REMOTE_HOST&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;cd &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$DEST_DIR&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; &amp;amp;&amp;amp; (ls -t | tail -n +4 | xargs --no-run-if-empty rm -f)&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;p&gt;【附注】如果不能使用密钥方式登录 ssh，则可以使用 &lt;code&gt;sshpass&lt;/code&gt; 工具来传递密码。相应的命令改写成： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sshpass -p &lt;span class=&#34;s1&#34;&gt;&amp;#39;PASSWORD&amp;#39;&lt;/span&gt; rsync -avhP --remove-source-files -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;ssh -p &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$SSH_PORT&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; root@&lt;span class=&#34;nv&#34;&gt;$REMOTE_HOST&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$DEST_DIR&lt;/span&gt;
+sshpass -p &lt;span class=&#34;s1&#34;&gt;&amp;#39;PASSWORD&amp;#39;&lt;/span&gt; ssh -p &lt;span class=&#34;nv&#34;&gt;$SSH_PORT&lt;/span&gt; root@&lt;span class=&#34;nv&#34;&gt;$REMOTE_HOST&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;cd &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$DEST_DIR&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; &amp;amp;&amp;amp; (ls -t | tail -n +4 | xargs --no-run-if-empty rm -f)&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;然后使用 &lt;code&gt;crontab -e&lt;/code&gt; 增加定时计划： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
