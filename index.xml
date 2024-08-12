@@ -1,4 +1,329 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 17 Jul 2024 18:50:00 +0800</lastBuildDate><atom:link href="https://winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>Home Networking</title><link>https://winsphinx.top/post/home-networking/</link><pubDate>Wed, 17 Jul 2024 18:50:00 +0800</pubDate><guid>https://winsphinx.top/post/home-networking/</guid><description>&lt;p&gt;我有一个海外 VPS 主机用于实现“各种功能”，又购买了一个小主机 armbian 用于&lt;a href=&#34;https://winsphinx.top/post/building-home-media-center/&#34;&gt;搭建家庭多媒体中心&lt;/a&gt;。我还有一个硬盘盒，通过其自带 samba 服务接入 armbian。此外还加了一个移动硬盘挂载到 armbian 下。组网架构图如下。 &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 08 Aug 2024 19:20:00 +0800</lastBuildDate><atom:link href="https://winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>xray</title><link>https://winsphinx.top/post/xray/</link><pubDate>Thu, 08 Aug 2024 19:20:00 +0800</pubDate><guid>https://winsphinx.top/post/xray/</guid><description>&lt;p&gt;Xray 是 V2Ray 的一个分支，具有更高的性能（如大连接情况下）、更多的功能（如 XTLS）。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;经过各种组合验证，最后我采用的是“vless 协议 + TCP 传输 + reality 加密”的方案来实现，其优势有： &lt;br/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;vless 比 vmess 轻量； &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;TCP 比 UDP 更稳定； &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;reality 相比 tls 无需注册域名； &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;记录如下，配置文件基本可以抄作业，变动部分已做划线： &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;server&#34;&gt;server&lt;/h2&gt;
+&lt;p&gt;server 的 config.json： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;66
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;log&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;loglevel&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;warning&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;routing&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;domainStrategy&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;IPIfNonMatch&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;rules&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;field&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;outboundTag&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;block&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;ip&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;geoip:private&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;inbounds&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;protocol&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;vless&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;listen&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;0.0.0.0&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;port&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;__(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;settings&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;clients&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;__(2)__&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;flow&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;xtls-rprx-vision&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;decryption&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;none&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;streamSettings&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;network&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;tcp&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;security&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;reality&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;realitySettings&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;dest&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;__(3)__:443&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;serverNames&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;__(3)__&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;__(3&amp;#39;)__&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;privateKey&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;__(4)__&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;shortIds&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;__(5)__&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;sniffing&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;enabled&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;destOverride&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;http&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;tls&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;quic&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;outbounds&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;tag&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;direct&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;protocol&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;freedom&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;tag&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;block&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;protocol&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;blackhole&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;其中： &lt;br/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(1) 服务端的侦听端口 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;(2) UUID，可以用 &lt;code&gt;xray uuid&lt;/code&gt; 来生成 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;(3) 回落的域名，用于伪装&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; &lt;br/&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;(3&amp;rsquo;) 伪装网站的其他地址&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; &lt;br/&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;(4) 长 ID，用 &lt;code&gt;xray x25519&lt;/code&gt; 生成一对密钥，填 &amp;ldquo;Private key&amp;rdquo; 的值 &lt;br/&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;(5) 短 ID，用 &lt;code&gt;openssl rand -hex 8&lt;/code&gt; 生成 &lt;br/&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;client&#34;&gt;client&lt;/h2&gt;
+&lt;p&gt;client 的 config.json： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;66
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;67
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;68
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;69
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;70
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;71
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;72
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;73
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;log&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;loglevel&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;warning&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;routing&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;domainStrategy&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;IPIfNonMatch&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;rules&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;field&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;outboundTag&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;direct&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;domain&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;geosite:cn&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;field&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;outboundTag&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;direct&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;ip&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;geoip:cn&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;geoip:private&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;inbounds&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;protocol&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;socks&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;listen&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;0.0.0.0&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;port&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;__(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)__&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;protocol&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;http&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;listen&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;0.0.0.0&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;port&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;__(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;)__&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;outbounds&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;tag&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;proxy&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;protocol&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;vless&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;settings&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;vnext&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;address&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;__(7)__&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;port&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;__(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;)__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;users&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;__(2)__&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;flow&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;xtls-rprx-vision&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;encryption&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;none&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;streamSettings&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;network&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;tcp&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;security&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;reality&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;realitySettings&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;serverName&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;__(3)__&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;publicKey&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;__(4&amp;#39;)__&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;shortId&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;__(5)__&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;fingerprint&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;chrome&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;tag&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;direct&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;#34;protocol&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;freedom&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;其中： &lt;br/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(6) 客户端的侦听端口 socks 协议 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;(6&amp;rsquo;) 客户端的侦听端口 http 协议，给某些不支持 socks 的服务用 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;(7) 服务器地址 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;(4&amp;rsquo;) 长 ID，填与服务端对应的 &amp;ldquo;Public key&amp;rdquo; 的值 &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;网站有一定要求：首先进入待测网页，按下 F12 键，转到“安全性”选项卡，在“连接”下出现“TLS 1.3，X25519”字样即代表网页支持 TLSv1.3 协议、并且使用的是 x25519 证书；其次转到“控制台”选项卡，输入命令 &lt;code&gt;window.chrome.loadTimes()&lt;/code&gt;​，查看 npnNegotiatedProtocol 的值是否为 h2，如果是的话就代表使用的是 H2 协议。 &lt;br/&gt;
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;serverName 列表，暂不支持 * 通配符，在 Chrome 里输入待测试的网址，按下 F12 键，转到“安全性”选项卡，刷新一下，查看“主要来源（安全）”，填证书中 SAN 的值，有多条就填多条。 &lt;br/&gt;
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item><item><title>Home Networking</title><link>https://winsphinx.top/post/home-networking/</link><pubDate>Wed, 17 Jul 2024 18:50:00 +0800</pubDate><guid>https://winsphinx.top/post/home-networking/</guid><description>&lt;p&gt;我有一个海外 VPS 主机用于实现“各种功能”，又购买了一个小主机 armbian 用于&lt;a href=&#34;https://winsphinx.top/post/building-home-media-center/&#34;&gt;搭建家庭多媒体中心&lt;/a&gt;。我还有一个硬盘盒，通过其自带 samba 服务接入 armbian。此外还加了一个移动硬盘挂载到 armbian 下。组网架构图如下。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://winsphinx.top/ox-hugo/homenetworking.png&#34; alt=&#34;&#34; /&gt; &lt;br/&gt;
 以下是各个设备的详细配置： &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;armbian&#34;&gt;armbian&lt;/h2&gt;
@@ -3777,21 +4102,4 @@ character &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;o&
 &lt;li id=&#34;fn:1&#34;&gt;从 Docker 1.10 版本开始，docker daemon 实现了一个内嵌的 DNS server，使容器可以直接通过容器名称通信，只要在创建容器时使用 &lt;code&gt;--name&lt;/code&gt; 为容器命名即可。但是使用时 Docker DNS 有个限制：只能在 user-defined 网络中使用。即，默认的 bridge 网络是无法使用 DNS 的，所以需要自定义网络。 &lt;br/&gt;
 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>Freedom</title><link>https://winsphinx.top/post/freedom/</link><pubDate>Mon, 12 Dec 2022 12:12:00 +0800</pubDate><guid>https://winsphinx.top/post/freedom/</guid><description>&lt;p&gt;疫情快三年，庆幸终于开始有了一丝的变化。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;有人曾经说，要不惜一切代价，保护人民的生命健康。然而付出的代价是人民的尊严、自由、甚至生命。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;病毒固然是可怕，但更可怕的是——不受约束的公权力。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;如果感染了病毒，只是本人难受，也许折腾三五天就康复了。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;但是针对本人、针对家人、针对身边的人，被骚扰、被歧视、被孤立、被打压、被威胁、被禁锢，其影响三五年都不会消停，这个影响力大概只有曾经的“诛九族”能与之匹敌。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;从国家方面讲，失业潮和大萧条正在路上加速赶来，而社会的群体性对立已经很严重了。更为严重的是，疫情才三年，法制已经倒退了三十年，民主甚至倒退了三百年！环顾四周，彷佛有了一种穿越到了清朝的感觉——专制的环境、愚昧的民众。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;从个人方面而言，任何事情只要套上“防疫”这个标签，任何权利都不得不乖乖让路。且不说那些狗仗“疫”势的东西，就算那些真心希望能将病毒所谓“ &lt;br/&gt;
-清零”的人，也是给自己和他人带来了无穷的麻烦——每天生活在因不确定引起的巨大恐惧中，不知道什么时候会被感染，不知道什么时候会被拉去隔离。对邻居时刻提防，对感染者充满歧视，对同胞加以苛责。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;就算医学上的“疫情”暂时还没有结束，还是希望心理上的“疫情”能早日结束，早日回归正常的生活。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;然而，要走出这个牢笼，并没有那么容易。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;如果我们还是生活在巨大的不确定性里，还依然要为出个门而提心吊胆，我们就依然还生活在疫情里。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;如果我们一天不做核酸就心里难受，看到核酸点就想冲上前去张开嘴巴，我们就依然还生活在疫情里。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;如果我们还把别人叫做“羊”，不能清零我们脑海中的“次密接次次密接”、“居家观察居家隔离”、“静态管理静默管理”等一系列新名词，我们就依然还生活在疫情里。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;如果我们还对不讲法律和规则的事情言听计从，不敢对封闭楼道和消防通道的行为说不，我们就依然还生活在疫情里。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;如果我们还对自己的“非必要需求”充满耻感，不敢为此争取，并把“非必要需求”推向未来，我们就依然还生活在疫情里。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;如果我们还眷恋和期待着他人和组织的保护和管束，连基本的自由都不能习惯，怯于拥抱，我们就依然还生活在疫情里。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;疫情总有一天会过去，但如果我们不能从内心真正清算疫情带来的“后遗症”，我们就依然还生活在疫情里。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;我们不能永远生活在“疫情”里，我们总要走出牢笼，奔向自由。然而，当自由来临的时候，我们准备好了吗？ &lt;br/&gt;&lt;/p&gt;</description></item></channel></rss>
+&lt;/div&gt;</description></item></channel></rss>
