@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://winsphinx.top/sitemap.xml
+Sitemap: https://blog.winsphinx.top/sitemap.xml
