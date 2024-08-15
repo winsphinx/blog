@@ -369,7 +369,7 @@
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;然后 systemctl daemon-reload &amp;amp;&amp;amp; systemctl restart docker 更新并重启 docker 服务。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;然后 &lt;code&gt;systemctl daemon-reload &amp;amp;&amp;amp; systemctl restart docker&lt;/code&gt; 更新并重启 docker 服务。 &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;安装-frp-实现内网穿透&#34;&gt;安装 frp 实现内网穿透&lt;/h3&gt;
 &lt;p&gt;因为是家庭宽带是 NAT，所以需要使用 frp 将内网穿透到公网。具体实现见之前 &lt;a href=&#34;https://blog.winsphinx.top/post/frp/&#34;&gt;frp&lt;/a&gt; 一文。 &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;安装-ddclient&#34;&gt;安装 ddclient&lt;/h3&gt;
