@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 08 Aug 2024 19:20:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>xray</title><link>https://blog.winsphinx.top/post/xray/</link><pubDate>Thu, 08 Aug 2024 19:20:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/xray/</guid><description>&lt;p&gt;Xray 是 V2Ray 的一个分支，具有更高的性能（如大连接情况下）、更多的功能（如 XTLS）。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;经过各种组合验证，最后我采用的是“vless 协议 + TCP 传输 + reality 加密”的方案来实现，其优势有： &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;经过各种组合验证，最后我采用的是“TCP 传输 + vless 协议 + reality 加密”的方案来实现，其优势有： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;vless 比 vmess 轻量； &lt;br/&gt;&lt;/li&gt;
 &lt;li&gt;TCP 比 UDP 更稳定； &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;reality 相比 tls 无需注册域名； &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;vless 比 vmess 轻量； &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;reality 相比 tls 无需注册域名，通过伪装网站来实现更好的隐蔽性； &lt;br/&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;记录如下，配置文件基本可以抄作业，变动部分已做划线： &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;记录如下： &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;server&#34;&gt;server&lt;/h2&gt;
 &lt;p&gt;server 的 config.json： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -318,7 +318,7 @@
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;网站有一定要求：首先进入待测网页，按下 F12 键，转到“安全性”选项卡，在“连接”下出现“TLS 1.3，X25519”字样即代表网页支持 TLSv1.3 协议、并且使用的是 x25519 证书；其次转到“控制台”选项卡，输入命令 &lt;code&gt;window.chrome.loadTimes()&lt;/code&gt;​，查看 npnNegotiatedProtocol 的值是否为 h2，如果是的话就代表使用的是 H2 协议。 &lt;br/&gt;
+&lt;li id=&#34;fn:1&#34;&gt;该网站用于伪装，当认证不通过时，会显示该网站，让人以为服务器上运行的是一个网站。网站的选择有一定要求：首先进入待测网页，按下 F12 键，转到“安全性”选项卡，在“连接”下出现“TLS 1.3，X25519”字样即代表网页支持 TLSv1.3 协议、并且使用的是 x25519 证书；其次转到“控制台”选项卡，输入命令 &lt;code&gt;window.chrome.loadTimes()&lt;/code&gt;​，查看 npnNegotiatedProtocol 的值是否为 h2，如果是的话就代表使用的是 H2 协议。 &lt;br/&gt;
 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li id=&#34;fn:2&#34;&gt;serverName 列表，暂不支持 * 通配符，在 Chrome 里输入待测试的网址，按下 F12 键，转到“安全性”选项卡，刷新一下，查看“主要来源（安全）”，填证书中 SAN 的值，有多条就填多条。 &lt;br/&gt;
 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
