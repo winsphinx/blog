@@ -490,7 +490,7 @@ mount /dev/sda1 /mnt/disk &lt;span class=&#34;c1&#34;&gt;# 挂载&lt;/span&gt;&l
 &lt;span class=&#34;nv&#34;&gt;DEST_DIR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/mnt/disk/backup/armbian/&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;nv&#34;&gt;TMP_BACKUP&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/tmp/backup_&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date +&lt;span class=&#34;s1&#34;&gt;&amp;#39;%Y%m%d%H%M%S&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;.tar.gz&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 使用 tar 创建备份&lt;/span&gt;
-tar czf &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; --ignore-failed-read --absolute-names --transform &lt;span class=&#34;s2&#34;&gt;&amp;#34;s|^/root/||&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$SOURCE_DIR&lt;/span&gt;
+tar czf &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; --ignore-failed-read --ignore-command-error --absolute-names --transform &lt;span class=&#34;s2&#34;&gt;&amp;#34;s|^/root/||&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$SOURCE_DIR&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 使用 rsync 将备份同步到备份目录&lt;/span&gt;
 rsync -avhP --remove-source-files &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$DEST_DIR&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 在备份目录上删除旧备份&lt;/span&gt;
@@ -850,7 +850,7 @@ sshfs#armbianv6:/mnt/samba/Music/ /mnt/samba/Music/ fuse defaults,user,allow_oth
 &lt;span class=&#34;nv&#34;&gt;SSH_PORT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;22&lt;/span&gt;
 &lt;span class=&#34;nv&#34;&gt;TMP_BACKUP&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/tmp/backup_&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date +&lt;span class=&#34;s1&#34;&gt;&amp;#39;%Y%m%d%H%M%S&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;.tar.gz&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 使用 tar 创建备份&lt;/span&gt;
-tar czf &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; --ignore-failed-read --absolute-names --transform &lt;span class=&#34;s2&#34;&gt;&amp;#34;s|^/root/||&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$SOURCE_DIR&lt;/span&gt;
+tar czf &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; --ignore-failed-read --ignore-command-error --absolute-names --transform &lt;span class=&#34;s2&#34;&gt;&amp;#34;s|^/root/||&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$SOURCE_DIR&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 使用 rsync 将备份同步到远程服务器&lt;/span&gt;
 rsync -avhP --remove-source-files -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;ssh -p &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$SSH_PORT&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; root@&lt;span class=&#34;nv&#34;&gt;$REMOTE_HOST&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$DEST_DIR&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 在远程服务器上删除旧备份&lt;/span&gt;
