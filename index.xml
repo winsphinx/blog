@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 13 Sep 2024 19:24:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>The Dead and the living</title><link>https://blog.winsphinx.top/post/the-dead-and-the-living/</link><pubDate>Fri, 13 Sep 2024 19:24:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/the-dead-and-the-living/</guid><description>&lt;p&gt;写在 9 月 13 日，星期五。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;我们生在中国， 我们葬在中国 &lt;br/&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 13 Sep 2024 19:24:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>The Dead and the Living</title><link>https://blog.winsphinx.top/post/the-dead-and-the-living/</link><pubDate>Fri, 13 Sep 2024 19:24:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/the-dead-and-the-living/</guid><description>&lt;p&gt;写在 9 月 13 日，星期五。 &lt;br/&gt;&lt;/p&gt;
+&lt;style&gt;.org-center { margin-left: auto; margin-right: auto; text-align: center; }&lt;/style&gt;
+&lt;div class=&#34;org-center&#34;&gt;
+我们生在中国， 我们葬在中国 &lt;br/&gt;
 我们所有的不幸，只有这么两个 &lt;br/&gt;
 躺在里面的，再也不必假装死了 &lt;br/&gt;
-留在外面的，还要继续假装活着 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>xray</title><link>https://blog.winsphinx.top/post/xray/</link><pubDate>Thu, 08 Aug 2024 19:20:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/xray/</guid><description>&lt;p&gt;Xray 是 V2Ray 的一个分支，具有更高的性能（如大连接情况下）、更多的功能（如 XTLS）。 &lt;br/&gt;&lt;/p&gt;
+留在外面的，还要继续假装活着 &lt;br/&gt;
+&lt;/div&gt;</description></item><item><title>xray</title><link>https://blog.winsphinx.top/post/xray/</link><pubDate>Thu, 08 Aug 2024 19:20:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/xray/</guid><description>&lt;p&gt;Xray 是 V2Ray 的一个分支，具有更高的性能（如大连接情况下）、更多的功能（如 XTLS）。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;经过各种组合验证，最后我采用的是“VLESS-Vision-REALITY”的方案来实现，其优势有： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;TCP 比 UDP 更稳定； &lt;br/&gt;&lt;/li&gt;
