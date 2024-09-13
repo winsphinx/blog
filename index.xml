@@ -1,66 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 10 Sep 2024 19:56:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>sftp</title><link>https://blog.winsphinx.top/post/sftp/</link><pubDate>Tue, 10 Sep 2024 19:56:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/sftp/</guid><description>&lt;p&gt;现有一个需求： &lt;br/&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;sftp 登录后自动跳转到 &lt;code&gt;/sftp/$USER/upload&lt;/code&gt; 目录，直接上传 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;对应用户 sftp 登录到对应用户目录，不能访问其他用户目录 &lt;br/&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;为实现上述需求，方案如下： &lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;创建用户和组&#34;&gt;创建用户和组&lt;/h2&gt;
-&lt;p&gt;以创建一个用户组 sftpgrp，以及两个用户 sftp1、 sftp2 为例: &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;groupadd sftpgrp
-adduser sftp1 -G sftpgrp
-adduser sftp2 -G sftpgrp
-passwd sftp1
-passwd sftp2&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;创建目录&#34;&gt;创建目录&lt;/h2&gt;
-&lt;p&gt;创建相应用户目录，并设置权限 &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;mkdir -p /sftp/sftp&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;..2&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;/upload
-chown -R sftp1:sftp1 /sftp/sftp1
-chown -R sftp2:sftp2 /sftp/sftp2
-chmod -R &lt;span class=&#34;m&#34;&gt;770&lt;/span&gt; /sftp/sftp&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;..2&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;修改配置&#34;&gt;修改配置&lt;/h2&gt;
-&lt;p&gt;编辑 &lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt; 文件，注释掉自带的 &lt;code&gt;Subsystem sftp /usr/libexec/openssh/sftp-server&lt;/code&gt; 这行，添加以下内容： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;Subsystem sftp internal-sftp -d %u/upload
-Match Group sftpgrp
-ChrootDirectory /sftp&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;最后重启 sshd 即可。 &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;systemctl restart sshd.service&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>xray</title><link>https://blog.winsphinx.top/post/xray/</link><pubDate>Thu, 08 Aug 2024 19:20:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/xray/</guid><description>&lt;p&gt;Xray 是 V2Ray 的一个分支，具有更高的性能（如大连接情况下）、更多的功能（如 XTLS）。 &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 13 Sep 2024 19:24:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>The Dead and the living</title><link>https://blog.winsphinx.top/post/the-dead-and-the-living/</link><pubDate>Fri, 13 Sep 2024 19:24:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/the-dead-and-the-living/</guid><description>&lt;p&gt;写在 9 月 13 日，星期五。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;我们生在中国， 我们葬在中国 &lt;br/&gt;
+我们所有的不幸，只有这么两个 &lt;br/&gt;
+躺在里面的，再也不必假装死了 &lt;br/&gt;
+留在外面的，还要继续假装活着 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>xray</title><link>https://blog.winsphinx.top/post/xray/</link><pubDate>Thu, 08 Aug 2024 19:20:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/xray/</guid><description>&lt;p&gt;Xray 是 V2Ray 的一个分支，具有更高的性能（如大连接情况下）、更多的功能（如 XTLS）。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;经过各种组合验证，最后我采用的是“VLESS-Vision-REALITY”的方案来实现，其优势有： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;TCP 比 UDP 更稳定； &lt;br/&gt;&lt;/li&gt;
