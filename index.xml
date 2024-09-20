@@ -1978,6 +1978,9 @@ nohup ./block-ip.sh &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&amp;gt;
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;# options
@@ -1985,6 +1988,7 @@ set -g prefix C-b
 set -g prefix2 C-a
 set -g mouse on
 set -g mode-keys vi
+set -g set-clipboard on
 # keys
 bind r source-file ~/.tmux.conf
 bind - split-window -v
@@ -2009,9 +2013,7 @@ set -g @dracula-network-bandwidth-interval 0
 set -g @dracula-network-bandwidth-show-interface true
 set -g @dracula-time-format &amp;#39;%b-%d %H:%M&amp;#39;
 set -g @dracula-clients-minimum 2
-## easy yank
-set -g @plugin &amp;#39;tmux-plugins/tmux-yank&amp;#39;
-## &amp;lt;prefix&amp;gt; + P to start/stop log, alt-p to capture screen
+## &amp;lt;prefix&amp;gt; + P to start/stop logging, + alt-p to capture screen, + alt-P to save history
 set -g @plugin &amp;#39;tmux-plugins/tmux-logging&amp;#39;
 ## persist tmux sessions after computer restart
 set -g @plugin &amp;#39;tmux-plugins/tmux-resurrect&amp;#39;
@@ -2020,6 +2022,10 @@ set -g @resurrect-capture-pane-contents &amp;#39;on&amp;#39;
 set -g @plugin &amp;#39;tmux-plugins/tmux-continuum&amp;#39;
 set -g @continuum-save-interval &amp;#39;15&amp;#39;
 set -g @continuum-restore &amp;#39;on&amp;#39;
+## automatically resize focus pane
+set -g @plugin &amp;#39;graemedavidson/tmux-pane-focus&amp;#39;
+set -g @pane-focus-size &amp;#39;62&amp;#39;
+set -g @pane-focus-direction &amp;#39;+&amp;#39;
 ## run all plugins
 run &amp;#39;~/.tmux/plugins/tpm/tpm&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
