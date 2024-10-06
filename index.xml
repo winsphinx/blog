@@ -1,4 +1,66 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 13 Sep 2024 19:24:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>The Dead and The Living</title><link>https://blog.winsphinx.top/post/the-dead-and-the-living/</link><pubDate>Fri, 13 Sep 2024 19:24:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/the-dead-and-the-living/</guid><description>&lt;p&gt;写在 9 月 13 日，星期五。一个黑色的日子。 &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 06 Oct 2024 19:56:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>sftp</title><link>https://blog.winsphinx.top/post/sftp/</link><pubDate>Sun, 06 Oct 2024 19:56:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/sftp/</guid><description>&lt;p&gt;现有一个需求： &lt;br/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sftp 登录后自动跳转到 &lt;code&gt;/sftp/$USER/upload&lt;/code&gt; 目录，直接上传 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;对应用户 sftp 登录到对应用户目录，不能访问其他用户目录 &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为实现上述需求，方案如下： &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;创建用户和组&#34;&gt;创建用户和组&lt;/h2&gt;
+&lt;p&gt;以创建一个用户组 sftpgrp，以及两个用户 sftp1、 sftp2 为例: &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;groupadd sftpgrp
+adduser sftp1 -G sftpgrp
+adduser sftp2 -G sftpgrp
+passwd sftp1
+passwd sftp2&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;创建目录&#34;&gt;创建目录&lt;/h2&gt;
+&lt;p&gt;创建相应用户目录，并设置权限 &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;mkdir -p /sftp/sftp&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;..2&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;/upload
+chown -R sftp1:sftp1 /sftp/sftp1
+chown -R sftp2:sftp2 /sftp/sftp2
+chmod -R &lt;span class=&#34;m&#34;&gt;770&lt;/span&gt; /sftp/sftp&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;..2&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;修改配置&#34;&gt;修改配置&lt;/h2&gt;
+&lt;p&gt;编辑 &lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt; 文件，注释掉自带的 &lt;code&gt;Subsystem sftp /usr/libexec/openssh/sftp-server&lt;/code&gt; 这行，添加以下内容： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;Subsystem sftp internal-sftp -d %u/upload
+Match Group sftpgrp
+ChrootDirectory /sftp&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;最后重启 sshd 即可。 &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;systemctl restart sshd.service&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>The Black Friday</title><link>https://blog.winsphinx.top/post/the-black-friday/</link><pubDate>Fri, 13 Sep 2024 19:24:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/the-black-friday/</guid><description>&lt;p&gt;写在 9 月 13 日，星期五。一个黑色的日子。 &lt;br/&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;我们生在中国， 我们葬在中国 &lt;br/&gt;
 我们所有的不幸，只有这么两个 &lt;br/&gt;
@@ -3807,70 +3869,4 @@ end&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;p&gt;发然后禁，则扦格而不胜；时过然后学，则勤苦而难成；杂施而不孙，则坏乱而不修；独学而无友，则孤陋而寡闻：燕朋逆其师，燕辟废其学。此六者，教之所由废也。 &lt;br/&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;其中第三点，“施教杂乱而不讲次序，则会思维混乱而不知所措”。这一点非常符合通过短视频学各种知识点的学习途径，即，只罗列林林总总的知识点，却无法有序、有效地组织起来。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;所以，我认为所谓的“碎片化学习”的学习方法和手段，并不是一种有效的教育方式。但在目前的快节奏社会，如何有效学习的确是一个值得深入思考研究的问题。 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>无题</title><link>https://blog.winsphinx.top/post/poems/</link><pubDate>Tue, 28 Feb 2023 18:52:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/poems/</guid><description>&lt;p&gt;摘抄两首德语诗。 &lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;die-das-fleisch-wegnehmen-vom-tisch&#34;&gt;Die das Fleisch wegnehmen vom Tisch&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Die das Fleisch wegnehmen vom Tisch&lt;/strong&gt; &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Bertolt Brecht&lt;/em&gt; &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;Die das Fleisch wegnehmen vom Tisch, &lt;br/&gt;
-lehren Zufriedenheit. &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;Die, fürdie die Gabe bestimmt ist, &lt;br/&gt;
-verlangen Opfermut. &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;Die Sattgefressenen sprechen zu den Hungernden &lt;br/&gt;
-von den großen Zeiten, die kommenwerden. &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;Die das Reich in den Abgrund führen, &lt;br/&gt;
-nennen das Regieren zu schwer &lt;br/&gt;
-für den einfachen Mann. &lt;br/&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;!--quoteend--&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;那些把肉从桌上拿走的人&lt;/strong&gt; &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;贝托尔特·布莱希特&lt;/em&gt; &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;那些把肉从桌上拿走的人 &lt;br/&gt;
-教导人们满足。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;那些获进贡的人 &lt;br/&gt;
-要求人们牺牲。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;那些吃饱喝够的人向饥饿者 &lt;br/&gt;
-描绘将来的美好时代。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;那些把国家带到深渊里的人 &lt;br/&gt;
-说统治太难，普通人 &lt;br/&gt;
-不能胜任。 &lt;br/&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;habe-ich-geschwiegen&#34;&gt;Habe ich geschwiegen&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Habe ich geschwiegen&lt;/strong&gt; &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Martin Niemoller&lt;/em&gt; &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;Als die Nazis die Kommunisten holten, &lt;br/&gt;
-habe ich geschwiegen; &lt;br/&gt;
-ich war ja kein Kommunist. &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;Als sie die Sozialdemokraten einsperrten, &lt;br/&gt;
-habe ich geschwiegen; &lt;br/&gt;
-ich war ja kein Sozialdemokrat. &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;Als sie die Gewerkschafter holten, &lt;br/&gt;
-habe ich nicht protestiert; &lt;br/&gt;
-ich war ja kein Gewerkschafter. &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;Als sie die Juden holten, &lt;br/&gt;
-habe ich geschwiegen; &lt;br/&gt;
-ich war ja kein Jude. &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;Als sie mich holten, &lt;br/&gt;
-gab es keinen mehr, der protestieren konnte. &lt;br/&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;!--quoteend--&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;我没有说话&lt;/strong&gt; &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;马丁·尼莫拉牧师&lt;/em&gt; &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;起初他们（纳粹）追杀共产主义者的时候， &lt;br/&gt;
-我没有说话 &lt;br/&gt;
-——因为我不是共产主义者； &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;接着他们追杀犹太人的时候， &lt;br/&gt;
-我没有说话 &lt;br/&gt;
-——因为我不是犹太人； &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;后来他们追杀工会成员的时候， &lt;br/&gt;
-我没有说话 &lt;br/&gt;
-——因为我不是工会成员； &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;此后他们追杀天主教徒的时候， &lt;br/&gt;
-我没有说话 &lt;br/&gt;
-——因为我是新教教徒； &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;最后他们奔我而来， &lt;br/&gt;
-那时已经没有人能为我说话了。 &lt;br/&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</description></item></channel></rss>
+&lt;p&gt;所以，我认为所谓的“碎片化学习”的学习方法和手段，并不是一种有效的教育方式。但在目前的快节奏社会，如何有效学习的确是一个值得深入思考研究的问题。 &lt;br/&gt;&lt;/p&gt;</description></item></channel></rss>
