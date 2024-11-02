@@ -564,7 +564,7 @@ tar -caf &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; --absolute-name
 &lt;span class=&#34;c1&#34;&gt;# 使用 rsync 将备份同步到备份目录&lt;/span&gt;
 rsync -avzh --remove-source-files &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$DEST_DIR&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 在备份目录上删除旧备份&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$DEST_DIR&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ls -t &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n +&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;EXPIRED_DAYS+1&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; xargs --no-run-if-empty rm -rvf&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$DEST_DIR&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ls -t &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -n +$&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;EXPIRED_DAYS+1&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; xargs --no-run-if-empty rm -rvf&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;然后使用 &lt;code&gt;crontab -e&lt;/code&gt; 增加定时计划： &lt;br/&gt;&lt;/p&gt;
@@ -926,7 +926,7 @@ tar -caf &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; --absolute-name
 &lt;span class=&#34;c1&#34;&gt;# 使用 rsync 将备份同步到远程服务器&lt;/span&gt;
 rsync -avzh --remove-source-files -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;ssh -p &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$SSH_PORT&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$TMP_BACKUP&lt;/span&gt; root@&lt;span class=&#34;nv&#34;&gt;$REMOTE_HOST&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$DEST_DIR&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 在远程服务器上删除旧备份&lt;/span&gt;
-ssh -p &lt;span class=&#34;nv&#34;&gt;$SSH_PORT&lt;/span&gt; root@&lt;span class=&#34;nv&#34;&gt;$REMOTE_HOST&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;cd &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$DEST_DIR&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; &amp;amp;&amp;amp; (ls -t | tail -n +[EXPIRED_DAYS+1] | xargs --no-run-if-empty rm -rvf)&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+ssh -p &lt;span class=&#34;nv&#34;&gt;$SSH_PORT&lt;/span&gt; root@&lt;span class=&#34;nv&#34;&gt;$REMOTE_HOST&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;cd &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$DEST_DIR&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; &amp;amp;&amp;amp; (ls -t | tail -n +&lt;/span&gt;$&lt;span class=&#34;s2&#34;&gt;[EXPIRED_DAYS+1] | xargs --no-run-if-empty rm -rvf)&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;【附注】如果不能使用密钥方式登录 ssh，则可以使用 &lt;code&gt;sshpass&lt;/code&gt; 工具来传递密码。相应的命令改写成： &lt;br/&gt;&lt;/p&gt;
