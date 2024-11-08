@@ -29,9 +29,7 @@ PygmentsOptions = "linenos=table"
   category = "categories"
 
 # language support # en / zh-cn / other... translations present in i18n/
-defaultContentLanguage = "en"           # Default language to use
-[languages.en]
-  languageCode = "en"
+defaultContentLanguage = "zh-cn"           # Default language to use
 [languages.zh-cn]
   languageCode = "zh-cn"
 
@@ -40,7 +38,7 @@ defaultContentLanguage = "en"           # Default language to use
 
 [sitemap]                 # essential                     # 必需
   changefreq = "weekly"
-  priority = 0.5
+  priority = 1.0
   filename = "sitemap.xml"
 
 [[menu.main]]             # config your menu              # 配置目录
