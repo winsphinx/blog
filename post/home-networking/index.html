@@ -5,14 +5,14 @@
 以下是各个设备的详细配置："><meta property="og:type" content="article"><meta property="og:url" content="https://blog.winsphinx.top/post/home-networking/"><meta property="article:published_time" content="2024-07-17T18:50:00+08:00"><meta property="article:modified_time" content="2024-07-17T21:16:02+08:00"><meta itemprop=name content="Home Networking"><meta itemprop=description content="我有一个海外 VPS 主机用于实现“各种功能”，又购买了一个小主机 armbian 用于搭建家庭多媒体中心。我还有一个硬盘盒，通过其自带 samba 服务接入 armbian。此外还加了一个移动硬盘挂载到 armbian 下。组网架构图如下。 
 
  
-以下是各个设备的详细配置："><meta itemprop=datePublished content="2024-07-17T18:50:00&#43;08:00"><meta itemprop=dateModified content="2024-07-17T21:16:02&#43;08:00"><meta itemprop=wordCount content="1600"><meta itemprop=keywords content="linux,network,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Home Networking"><meta name=twitter:description content="我有一个海外 VPS 主机用于实现“各种功能”，又购买了一个小主机 armbian 用于搭建家庭多媒体中心。我还有一个硬盘盒，通过其自带 samba 服务接入 armbian。此外还加了一个移动硬盘挂载到 armbian 下。组网架构图如下。 
+以下是各个设备的详细配置："><meta itemprop=datePublished content="2024-07-17T18:50:00&#43;08:00"><meta itemprop=dateModified content="2024-07-17T21:16:02&#43;08:00"><meta itemprop=wordCount content="1804"><meta itemprop=keywords content="linux,network,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Home Networking"><meta name=twitter:description content="我有一个海外 VPS 主机用于实现“各种功能”，又购买了一个小主机 armbian 用于搭建家庭多媒体中心。我还有一个硬盘盒，通过其自带 samba 服务接入 armbian。此外还加了一个移动硬盘挂载到 armbian 下。组网架构图如下。 
 
  
 以下是各个设备的详细配置："><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=https://blog.winsphinx.top/ class=logo>Cogito, ergo sum</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=https://blog.winsphinx.top/>Home</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://blog.winsphinx.top/post/>Archives</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://blog.winsphinx.top/categories/>Categories</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://blog.winsphinx.top/tags/>Tags</a></li></ul></nav><link rel=stylesheet href=https://blog.winsphinx.top/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=https://blog.winsphinx.top/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=https://blog.winsphinx.top/ class=logo>Cogito, ergo sum</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/>Home</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/tags/>Tags</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight wallpaper"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>Home Networking</h1><div class=post-meta><time datetime=2024-07-17 class=post-time>2024-07-17</time><div class=post-category><a href=https://blog.winsphinx.top/categories/%E6%8A%80%E6%9C%AF/>技术</a></div><span class=more-meta>约 1600 字</span>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=https://blog.winsphinx.top/ class=logo>Cogito, ergo sum</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/>Home</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/tags/>Tags</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight wallpaper"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>Home Networking</h1><div class=post-meta><time datetime=2024-07-17 class=post-time>2024-07-17</time><div class=post-category><a href=https://blog.winsphinx.top/categories/%E6%8A%80%E6%9C%AF/>技术</a></div><span class=more-meta>约 1804 字</span>
 <span class=more-meta>预计阅读 4 分钟</span>
 <span id=busuanzi_container_page_pv>| 阅读 <span id=busuanzi_value_page_pv></span></span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#armbian>armbian</a><ul><li><a href=#安装-docker>安装 docker</a></li><li><a href=#安装-frp-实现内网穿透>安装 frp 实现内网穿透</a></li><li><a href=#安装-ddclient>安装 ddclient</a></li><li><a href=#挂载-samba-服务>挂载 samba 服务</a></li><li><a href=#挂载硬盘>挂载硬盘</a></li><li><a href=#设置备份>设置备份</a></li></ul></li><li><a href=#vps>VPS</a><ul><li><a href=#创建-ssh-主机>创建 ssh 主机</a></li><li><a href=#设置-v2ray>设置 v2ray</a></li><li><a href=#挂载-sshfs>挂载 sshfs</a></li><li><a href=#设置备份-1>设置备份</a></li></ul></li></ul></li></ul></nav></div></div><div class=post-content><p>我有一个海外 VPS 主机用于实现“各种功能”，又购买了一个小主机 armbian 用于<a href=https://blog.winsphinx.top/post/building-home-media-center/>搭建家庭多媒体中心</a>。我还有一个硬盘盒，通过其自带 samba 服务接入 armbian。此外还加了一个移动硬盘挂载到 armbian 下。组网架构图如下。<br></p><p><img src=https://blog.winsphinx.top/ox-hugo/homenetworking.png alt><br>以下是各个设备的详细配置：<br></p><h2 id=armbian>armbian</h2><h3 id=安装-docker>安装 docker</h3><p>鉴于目前 docker 镜像无法下载的现状，修改 <code>/etc/docker/daemon.json</code> 文件，多加几个镜像总有能用的：<br></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=lnt> 1
 </span><span class=lnt> 2
@@ -124,7 +124,46 @@ rsync -avzh --remove-source-files <span class=nv>$TMP_BACKUP</span> <span class=
 
 <span class=c1># 在备份目录上删除旧备份</span>
 <span class=nb>cd</span> <span class=nv>$DEST_DIR</span> <span class=o>&amp;&amp;</span> <span class=o>(</span>ls -t <span class=p>|</span> tail -n +$<span class=o>[</span>EXPIRED_DAYS+1<span class=o>]</span> <span class=p>|</span> xargs --no-run-if-empty rm -rvf<span class=o>)</span></code></pre></td></tr></table></div></div><p>然后使用 <code>crontab -e</code> 增加定时计划：<br></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=m>4</span> <span class=m>4</span> * * * /root/scripts/backup.sh  <span class=c1># 每天4:04执行备份</span></code></pre></td></tr></table></div></div><h2 id=vps>VPS</h2><h3 id=创建-ssh-主机>创建 ssh 主机</h3><p>为了便于使用，在 ~~/.ssh~/config 中增加：<br></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-text data-lang=text><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=m>4</span> <span class=m>4</span> * * * /root/scripts/backup.sh  <span class=c1># 每天4:04执行备份</span></code></pre></td></tr></table></div></div><p>补充更新采用 rsync 增量备份的脚本：<br></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=cp>#!/bin/bash
+</span><span class=cp></span>
+<span class=nb>set</span> -euo pipefail
+
+<span class=c1># 设置变量</span>
+<span class=nv>SOURCE_DIRS</span><span class=o>=(</span><span class=s2>&#34;</span><span class=nv>$HOME</span><span class=s2>&#34;</span> <span class=s2>&#34;/etc&#34;</span><span class=o>)</span>
+<span class=nv>DEST_DIR</span><span class=o>=</span><span class=s2>&#34;/mnt/disk/backup/armbian/&#34;</span>
+<span class=nv>TODAY</span><span class=o>=</span><span class=k>$(</span>date +<span class=s1>&#39;%Y%m%d&#39;</span><span class=k>)</span>
+<span class=nv>YESTERDAY</span><span class=o>=</span><span class=k>$(</span>date -d <span class=s2>&#34;yesterday&#34;</span> +<span class=s1>&#39;%Y%m%d&#39;</span><span class=k>)</span>
+<span class=nv>EXPIRED_DAYS</span><span class=o>=</span><span class=m>7</span>
+
+<span class=nb>echo</span> <span class=s2>&#34;### Starting backup...&#34;</span>
+<span class=k>for</span> SOURCE_DIR in <span class=s2>&#34;</span><span class=si>${</span><span class=nv>SOURCE_DIRS</span><span class=p>[@]</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>;</span> <span class=k>do</span>
+    rsync -avzh --delete --link-dest<span class=o>=</span><span class=s2>&#34;</span><span class=nv>$DEST_DIR$YESTERDAY</span><span class=s2>&#34;</span> <span class=s2>&#34;</span><span class=nv>$SOURCE_DIR</span><span class=s2>&#34;</span> <span class=s2>&#34;</span><span class=nv>$DEST_DIR$TODAY</span><span class=s2>&#34;</span>
+<span class=k>done</span>
+
+<span class=nb>echo</span> <span class=s2>&#34;### Data transferred. Deleting expired files...&#34;</span>
+<span class=nb>cd</span> <span class=nv>$DEST_DIR</span> <span class=o>&amp;&amp;</span> <span class=o>(</span>ls -t <span class=p>|</span> tail -n +<span class=k>$((</span>EXPIRED_DAYS <span class=o>+</span> <span class=m>1</span><span class=k>))</span> <span class=p>|</span> xargs --no-run-if-empty rm -rvf<span class=o>)</span>
+
+<span class=nb>echo</span> <span class=s2>&#34;### Job done!&#34;</span></code></pre></td></tr></table></div></div><h2 id=vps>VPS</h2><h3 id=创建-ssh-主机>创建 ssh 主机</h3><p>为了便于使用，在 ~~/.ssh~/config 中增加：<br></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-text data-lang=text><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -430,10 +469,53 @@ ssh -p <span class=nv>$SSH_PORT</span> root@<span class=nv>$REMOTE_HOST</span> <
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>sshpass -p <span class=s1>&#39;PASSWORD&#39;</span> rsync -avhP --remove-source-files -e <span class=s2>&#34;ssh -p </span><span class=nv>$SSH_PORT</span><span class=s2>&#34;</span> <span class=nv>$TMP_BACKUP</span> root@<span class=nv>$REMOTE_HOST</span>:<span class=nv>$DEST_DIR</span>
 sshpass -p <span class=s1>&#39;PASSWORD&#39;</span> ssh -p <span class=nv>$SSH_PORT</span> root@<span class=nv>$REMOTE_HOST</span> <span class=s2>&#34;cd </span><span class=nv>$DEST_DIR</span><span class=s2> &amp;&amp; (ls -t | tail -n +8 | xargs --no-run-if-empty rm -rvf)&#34;</span></code></pre></td></tr></table></div></div><p>然后使用 <code>crontab -e</code> 增加定时计划：<br></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=m>4</span> <span class=m>4</span> * * * /root/scripts/backup.sh  <span class=c1># 每天4:04执行备份</span></code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=m>4</span> <span class=m>4</span> * * * /root/scripts/backup.sh  <span class=c1># 每天4:04执行备份</span></code></pre></td></tr></table></div></div><p>补充更新采用 rsync 增量备份的脚本：<br></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=cp>#!/bin/bash
+</span><span class=cp></span>
+<span class=nb>set</span> -euo pipefail
+
+<span class=c1># 设置变量</span>
+<span class=nv>SOURCE_DIRS</span><span class=o>=(</span><span class=s2>&#34;</span><span class=nv>$HOME</span><span class=s2>&#34;</span> <span class=s2>&#34;/etc&#34;</span><span class=o>)</span>
+<span class=nv>DEST_DIR</span><span class=o>=</span><span class=s2>&#34;/mnt/disk/backup/ubuntu/&#34;</span>
+<span class=nv>REMOTE_HOST</span><span class=o>=</span><span class=s2>&#34;armbianv6&#34;</span>
+<span class=nv>SSH_PORT</span><span class=o>=</span><span class=m>22</span>
+<span class=nv>TODAY</span><span class=o>=</span><span class=k>$(</span>date +<span class=s1>&#39;%Y%m%d&#39;</span><span class=k>)</span>
+<span class=nv>YESTERDAY</span><span class=o>=</span><span class=k>$(</span>date -d <span class=s2>&#34;yesterday&#34;</span> +<span class=s1>&#39;%Y%m%d&#39;</span><span class=k>)</span>
+<span class=nv>EXPIRED_DAYS</span><span class=o>=</span><span class=m>7</span>
+
+<span class=nb>echo</span> <span class=s2>&#34;### Starting backup...&#34;</span>
+<span class=k>for</span> SOURCE_DIR in <span class=s2>&#34;</span><span class=si>${</span><span class=nv>SOURCE_DIRS</span><span class=p>[@]</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>;</span> <span class=k>do</span>
+    rsync -avzh --delete --link-dest<span class=o>=</span><span class=s2>&#34;</span><span class=nv>$DEST_DIR$YESTERDAY</span><span class=s2>&#34;</span> -e <span class=s2>&#34;ssh -p </span><span class=nv>$SSH_PORT</span><span class=s2>&#34;</span> <span class=s2>&#34;</span><span class=nv>$SOURCE_DIR</span><span class=s2>&#34;</span> <span class=s2>&#34;root@</span><span class=nv>$REMOTE_HOST</span><span class=s2>:</span><span class=nv>$DEST_DIR$TODAY</span><span class=s2>&#34;</span>
+<span class=k>done</span>
+
+<span class=nb>echo</span> <span class=s2>&#34;### Data transferred. Deleting expired files...&#34;</span>
+ssh -p <span class=nv>$SSH_PORT</span> root@<span class=nv>$REMOTE_HOST</span> <span class=s2>&#34;cd </span><span class=nv>$DEST_DIR</span><span class=s2> &amp;&amp; (ls -t | tail -n +</span><span class=k>$((</span>EXPIRED_DAYS <span class=o>+</span> <span class=m>1</span><span class=k>))</span><span class=s2> | xargs --no-run-if-empty rm -rvf)&#34;</span>
+
+<span class=nb>echo</span> <span class=s2>&#34;### Job done!&#34;</span></code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
 <span class=item-content>winsphinx</span></p><p class=copyright-item><span class=item-title>上次更新</span>
 <span class=item-content>2024-07-17
-<a href=https://github.com/winsphinx/blog/commit/5c03fa8b4c0e854dbb17210fc05d8394997cc2d4 title="[原创] home">(5c03fa8)</a><br>[原创] home</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<a href=https://github.com/winsphinx/blog/commit/fbb78c365142beb10110b2985ab168e970751159 title="[原创] home">(fbb78c3)</a><br>[原创] home</span></p><p class=copyright-item><span class=item-title>许可协议</span>
 <span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank><img alt="CC BY-NC-SA 4.0" style=border-width:0 src=https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png></a></span></p></div><footer class=post-footer><div class=post-tags><a href=https://blog.winsphinx.top/tags/linux/>linux</a>
 <a href=https://blog.winsphinx.top/tags/network/>network</a></div><nav class=post-nav><a class=prev href=https://blog.winsphinx.top/post/xray/><i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18"><path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417l277.93508-310.326815c11.338233-12.190647 11.035334-32.285311-.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"/></svg></i><span class="prev-text nav-default">xray</span>
 <span class="prev-text nav-mobile">上一篇</span></a>
