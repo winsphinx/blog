@@ -514,7 +514,7 @@ example.mydomain.com&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt
 fdisk /dev/sda &lt;span class=&#34;c1&#34;&gt;# 分区，p 打印分区表，n 创建新分区，w 写入分区表并退出，我创建了/dev/sda1&lt;/span&gt;
 mkfs.btrfs /dev/sda1 &lt;span class=&#34;c1&#34;&gt;# 格式化成btrfs 文件系统&lt;/span&gt;
 mkdir /mnt/disk &lt;span class=&#34;c1&#34;&gt;# 创建挂载目录&lt;/span&gt;
-mount /dev/sda1 /mnt/disk &lt;span class=&#34;c1&#34;&gt;# 挂载&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+mount /dev/sda1 /mnt/disk &lt;span class=&#34;c1&#34;&gt;# 挂载硬盘&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;为了今后开机自动挂载，在 &lt;code&gt;/etc/fstab/&lt;/code&gt; 增加一行： &lt;br/&gt;&lt;/p&gt;
@@ -880,8 +880,8 @@ Port 22&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;sshfs#armbianv6:/root/Downloads/ /root/Downloads/ fuse defaults,user,allow_other,reconnect,delay_connect,ConnectTimeout=30,ServerAliveInterval=30 0 0
-sshfs#armbianv6:/mnt/samba/Videos/ /mnt/samba/Videos/ fuse defaults,user,allow_other,reconnect,delay_connect,ConnectTimeout=30,ServerAliveInterval=30 0 0
-sshfs#armbianv6:/mnt/samba/Music/ /mnt/samba/Music/ fuse defaults,user,allow_other,reconnect,delay_connect,ConnectTimeout=30,ServerAliveInterval=30 0 0&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+sshfs#armbianv6:/mnt/disk/Media/ /mnt/disk/Media/ fuse defaults,user,allow_other,reconnect,delay_connect,ConnectTimeout=30,ServerAliveInterval=30 0 0
+sshfs#armbianv6:/mnt/disk/Music/ /mnt/disk/Music/ fuse defaults,user,allow_other,reconnect,delay_connect,ConnectTimeout=30,ServerAliveInterval=30 0 0&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;由于前面在 armbian 上开启了 IPv6 的 DDNS，故此直接使用 armbianv6。 &lt;br/&gt;&lt;/p&gt;
