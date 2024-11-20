@@ -1,4 +1,207 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 06 Oct 2024 19:56:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>sftp</title><link>https://blog.winsphinx.top/post/sftp/</link><pubDate>Sun, 06 Oct 2024 19:56:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/sftp/</guid><description>&lt;p&gt;现要建一个 sftp 服务器，其要求为： &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 20 Nov 2024 15:15:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>掩耳盗铃</title><link>https://blog.winsphinx.top/post/fakefiles/</link><pubDate>Wed, 20 Nov 2024 15:15:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/fakefiles/</guid><description>&lt;p&gt;年底将至，又到了上级部门检查组出没的季节。由于要检查各种系统日志的备份记录，就得无中生有给变出来。按照要求是每天一个文件夹，里面是当天的日志。如果手工复制文件再修改日期，肯定累死。于是在 linux 和 windows 的电脑上分别用 bash 和 powershell 编了脚本来实现。 &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;linux-bash&#34;&gt;linux bash&lt;/h2&gt;
+&lt;p&gt;脚本如下： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 设置起始和结束日期&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;start_date&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;20240301&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;end_date&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;20241031&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 将日期转换为时间戳&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;start_ts&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date -d &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$start_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; +%s&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;end_ts&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date -d &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$end_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; +%s&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 开始循环，来生成目录和文件&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;current_ts&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$start_ts&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$current_ts&lt;/span&gt; -le &lt;span class=&#34;nv&#34;&gt;$end_ts&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 获取当前日期&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;current_date&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date -d &lt;span class=&#34;s2&#34;&gt;&amp;#34;@&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_ts&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; +%Y%m%d&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 创建目录&lt;/span&gt;
+mkdir -p &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 设置文件名和时间戳，对应在每天的00:10:18&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;timestamp&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;current_date&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;001018&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;file1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;timestamp&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;-operation-log-dateThreshold_info.xml&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;file2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;timestamp&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;-operation-log-dateThreshold.zip&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;file3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;timestamp&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;-system-log-dateThreshold_info.xml&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;file4&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;timestamp&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;-system-log-dateThreshold.zip&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 创建文件并填充随机内容，文件大小也用随机数生成范围&lt;/span&gt;
+head -c &lt;span class=&#34;k&#34;&gt;$((&lt;/span&gt;RANDOM &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;101&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;700&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;))&lt;/span&gt; /dev/urandom &amp;gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file1&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+head -c &lt;span class=&#34;k&#34;&gt;$((&lt;/span&gt;RANDOM &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;10001&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;40000&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;))&lt;/span&gt; /dev/urandom &amp;gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file2&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+head -c &lt;span class=&#34;k&#34;&gt;$((&lt;/span&gt;RANDOM &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;101&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;700&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;))&lt;/span&gt; /dev/urandom &amp;gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file3&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+head -c &lt;span class=&#34;k&#34;&gt;$((&lt;/span&gt;RANDOM &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1001&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;3000&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;))&lt;/span&gt; /dev/urandom &amp;gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file4&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 将文件生成时间戳修改为指定时间&lt;/span&gt;
+touch -d &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;current_date&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; 00:10:18&amp;#34;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file1&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+touch -d &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;current_date&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; 00:10:18&amp;#34;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file2&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+touch -d &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;current_date&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; 00:10:18&amp;#34;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file3&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+touch -d &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;current_date&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; 00:10:18&amp;#34;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file4&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 目录的时间戳也不要忘记设置&lt;/span&gt;
+touch -d &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;current_date&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; 00:10:18&amp;#34;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 循环移动到下一个日期继续&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;current_ts&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$((&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_ts&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;86400&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;))&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;windows-powershell&#34;&gt;Windows PowerShell&lt;/h2&gt;
+&lt;p&gt;脚本如下： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 设置起始和结束日期&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$start_date&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;20240101&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$end_date&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;20241031&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 将日期转换为时间戳&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$start_ts&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;datetime&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;::ParseExact&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$start_date&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;yyyyMMdd&amp;#34;&lt;/span&gt;, &lt;span class=&#34;nv&#34;&gt;$null&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.ToFileTimeUtc&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$end_ts&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;datetime&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;::ParseExact&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$end_date&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;yyyyMMdd&amp;#34;&lt;/span&gt;, &lt;span class=&#34;nv&#34;&gt;$null&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.ToFileTimeUtc&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 开始循环，来生成目录和文件&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$current_ts&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$start_ts&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_ts&lt;/span&gt; -le &lt;span class=&#34;nv&#34;&gt;$end_ts&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 获取当前日期&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;datetime&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;::FromFileTimeUtc&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_ts&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.ToString&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;yyyyMMdd&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 创建目录&lt;/span&gt;
+New-Item -ItemType Directory -Path &lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt; -Force
+&lt;span class=&#34;c1&#34;&gt;# 设置文件名和时间戳，对应在每天的00:10:18&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$timestamp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;current_date&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;001018&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$file1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;timestamp&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;-operation-log-dateThreshold_info.xml&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$file2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;timestamp&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;-operation-log-dateThreshold.zip&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$file3&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;timestamp&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;-system-log-dateThreshold_info.xml&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$file4&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;timestamp&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;-system-log-dateThreshold.zip&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 创建文件并填充随机内容，文件大小也用随机数生成范围&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$random&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; New-Object System.Random
+&lt;span class=&#34;nv&#34;&gt;$file1_size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$random&lt;/span&gt;.Next&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;700&lt;/span&gt;, &lt;span class=&#34;m&#34;&gt;800&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$file2_size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$random&lt;/span&gt;.Next&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;40000&lt;/span&gt;, &lt;span class=&#34;m&#34;&gt;50000&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$file3_size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$random&lt;/span&gt;.Next&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;700&lt;/span&gt;, &lt;span class=&#34;m&#34;&gt;800&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$file4_size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$random&lt;/span&gt;.Next&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3000&lt;/span&gt;, &lt;span class=&#34;m&#34;&gt;4000&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$file1_content&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;byte&lt;span class=&#34;o&#34;&gt;[]]&lt;/span&gt;::new&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file1_size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$file2_content&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;byte&lt;span class=&#34;o&#34;&gt;[]]&lt;/span&gt;::new&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file2_size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$file3_content&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;byte&lt;span class=&#34;o&#34;&gt;[]]&lt;/span&gt;::new&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file3_size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$file4_content&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;byte&lt;span class=&#34;o&#34;&gt;[]]&lt;/span&gt;::new&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file4_size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$random&lt;/span&gt;.NextBytes&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file1_content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$random&lt;/span&gt;.NextBytes&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file2_content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$random&lt;/span&gt;.NextBytes&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file3_content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$random&lt;/span&gt;.NextBytes&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$file4_content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;System.IO.File&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;::WriteAllBytes&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;\$file1&amp;#34;&lt;/span&gt;, &lt;span class=&#34;nv&#34;&gt;$file1_content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;System.IO.File&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;::WriteAllBytes&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;\$file2&amp;#34;&lt;/span&gt;, &lt;span class=&#34;nv&#34;&gt;$file2_content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;System.IO.File&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;::WriteAllBytes&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;\$file3&amp;#34;&lt;/span&gt;, &lt;span class=&#34;nv&#34;&gt;$file3_content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;System.IO.File&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;::WriteAllBytes&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;\$file4&amp;#34;&lt;/span&gt;, &lt;span class=&#34;nv&#34;&gt;$file4_content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 将文件生成时间戳修改为指定时间&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$timestamp_date&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;datetime&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;::ParseExact&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;current_date&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; 00:10:18&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;yyyyMMdd HH:mm:ss&amp;#34;&lt;/span&gt;, &lt;span class=&#34;nv&#34;&gt;$null&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Get-Item &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;\$file1&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.LastWriteTime &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$timestamp_date&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Get-Item &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;\$file2&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.LastWriteTime &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$timestamp_date&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Get-Item &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;\$file3&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.LastWriteTime &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$timestamp_date&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Get-Item &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;\$file4&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.LastWriteTime &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$timestamp_date&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 目录的时间戳也不要忘记设置&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Get-Item &lt;span class=&#34;nv&#34;&gt;$current_date&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.LastWriteTime &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$timestamp_date&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 循环移动到下一个日期继续&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$current_ts&lt;/span&gt; +&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;864000000000&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 增加一天的时间戳（单位为100纳秒）&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>sftp</title><link>https://blog.winsphinx.top/post/sftp/</link><pubDate>Sun, 06 Oct 2024 19:56:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/sftp/</guid><description>&lt;p&gt;现要建一个 sftp 服务器，其要求为： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;sftp 登录后自动跳转到 &lt;code&gt;/sftp/$USER/upload&lt;/code&gt; 目录，直接上传 &lt;br/&gt;&lt;/li&gt;
 &lt;li&gt;对应用户 sftp 登录到对应用户目录，不能访问其他用户目录 &lt;br/&gt;&lt;/li&gt;
@@ -3977,16 +4180,4 @@ end&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;li&gt;config.vm.syncedfolder：可以配置同步目录； &lt;br/&gt;&lt;/li&gt;
 &lt;li&gt;config.vm.provider：可以调整虚机类型； &lt;br/&gt;&lt;/li&gt;
 &lt;li&gt;config.vm.provision：可以构造自动任务。 &lt;br/&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>论学习</title><link>https://blog.winsphinx.top/post/on-study/</link><pubDate>Wed, 22 Mar 2023 20:22:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/on-study/</guid><description>&lt;p&gt;前不久，有幸（或者说不幸）参加了为期几天的一场内训师的培训，有了一些感悟与思考，遂成此文。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;随着现代人的生活节奏越来越快，时间越来越紧张，学习似乎成了一种奢侈。作为弥补，一种新的学习方法逐渐流行了起来，称为“碎片化学习”。可以看到在一些平台上，有相当数量的一类短视频，少则几十秒，多则几分钟，讲一个知识点，称为“微课”。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;在此我明确的认为，所谓的“碎片化学习”，是学不到知识的。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;首先，从“老师”的方面讲，在“微课”的制作上，为了吸引眼球，追求点击率、播放量，制作者基本上会优先考虑形式，然后才会考虑内容。就我自己培训来看，大概是 20~30%的时间用于准备内容材料，70~80%的时间用来制作视频效果，最明显的就是造成了时间和精力的成本浪费。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;由于现代人的浮躁，很难会静下心来学习，所以多注重包装也是无可非议，但是过于追求形式就是本末倒置了。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;其次，从“学生”的方面讲，如果某个知识点只是几分钟的学习，会造成一种自认为学会了的错觉，给其后续的学习造成阻碍。但实际上，了解和掌握之间相差好几个层级。也许有人会认为，先粗略了解，后续可以再次深入学习。虽然理论上想的很好，但实际上一个人习惯了获取短平快的知识后，很难能沉下心来深入学习的。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;毕竟，学习是一个知识积累和融会贯通的过程，如果是单纯的一个个的知识点，在现代的网络环境条件下随时都可以获取，现在的电脑的存储无论是数量还是速度也都远超人类。但只有人类才能通过思考，整理加工各种知识，从而达到应用甚至创造，这才是人类学习的意义。正如即使收集了几万片叶子，也不能组合成一颗参天大树。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;先秦诸子所著《学记》中有一段，提到了教育失败、学业荒废的六个方面原因： &lt;br/&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;发然后禁，则扦格而不胜；时过然后学，则勤苦而难成；杂施而不孙，则坏乱而不修；独学而无友，则孤陋而寡闻：燕朋逆其师，燕辟废其学。此六者，教之所由废也。 &lt;br/&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;其中第三点，“施教杂乱而不讲次序，则会思维混乱而不知所措”。这一点非常符合通过短视频学各种知识点的学习途径，即，只罗列林林总总的知识点，却无法有序、有效地组织起来。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;所以，我认为所谓的“碎片化学习”的学习方法和手段，并不是一种有效的教育方式。但在目前的快节奏社会，如何有效学习的确是一个值得深入思考研究的问题。 &lt;br/&gt;&lt;/p&gt;</description></item></channel></rss>
+&lt;/ul&gt;</description></item></channel></rss>
