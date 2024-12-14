@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 20 Nov 2024 15:15:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>掩耳盗铃</title><link>https://blog.winsphinx.top/post/fakefiles/</link><pubDate>Wed, 20 Nov 2024 15:15:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/fakefiles/</guid><description>&lt;p&gt;年底将至，又到了上级部门检查组出没的季节。由于要检查各种系统日志的备份记录，就得无中生有给变出来。按照要求是每天一个文件夹，里面是当天的日志。如果手工复制文件再修改日期，肯定累死。于是在 linux 和 windows 的电脑上分别用 bash 和 powershell 编了脚本来实现。 &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 20 Nov 2024 15:15:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>掩耳盗铃</title><link>https://blog.winsphinx.top/post/fakefiles/</link><pubDate>Wed, 20 Nov 2024 15:15:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/fakefiles/</guid><description>&lt;p&gt;秋去冬来，又到了上级部门检查组出没的季节。由于要检查各种系统日志的备份记录，就得无中生有给变出来。按照要求是每天一个文件夹，里面是当天的日志。如果手工复制文件再修改日期，肯定得累死。于是在 linux 和 windows 的电脑上分别用 bash 和 powershell 编了脚本来实现。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;linux-bash&#34;&gt;linux bash&lt;/h2&gt;
 &lt;p&gt;脚本如下： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -52,7 +52,7 @@
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
 &lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 设置起始和结束日期&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;start_date&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;20240301&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;start_date&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;20240101&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;nv&#34;&gt;end_date&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;20241031&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 将日期转换为时间戳&lt;/span&gt;
 &lt;span class=&#34;nv&#34;&gt;start_ts&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date -d &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$start_date&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; +%s&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
@@ -201,7 +201,8 @@ New-Item -ItemType Directory -Path &lt;span class=&#34;nv&#34;&gt;$current_date&
 &lt;span class=&#34;nv&#34;&gt;$current_ts&lt;/span&gt; +&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;864000000000&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 增加一天的时间戳（单位为100纳秒）&lt;/span&gt;
 &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>sftp</title><link>https://blog.winsphinx.top/post/sftp/</link><pubDate>Sun, 06 Oct 2024 19:56:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/sftp/</guid><description>&lt;p&gt;现要建一个 sftp 服务器，其要求为： &lt;br/&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;写完程序，突然发现，古往今来，掩耳盗铃之事从未停止过。 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>sftp</title><link>https://blog.winsphinx.top/post/sftp/</link><pubDate>Sun, 06 Oct 2024 19:56:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/sftp/</guid><description>&lt;p&gt;现要建一个 sftp 服务器，其要求为： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;sftp 登录后自动跳转到 &lt;code&gt;/sftp/$USER/upload&lt;/code&gt; 目录，直接上传 &lt;br/&gt;&lt;/li&gt;
 &lt;li&gt;对应用户 sftp 登录到对应用户目录，不能访问其他用户目录 &lt;br/&gt;&lt;/li&gt;
