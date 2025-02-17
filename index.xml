@@ -28,6 +28,7 @@ docker -H tcp://&amp;lt;your-server-ip&amp;gt;:2375 run --rm &lt;span class=&#34
 &lt;/div&gt;
 &lt;p&gt;这样子，还有什么不能改的呢？ &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;整改&#34;&gt;整改&lt;/h2&gt;
+&lt;p&gt;有两个方案： &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;套上-tls&#34;&gt;套上 TLS&lt;/h3&gt;
 &lt;h4 id=&#34;生成服务器-tls-证书&#34;&gt;生成服务器 TLS 证书&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -165,7 +166,13 @@ curl http://localhost:2375/containers/json
 curl -X DELETE http://localhost:2375/containers/&amp;lt;container-id&amp;gt;
 &lt;span class=&#34;c1&#34;&gt;# 提示被拒绝。&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;footnotes&#34;&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;以上两个方案，第二个方法更方便也更安全，也是我最后采用的方案。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;对于网上的技术资料方案，即使是正规网站，也要切实理解后再实施。 &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
 &lt;li id=&#34;fn:1&#34;&gt;&lt;a href=&#34;https://docs.docker.com/engine/daemon/remote-access/&#34;&gt;https://docs.docker.com/engine/daemon/remote-access/&lt;/a&gt; &lt;br/&gt;
