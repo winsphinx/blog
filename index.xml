@@ -411,7 +411,7 @@ ignoreregex =&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;span class=&#34;n&#34;&gt;pet&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;DesktopPet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;pet.gif&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 替换为你的GIF文件路径&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;pet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>掩耳盗铃</title><link>https://blog.winsphinx.top/post/fakefiles/</link><pubDate>Wed, 20 Nov 2024 15:15:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/fakefiles/</guid><description>&lt;p&gt;秋去冬来，又到了上级部门检查组出没的季节。由于要检查各种系统日志的备份记录，就得无中生有给变出来。按照要求是每天一个文件夹，里面是当天的日志。如果手工复制文件再修改日期，肯定得累死。于是在 linux 和 windows 的电脑上分别用 bash 和 powershell 编了脚本来实现。 &lt;br/&gt;&lt;/p&gt;
+&lt;/div&gt;</description></item><item><title>掩耳盗铃</title><link>https://blog.winsphinx.top/post/fakefiles/</link><pubDate>Wed, 20 Nov 2024 15:15:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/fakefiles/</guid><description>&lt;p&gt;秋去冬来，又到了上级检查组出没的季节。检查项目中有一项是各种系统日志的备份记录，为了应付检查就得无中生有给变出来。按照要求是每天一个文件夹，里面是当天的日志。如果手工复制文件再修改日期，肯定得累死。于是在 linux 和 windows 的电脑上分别用 bash 和 powershell 编了脚本来实现。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;linux-bash&#34;&gt;linux bash&lt;/h2&gt;
 &lt;p&gt;脚本如下： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
