@@ -1,4 +1,110 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 14 Mar 2025 12:16:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>pie</title><link>https://blog.winsphinx.top/post/pie/</link><pubDate>Fri, 14 Mar 2025 12:16:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/pie/</guid><description>&lt;p&gt;今天是 3 月 14 日，&amp;pi; 日。突然想尝试用 Python 来模拟布冯投针实验来计算 &amp;pi;。 &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 12 Apr 2025 08:57:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>音符笔记</title><link>https://blog.winsphinx.top/post/music/</link><pubDate>Sat, 12 Apr 2025 08:57:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/music/</guid><description>&lt;p&gt;今天整理了一下音乐笔记&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;。 &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;半音的音名与唱名&#34;&gt;半音的音名与唱名&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;全音&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;D&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;E&lt;/td&gt;
+&lt;td&gt;F&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;G&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;A&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;B&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;半音&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;C#/Db&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;D#/Eb&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;F#/Gb&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;G#/Ab&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;A#/Bb&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;唱名&lt;/td&gt;
+&lt;td&gt;Do&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Re&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Mi&lt;/td&gt;
+&lt;td&gt;Fa&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;So&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;La&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Ti&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;唱名&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Di/Ra&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Ri/Me&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Fi/Se&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Si/Le&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Li/Te&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;五线谱各种谱号&#34;&gt;五线谱各种谱号&lt;/h2&gt;
+&lt;p&gt;先来看五度音圈（Circle of Fifths）： &lt;br/&gt;
+&lt;img src=&#34;https://blog.winsphinx.top/ox-hugo/fifths.jpg&#34; alt=&#34;&#34; /&gt; &lt;br/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;升调&lt;/strong&gt; 看最右侧的升号，增加 1 个半音就是它的大调，再减少 3 个半音（小三度）就是它的关系小调。 &lt;br/&gt;
+举例： &lt;br/&gt;
+&lt;ul&gt;
+&lt;li&gt;2 个升号（F#, C#），最后一个是 C#，加半音是 D，所以是 D 大调。再减 3 个半音到 B，所以关系小调是 B 小调。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;4 个升号（F#, C#, G#, D#），最后一个是 D#，加半音是 E，所以是 E 大调。再减 3 个半音到 C#，所以关系小调是 C#小调。 &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;降调&lt;/strong&gt; 看右侧倒数第二个降号，就是它的大调，再减少 3 个半音（小三度）就是它的关系小调。（特例：1 个降号时是 F 大调。） &lt;br/&gt;
+举例： &lt;br/&gt;
+&lt;ul&gt;
+&lt;li&gt;2 个降号（Bb, Eb），倒数第二个是 Bb，所以是 Bb 大调。再减 3 个半音到 G，所以关系小调是 G 小调。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;4 个降号（Bb, Eb, Ab, Db），倒数第二个是 Ab，所以是 Ab 大调。再减 3 个半音到 F，所以关系小调是 F 小调。 &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;为了输入方便，C#表示升 C，Cb 表示降 C。其余类推。 &lt;br/&gt;
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item><item><title>pie</title><link>https://blog.winsphinx.top/post/pie/</link><pubDate>Fri, 14 Mar 2025 12:16:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/pie/</guid><description>&lt;p&gt;今天是 3 月 14 日，&amp;pi; 日。突然想尝试用 Python 来模拟布冯投针实验来计算 &amp;pi;。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;原理&#34;&gt;原理&lt;/h2&gt;
 &lt;h3 id=&#34;实验设定&#34;&gt;实验设定&lt;/h3&gt;
 &lt;ul&gt;
@@ -4143,155 +4249,4 @@ w&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;resize2fs /dev/sda1 5G&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;这个命令会将 /dev/sda1 分区的文件系统缩小到 5GB。 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>Build Docker with Github Actions</title><link>https://blog.winsphinx.top/post/build-docker-with-github-actions/</link><pubDate>Sat, 12 Aug 2023 15:54:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/build-docker-with-github-actions/</guid><description>&lt;p&gt;本文介绍两种利用 Github Actions 生成 Docker 镜像的方法。 &lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;在-dockerhub&#34;&gt;在 DockerHub&lt;/h2&gt;
-&lt;p&gt;这个镜像会生成在&lt;a href=&#34;https://hub.docker.com&#34;&gt;https://hub.docker.com&lt;/a&gt; ，这是大多数的选择。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注意点&lt;/strong&gt;​： &lt;br/&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;需要项目仓库的 Secrets - Actions 中，新建两个变量 &lt;code&gt;DOCKERHUB_USERNAME&lt;/code&gt;​、​&lt;code&gt;DOCKERHUB_PASSWORD&lt;/code&gt;​，其值分别是 DockerHub 的用户名和密码； &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;DockerHub 不会自动使用 Github 的 README，如果需要显示它，要额外增加一个 Action。 &lt;br/&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Build&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;and&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Push&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Docker&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Image&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;on&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;push&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;branches&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;master&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;jobs&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;build&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;runs-on&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;ubuntu-latest&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;steps&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Checkout&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;repository&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;uses&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;actions/checkout@v3&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Login&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;to&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Docker&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Hub&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;uses&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;docker/login-action@v2&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;with&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;username&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;${{&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;secrets.DOCKERHUB_USERNAME&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;}}&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;password&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;${{&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;secrets.DOCKERHUB_PASSWORD&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;}}&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Build&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;and&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Push&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Docker&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Image&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;uses&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;docker/build-push-action@v4&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;with&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;context&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;.&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;push&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;tags&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Username/Imagename&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;latest&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Docker&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Hub&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Description&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;uses&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;peter-evans/dockerhub-description@v3&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;with&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;username&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;${{&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;secrets.DOCKERHUB_USERNAME&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;}}&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;password&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;${{&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;secrets.DOCKERHUB_PASSWORD&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;}}&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;repository&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Username/Imagename&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;在-github&#34;&gt;在 Github&lt;/h2&gt;
-&lt;p&gt;这个镜像会生成在&lt;a href=&#34;https://ghcr.io&#34;&gt;https://ghcr.io&lt;/a&gt; ，可以通过 GitHub 项目的 &lt;em&gt;Packages&lt;/em&gt; 访问，与 GitHub 的关联会更紧密，比如能自动使用 GitHub 的 README，以及版本管理功能。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注意点&lt;/strong&gt;​： &lt;br/&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;需要在项目仓库的 Settings - Actions - General 中，打开 &lt;code&gt;Read adnd write permission&lt;/code&gt;​。 &lt;br/&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Build&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;and&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Push&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Docker&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Image&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;on&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;push&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;branches&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;master&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;jobs&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;build&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;runs-on&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;ubuntu-latest&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;steps&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Checkout&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;repository&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;uses&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;actions/checkout@v3&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Login&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;to&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Docker&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Hub&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;uses&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;docker/login-action@v2&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;with&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;registry&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;ghcr.io&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;username&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;${{&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;github.actor&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;}}&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;password&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;${{&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;secrets.GITHUB_TOKEN&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;}}&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Build&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;and&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Push&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Docker&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Image&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;uses&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;docker/build-push-action@v4&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;with&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;context&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;.&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;push&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;tags&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;ghcr.io/Username/Imagename&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;latest&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description></item></channel></rss>
+&lt;p&gt;这个命令会将 /dev/sda1 分区的文件系统缩小到 5GB。 &lt;br/&gt;&lt;/p&gt;</description></item></channel></rss>
