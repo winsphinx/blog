@@ -22,7 +22,7 @@
 uv venv&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;默认路径为 .venv。也可以 uv venv &amp;ndash;python 3.11，会自动安装并创建相应版本的虚拟环境。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;默认路径为 .venv。也可以​&lt;code&gt;uv venv --python 3.11&lt;/code&gt;​，会自动安装并创建相应版本的虚拟环境。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;添加-删除包&#34;&gt;添加/删除包&lt;/h2&gt;
 &lt;p&gt;根据项目需要，添加/删除库文件，执行： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -35,7 +35,7 @@ uv venv&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 uv remove package_name&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;会把用到的包信息记录在 pyproject.toml 文件中。如果这个包只在开发环境下使用，使用 &lt;code&gt;uv add --dev package_name&lt;/code&gt; 则发布时不会把它打包进去。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;会把用到的包信息记录在 pyproject.toml 文件中。如果这个包只在开发环境下使用，使用​&lt;code&gt;uv add --dev package_name&lt;/code&gt;​则发布时不会把它打包进去。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;处理依赖&#34;&gt;处理依赖&lt;/h2&gt;
 &lt;p&gt;要查看包之间的依赖关系，执行： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -68,7 +68,7 @@ uv remove package_name&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;uv sync --upgrade&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;会自动修改 pyproject.toml 文件的版本信息。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;会自动修改库文件的版本信息。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;运行&#34;&gt;运行&lt;/h2&gt;
 &lt;p&gt;在运行时，不再需要进入虚拟环境，只需要执行： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -98,7 +98,7 @@ uv tool upgrade pytest &lt;span class=&#34;c1&#34;&gt;# 升级单个包&lt;/span
 uv tool upgrade --all &lt;span class=&#34;c1&#34;&gt;# 全部升级&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;就可以在全局直接运行 pytest &lt;br/&gt;&lt;/p&gt;</description></item><item><title>音程与倍频的关系</title><link>https://blog.winsphinx.top/post/musical-intervals-and-harmonic-frequencies/</link><pubDate>Sun, 11 May 2025 10:38:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/musical-intervals-and-harmonic-frequencies/</guid><description>&lt;p&gt;有个说法：某个音的 3 倍频率等于它的纯五，5倍频率等于它的大三度。今天来分析理解一下。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;就可以在全局直接运行 pytest。 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>音程与倍频的关系</title><link>https://blog.winsphinx.top/post/musical-intervals-and-harmonic-frequencies/</link><pubDate>Sun, 11 May 2025 10:38:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/musical-intervals-and-harmonic-frequencies/</guid><description>&lt;p&gt;有个说法：某个音的 3 倍频率等于它的纯五，5倍频率等于它的大三度。今天来分析理解一下。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;分析计算&#34;&gt;分析计算&lt;/h2&gt;
 &lt;p&gt;频率：声音的音高由频率决定，频率越高，音高越高。频率的单位是赫兹（Hz）。 &lt;br/&gt;
 以 A4（440 Hz）为例： &lt;br/&gt;&lt;/p&gt;
