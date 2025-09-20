@@ -1,4 +1,229 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 23 Aug 2025 11:56:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>三分损益法</title><link>https://blog.winsphinx.top/post/method-of-triple-division-and-augmentation/</link><pubDate>Sat, 23 Aug 2025 11:56:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/method-of-triple-division-and-augmentation/</guid><description>&lt;p&gt;三分损益法是中国古代音乐理论中用于确定音律的一种数学方法，主要用于生成十二律（十二平均律的基础）和其他音阶音高，是中国传统音乐调律的核心技术之一。其基本原理是通过弦长或管长的三分损益（即增加或减少三分之一）来推算音阶中的音高关系。这种方法最早见于《管子》《吕氏春秋》等文献，战国时期已有系统论述，后在《乐书》《汉书·律历志》等文献中进一步完善。 &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 19 Sep 2025 21:14:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>Podman</title><link>https://blog.winsphinx.top/post/podman/</link><pubDate>Fri, 19 Sep 2025 21:14:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/podman/</guid><description>&lt;p&gt;Podman 是一个开源的容器引擎工具，由 Red Hat 开发，主要用于在 Linux 系统上构建、运行和管理容器镜像。它是 Docker 的一个轻量级替代品，支持 OCI（Open Container Initiative）标准容器格式。 &lt;br/&gt;
+它有以下特点： &lt;br/&gt;
+主要特点： &lt;br/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;无守护进程：不像 Docker 需要一个后台 daemon 进程，Podman 以用户级进程运行，减少了复杂性和安全风险。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;Rootless 支持：可以以非 root 用户身份运行容器，提高安全性，避免特权容器带来的潜在问题。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;兼容 Docker：Podman 的命令行接口（CLI）与 Docker 高度兼容，许多 docker 命令可以直接用 podman 替换（如 podman run、podman build）。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;Pod 支持：受 Kubernetes 启发，可以管理多个容器的“Pod”，便于编排。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;其他功能：支持容器镜像构建、推送、拉取；集成 systemd 用于容器服务管理；适用于开发、测试和生产环境。 &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如图可以看到： &lt;br/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd 通信，也可以与最新的 CRIO 通信。 &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+&lt;div class=&#34;box&#34;&gt;
+&lt;figure itemprop=&#34;associatedMedia&#34;
+itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
+&lt;div class=&#34;img&#34;&gt;
+&lt;img itemprop=&#34;thumbnail&#34; src=&#34;https://blog.winsphinx.top/ox-hugo/podman.png&#34; /&gt;
+&lt;/div&gt;
+&lt;a href=&#34;https://blog.winsphinx.top/ox-hugo/podman.png&#34; itemprop=&#34;contentUrl&#34;&gt;&lt;/a&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;podman 的大部分命令和 docker 一致&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;，甚至可以直接用 &lt;code&gt;alias docker=podman&lt;/code&gt; 创建别名。本文记录一些与 docker 不同的特性。 &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;创建-pod&#34;&gt;创建 pod&lt;/h2&gt;
+&lt;p&gt;pod 是 k8s 的核心调度单元，它由若干个相互关联的容器构成。同一个 pod 里的容器，IP 地址相同，共享挂载卷和命名空间。 &lt;br/&gt;
+以下以创建一个多媒体 pod 为例，它包含三个容器：qbittorrent 用于下载，radarr 用于管理电影，sonarr 用于管理剧集。 &lt;br/&gt;
+首先，创建一个 pod： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 创建&lt;/span&gt;
+podman pod create --name multimediacenter -p &lt;span class=&#34;m&#34;&gt;8988&lt;/span&gt;:8988 -p &lt;span class=&#34;m&#34;&gt;7878&lt;/span&gt;:7878 -p &lt;span class=&#34;m&#34;&gt;8989&lt;/span&gt;:8989
+&lt;span class=&#34;c1&#34;&gt;# 查看&lt;/span&gt;
+podman pod list
+&lt;span class=&#34;c1&#34;&gt;# 停止/启动&lt;/span&gt;
+podman stop/start multimediacenter&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;然后将三个容器加入到 pod（提前创建好相应目录）： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 加入qbittorrent&lt;/span&gt;
+podman run -d &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --pod multimediacenter &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --name qbittorrent &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --restart&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;unless-stopped &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -e &lt;span class=&#34;nv&#34;&gt;TZ&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Asia/Shanghai &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -e &lt;span class=&#34;nv&#34;&gt;UMASK_SET&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;022&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -e &lt;span class=&#34;nv&#34;&gt;WEBUI_PORT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;8988&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/config/qbittorrent:/config &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/Downloads:/downloads &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; docker.io/linuxserver/qbittorrent:latest
+&lt;span class=&#34;c1&#34;&gt;# 加入radarr&lt;/span&gt;
+podman run -d &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --pod multimediacenter &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --name radarr &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --restart&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;unless-stopped &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -e &lt;span class=&#34;nv&#34;&gt;TZ&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Asia/Shanghai &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/config/radarr:/config &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/Downloads:/downloads &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v /mnt/disk/Media/movies:/movies &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; docker.io/linuxserver/radarr:latest
+&lt;span class=&#34;c1&#34;&gt;# 加入sonarr&lt;/span&gt;
+podman run -d &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --pod multimediacenter &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --name sonarr &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --restart&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;unless-stopped &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -e &lt;span class=&#34;nv&#34;&gt;TZ&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Asia/Shanghai &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/config/sonarr:/config &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/Downloads:/downloads &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v /mnt/disk/Media/series:/tv &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; docker.io/linuxserver/sonarr:latest
+&lt;span class=&#34;c1&#34;&gt;# 查看&lt;/span&gt;
+podman ps --all --pod &lt;span class=&#34;c1&#34;&gt;# 简写成 -ap&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;保存-pod&#34;&gt;保存 pod&lt;/h2&gt;
+&lt;p&gt;podman 可以把配置好的 pod 导出成文件，供后续使用。一般导出成 k8s 兼容的格式，也可以直接用于 k8s。 &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 导出&lt;/span&gt;
+podman generate kube multimediacenter &amp;gt; multimediacenter.yaml
+&lt;span class=&#34;c1&#34;&gt;# 导入&lt;/span&gt;
+podman play kube multimediacenter.yaml&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;自启动-pod&#34;&gt;自启动 pod&lt;/h2&gt;
+&lt;p&gt;由于 podman 没有守护进程，如果要实现开机自启动，可以使用以下方式： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 创建文件&lt;/span&gt;
+podman generate systemd --new --files --name multimediacenter
+&lt;span class=&#34;c1&#34;&gt;# 创建服务&lt;/span&gt;
+mkdir -p ~/.config/systemd/user/
+cp *.service ~/.config/systemd/user/
+&lt;span class=&#34;c1&#34;&gt;# 启动服务&lt;/span&gt;
+systemctl --user daemon-reload
+systemctl --user &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; --now pod-multimediacenter.service
+loginctl enable-linger &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;whoami&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;自动更新镜像&#34;&gt;自动更新镜像&lt;/h2&gt;
+&lt;p&gt;当镜像有更新时，如果希望运行的容器保持更新，docker 通常需要外部工具来实现，而 podman 有内置的自动更新机制，只要在创建容器时按需加上自动更新标识 &lt;code&gt;--label io.containers.autoupdate=registry&lt;/code&gt; ： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 加上自动更新标识&lt;/span&gt;
+podman run -d &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --pod multimediacenter &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --name qbittorrent &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --restart&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;unless-stopped &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --label io.containers.autoupdate&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;registry &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -e &lt;span class=&#34;nv&#34;&gt;TZ&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Asia/Shanghai &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -e &lt;span class=&#34;nv&#34;&gt;UMASK_SET&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;022&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -e &lt;span class=&#34;nv&#34;&gt;WEBUI_PORT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;8988&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/config/qbittorrent:/config &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/Downloads:/downloads &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; docker.io/linuxserver/qbittorrent:latest
+&lt;span class=&#34;c1&#34;&gt;# 启用自动更新服务&lt;/span&gt;
+systemctl --user &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; podman-auto-update.timer
+systemctl --user start podman-auto-update.timer&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;一个问题&#34;&gt;&lt;span class=&#34;org-todo todo TODO&#34;&gt;TODO&lt;/span&gt; 一个问题&lt;/h2&gt;
+&lt;p&gt;在创建 systemd 服务文件是， &lt;code&gt;--new&lt;/code&gt; 参数的作用是：它根据当前的 pod 被 &lt;strong&gt;创建&lt;/strong&gt; 时的命令和参数来生成服务，如镜像名称、端口映射、挂载卷等，生成的服务文件会包含像等信息。而不加 &lt;code&gt;--new&lt;/code&gt; 参数，则仅根据 &lt;strong&gt;当前正在运行&lt;/strong&gt; 的 Pod 的状态，如容器名称、镜像、挂载卷等信息来生成一个 systemd 文件，它不会尝试记录或重现创建命令。 &lt;br/&gt;
+即，不加 &lt;code&gt;--new&lt;/code&gt; 参数生成的服务文件，仅仅对于运行的容器有效，如果该容器被删除后，则无法启动。然而，对于自动更新时来说，运行的容器会被删除，重新创建一个新版本的容器来替代，这时是必须需要 &lt;code&gt;--new&lt;/code&gt; 参数的。于是便产生了一个逻辑冲突： &lt;br/&gt;
+设想这样的场景：从网上找到一个 yaml 配置文件，它配置了自动更新标识。如果用 &lt;code&gt;podman play kube&lt;/code&gt; 导入运行，此时由于本地没有相关的创建命令，因此在 &lt;code&gt;podman generate kube&lt;/code&gt; 时使用 &lt;code&gt;--new&lt;/code&gt; 会报错: &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;Error: cannot use --new on pod &amp;#34;...&amp;#34;: no create command found&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;那么这样的 pod 如何实现开机自启动呢？ &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;在改写 docker 命令时要注意一点，podman 需要显式调用 dockerhub 镜像，毕竟不是一家子。如果是官方镜像，则 docker.io/library/，非官方镜像加 docker.io/。 &lt;br/&gt;
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item><item><title>三分损益法</title><link>https://blog.winsphinx.top/post/method-of-triple-division-and-augmentation/</link><pubDate>Sat, 23 Aug 2025 11:56:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/method-of-triple-division-and-augmentation/</guid><description>&lt;p&gt;三分损益法是中国古代音乐理论中用于确定音律的一种数学方法，主要用于生成十二律（十二平均律的基础）和其他音阶音高，是中国传统音乐调律的核心技术之一。其基本原理是通过弦长或管长的三分损益（即增加或减少三分之一）来推算音阶中的音高关系。这种方法最早见于《管子》《吕氏春秋》等文献，战国时期已有系统论述，后在《乐书》《汉书·律历志》等文献中进一步完善。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;基本原理&#34;&gt;基本原理&lt;/h2&gt;
 &lt;p&gt;三分损益法的核心是通过对乐器（如琴或律管）的长度进行数学运算，生成不同音高。具体方法是： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -4144,82 +4369,4 @@ WantedBy = multi-user.target&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/
 &lt;li id=&#34;fn:4&#34;&gt;docker 镜像分别在 &lt;a href=&#34;https://hub.docker.com/r/snowdreamtech/frps&#34;&gt;https://hub.docker.com/r/snowdreamtech/frps&lt;/a&gt; 和 &lt;a href=&#34;https://hub.docker.com/r/snowdreamtech/frpc&#34;&gt;https://hub.docker.com/r/snowdreamtech/frpc&lt;/a&gt; &lt;br/&gt;
 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:4&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>VPS</title><link>https://blog.winsphinx.top/post/vps/</link><pubDate>Sat, 20 Jan 2024 17:57:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/vps/</guid><description>&lt;p&gt;购买了一台 VPS，安装成 ubuntu 系统，配置了一些安全措施，记录如下： &lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;禁用-root-账号&#34;&gt;禁用 root 账号&lt;/h2&gt;
-&lt;p&gt;首先确保有另一个具有管理员权限的用户账号可以用来管理系统，然后用以下命令禁用 root 账号： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sudo usermod -p &lt;span class=&#34;s1&#34;&gt;&amp;#39;!&amp;#39;&lt;/span&gt; root &lt;span class=&#34;c1&#34;&gt;# 禁用root账号&lt;/span&gt;
-sudo usermod -p &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt; root &lt;span class=&#34;c1&#34;&gt;# 启用root账号&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;配置-public-key&#34;&gt;配置 public key&lt;/h2&gt;
-&lt;p&gt;不使用账号-密码方式登录，而是使用公钥-私钥模式。 &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;ssh-copy-id -i ~/.ssh/id_rsa.pub user@host&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;使用 -i 参数指定本地的​&lt;code&gt;~/.ssh/id_rsa.pub&lt;/code&gt;​的公钥增加到远程主机的​&lt;code&gt;~/.ssh/authorized_keys&lt;/code&gt;​文件中。 &lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;锁定-ssh&#34;&gt;锁定 ssh&lt;/h2&gt;
-&lt;p&gt;修改 ssh 的配置，以下参数分别为：启用密钥登录 ssh，禁用密码登录 ssh，禁用 root 账号登录 ssh。 &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;vim /etc/ssh/sshd_config
-PubkeyAuthentication yes
-PasswordAuthentication no
-PermitRootLogin no&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;安装-fail2ban&#34;&gt;安装 fail2ban&lt;/h2&gt;
-&lt;p&gt;Fail2ban 是一个用来监控登录尝试的 daemon ，可以有效侦测和防止可疑行为的发生。 &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;apt install fail2ban
-systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; fail2ban.service
-systemctl start fail2ban.service
-fail2ban-client status
-fail2ban-client &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; ssh banip x.x.x.x
-fail2ban-client &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; ssh unbanip x.x.x.x&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;通过 &lt;code&gt;/var/log/fail2ban.log&lt;/code&gt; 和 &lt;code&gt;auth.log&lt;/code&gt; 查看日志。 &lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;设置-ufw&#34;&gt;设置 ufw&lt;/h2&gt;
-&lt;p&gt;ubuntu 内置了 ufw。 &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;ufw &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt;
-ufw allow &lt;span class=&#34;m&#34;&gt;22&lt;/span&gt;
-ufw allow &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt;
-ufw allow &lt;span class=&#34;m&#34;&gt;443&lt;/span&gt;
-ufw status&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
 &lt;/div&gt;</description></item></channel></rss>
