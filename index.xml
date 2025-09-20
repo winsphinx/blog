@@ -8,12 +8,6 @@
 &lt;li&gt;Pod 支持：受 Kubernetes 启发，可以管理多个容器的“Pod”，便于编排。 &lt;br/&gt;&lt;/li&gt;
 &lt;li&gt;其他功能：支持容器镜像构建、推送、拉取；集成 systemd 用于容器服务管理；适用于开发、测试和生产环境。 &lt;br/&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;如图可以看到： &lt;br/&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd 通信，也可以与最新的 CRIO 通信。 &lt;br/&gt;&lt;/li&gt;
-&lt;/ul&gt;
 &lt;p&gt;
 &lt;div class=&#34;box&#34;&gt;
 &lt;figure itemprop=&#34;associatedMedia&#34;
@@ -25,9 +19,15 @@ itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
 &lt;/figure&gt;
 &lt;/div&gt;
 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;如图可以看到： &lt;br/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd 通信，也可以与最新的 CRIO 通信。 &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;podman 的大部分命令和 docker 一致&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;，甚至可以直接用 &lt;code&gt;alias docker=podman&lt;/code&gt; 创建别名。本文记录一些与 docker 不同的特性。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;创建-pod&#34;&gt;创建 pod&lt;/h2&gt;
-&lt;p&gt;pod 是 k8s 的核心调度单元，它由若干个相互关联的容器构成。同一个 pod 里的容器，IP 地址相同，共享挂载卷和命名空间。 &lt;br/&gt;
+&lt;p&gt;pod 是来自 k8s 的概念，它由若干个相互关联的容器构成。同一个 pod 里的容器，IP 地址相同，共享挂载卷和命名空间。 &lt;br/&gt;
 以下以创建一个多媒体 pod 为例，它包含三个容器：qbittorrent 用于下载，radarr 用于管理电影，sonarr 用于管理剧集。 &lt;br/&gt;
 首先，创建一个 pod： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -38,6 +38,8 @@ itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 创建&lt;/span&gt;
@@ -132,6 +134,7 @@ podman ps --all --pod &lt;span class=&#34;c1&#34;&gt;# 简写成 -ap&lt;/span&gt
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 导出&lt;/span&gt;
@@ -144,15 +147,17 @@ podman play kube multimediacenter.yaml&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/t
 &lt;p&gt;由于 podman 没有守护进程，如果要实现开机自启动，可以使用以下方式： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 创建文件&lt;/span&gt;
@@ -185,6 +190,7 @@ loginctl enable-linger &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;whoami&lt;sp
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 加上自动更新标识&lt;/span&gt;

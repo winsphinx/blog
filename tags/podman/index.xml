@@ -8,12 +8,6 @@
 &lt;li&gt;Pod 支持：受 Kubernetes 启发，可以管理多个容器的“Pod”，便于编排。 &lt;br/&gt;&lt;/li&gt;
 &lt;li&gt;其他功能：支持容器镜像构建、推送、拉取；集成 systemd 用于容器服务管理；适用于开发、测试和生产环境。 &lt;br/&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;如图可以看到： &lt;br/&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd 通信，也可以与最新的 CRIO 通信。 &lt;br/&gt;&lt;/li&gt;
-&lt;/ul&gt;
 &lt;p&gt;
 &lt;div class=&#34;box&#34;&gt;
 &lt;figure itemprop=&#34;associatedMedia&#34;
@@ -25,4 +19,10 @@ itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
 &lt;/figure&gt;
 &lt;/div&gt;
 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;如图可以看到： &lt;br/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd 通信，也可以与最新的 CRIO 通信。 &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;podman 的大部分命令和 docker 一致&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;，甚至可以直接用 &lt;code&gt;alias docker=podman&lt;/code&gt; 创建别名。本文记录一些与 docker 不同的特性。 &lt;br/&gt;&lt;/p&gt;</description></item></channel></rss>

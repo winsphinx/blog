@@ -1,7 +1,7 @@
 <!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>Podman - Cogito, ergo sum</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,user-scalable=yes"><meta name=MobileOptimized content="width"><meta name=HandheldFriendly content="true"><meta name=applicable-device content="pc,mobile"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=mobile-web-app-capable content="yes"><meta name=author content="winsphinx"><meta name=description content="Podman 是一个开源的容器引擎工具，由 Red Hat 开发，主要用于在 Linux 系统上构建、运行和管理容器镜像。它是 Docker 的一个轻量级替代品，支持 OCI（Open Container Initiative）标准容器格式。  它有以下特点：  主要特点： 
- 无守护进程：不像 Docker 需要一个后台 daemon 进程，Podman 以用户级进程运行，减少了复杂性和安全风险。  Rootless 支持：可以以非 root 用户身份运行容器，提高安全性，避免特权容器带来的潜在问题。  兼容 Docker：Podman 的命令行接口（CLI）与 Docker 高度兼容，许多 docker 命令可以直接用 podman 替换（如 podman run、podman build）。  Pod 支持：受 Kubernetes 启发，可以管理多个容器的“Pod”，便于编排。  其他功能：支持容器镜像构建、推送、拉取；集成 systemd 用于容器服务管理；适用于开发、测试和生产环境。   如图可以看到： 
- docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。  podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。  k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd 通信，也可以与最新的 CRIO 通信。        
-podman 的大部分命令和 docker 一致1，甚至可以直接用 alias docker=podman 创建别名。本文记录一些与 docker 不同的特性。"><meta name=generator content="Hugo 0.59.1"><link rel=canonical href=https://blog.winsphinx.top/post/podman/><link rel=icon href=https://blog.winsphinx.top/favicon.ico><link rel=stylesheet href=https://blog.winsphinx.top/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media=screen crossorigin=anonymous><link rel=stylesheet href=https://blog.winsphinx.top/css/custom.css><meta property="og:title" content="Podman"><meta property="og:description" content="Podman 是一个开源的容器引擎工具，由 Red Hat 开发，主要用于在 Linux 系统上构建、运行和管理容器镜像。它是 Docker 的一个轻量级替代品，支持 OCI（Open Container Initiative）标准容器格式。 
+ 无守护进程：不像 Docker 需要一个后台 daemon 进程，Podman 以用户级进程运行，减少了复杂性和安全风险。  Rootless 支持：可以以非 root 用户身份运行容器，提高安全性，避免特权容器带来的潜在问题。  兼容 Docker：Podman 的命令行接口（CLI）与 Docker 高度兼容，许多 docker 命令可以直接用 podman 替换（如 podman run、podman build）。  Pod 支持：受 Kubernetes 启发，可以管理多个容器的“Pod”，便于编排。  其他功能：支持容器镜像构建、推送、拉取；集成 systemd 用于容器服务管理；适用于开发、测试和生产环境。        
+如图可以看到： 
+ docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。  podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。  k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd 通信，也可以与最新的 CRIO 通信。   podman 的大部分命令和 docker 一致1，甚至可以直接用 alias docker=podman 创建别名。本文记录一些与 docker 不同的特性。"><meta name=generator content="Hugo 0.59.1"><link rel=canonical href=https://blog.winsphinx.top/post/podman/><link rel=icon href=https://blog.winsphinx.top/favicon.ico><link rel=stylesheet href=https://blog.winsphinx.top/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media=screen crossorigin=anonymous><link rel=stylesheet href=https://blog.winsphinx.top/css/custom.css><meta property="og:title" content="Podman"><meta property="og:description" content="Podman 是一个开源的容器引擎工具，由 Red Hat 开发，主要用于在 Linux 系统上构建、运行和管理容器镜像。它是 Docker 的一个轻量级替代品，支持 OCI（Open Container Initiative）标准容器格式。 
 它有以下特点： 
 主要特点： 
 
@@ -11,14 +11,6 @@ Rootless 支持：可以以非 root 用户身份运行容器，提高安全性�
 兼容 Docker：Podman 的命令行接口（CLI）与 Docker 高度兼容，许多 docker 命令可以直接用 podman 替换（如 podman run、podman build）。 
 Pod 支持：受 Kubernetes 启发，可以管理多个容器的“Pod”，便于编排。 
 其他功能：支持容器镜像构建、推送、拉取；集成 systemd 用于容器服务管理；适用于开发、测试和生产环境。 
-
-
-如图可以看到： 
-
-
-docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。 
-podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。 
-k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd 通信，也可以与最新的 CRIO 通信。 
 
 
 
@@ -32,6 +24,14 @@ k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd �
   
 
  
+
+如图可以看到： 
+
+
+docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。 
+podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。 
+k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd 通信，也可以与最新的 CRIO 通信。 
+
 
 podman 的大部分命令和 docker 一致1，甚至可以直接用 alias docker=podman 创建别名。本文记录一些与 docker 不同的特性。"><meta property="og:type" content="article"><meta property="og:url" content="https://blog.winsphinx.top/post/podman/"><meta property="article:published_time" content="2025-09-19T21:14:00+08:00"><meta property="article:modified_time" content="2025-09-20T15:05:13+08:00"><meta itemprop=name content="Podman"><meta itemprop=description content="Podman 是一个开源的容器引擎工具，由 Red Hat 开发，主要用于在 Linux 系统上构建、运行和管理容器镜像。它是 Docker 的一个轻量级替代品，支持 OCI（Open Container Initiative）标准容器格式。 
 它有以下特点： 
@@ -45,14 +45,6 @@ Pod 支持：受 Kubernetes 启发，可以管理多个容器的“Pod”，便�
 其他功能：支持容器镜像构建、推送、拉取；集成 systemd 用于容器服务管理；适用于开发、测试和生产环境。 
 
 
-如图可以看到： 
-
-
-docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。 
-podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。 
-k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd 通信，也可以与最新的 CRIO 通信。 
-
-
 
 
 
@@ -65,7 +57,15 @@ k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd �
 
  
 
-podman 的大部分命令和 docker 一致1，甚至可以直接用 alias docker=podman 创建别名。本文记录一些与 docker 不同的特性。"><meta itemprop=datePublished content="2025-09-19T21:14:00&#43;08:00"><meta itemprop=dateModified content="2025-09-20T15:05:13&#43;08:00"><meta itemprop=wordCount content="1555"><meta itemprop=keywords content="Docker,podman,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Podman"><meta name=twitter:description content="Podman 是一个开源的容器引擎工具，由 Red Hat 开发，主要用于在 Linux 系统上构建、运行和管理容器镜像。它是 Docker 的一个轻量级替代品，支持 OCI（Open Container Initiative）标准容器格式。 
+如图可以看到： 
+
+
+docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。 
+podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。 
+k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd 通信，也可以与最新的 CRIO 通信。 
+
+
+podman 的大部分命令和 docker 一致1，甚至可以直接用 alias docker=podman 创建别名。本文记录一些与 docker 不同的特性。"><meta itemprop=datePublished content="2025-09-19T21:14:00&#43;08:00"><meta itemprop=dateModified content="2025-09-20T15:05:13&#43;08:00"><meta itemprop=wordCount content="1559"><meta itemprop=keywords content="Docker,podman,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Podman"><meta name=twitter:description content="Podman 是一个开源的容器引擎工具，由 Red Hat 开发，主要用于在 Linux 系统上构建、运行和管理容器镜像。它是 Docker 的一个轻量级替代品，支持 OCI（Open Container Initiative）标准容器格式。 
 它有以下特点： 
 主要特点： 
 
@@ -77,14 +77,6 @@ Pod 支持：受 Kubernetes 启发，可以管理多个容器的“Pod”，便�
 其他功能：支持容器镜像构建、推送、拉取；集成 systemd 用于容器服务管理；适用于开发、测试和生产环境。 
 
 
-如图可以看到： 
-
-
-docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。 
-podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。 
-k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd 通信，也可以与最新的 CRIO 通信。 
-
-
 
 
 
@@ -97,22 +89,34 @@ k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd �
 
  
 
+如图可以看到： 
+
+
+docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。 
+podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。 
+k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd 通信，也可以与最新的 CRIO 通信。 
+
+
 podman 的大部分命令和 docker 一致1，甚至可以直接用 alias docker=podman 创建别名。本文记录一些与 docker 不同的特性。"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=https://blog.winsphinx.top/ class=logo>Cogito, ergo sum</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=https://blog.winsphinx.top/>Home</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://blog.winsphinx.top/post/>Archives</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://blog.winsphinx.top/categories/>Categories</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://blog.winsphinx.top/tags/>Tags</a></li></ul></nav><link rel=stylesheet href=https://blog.winsphinx.top/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=https://blog.winsphinx.top/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=https://blog.winsphinx.top/ class=logo>Cogito, ergo sum</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/>Home</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/tags/>Tags</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight wallpaper"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>Podman</h1><div class=post-meta><time datetime=2025-09-19 class=post-time>2025-09-19</time><div class=post-category><a href=https://blog.winsphinx.top/categories/%E6%8A%80%E6%9C%AF/>技术</a></div><span class=more-meta>1555 words</span>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=https://blog.winsphinx.top/ class=logo>Cogito, ergo sum</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/>Home</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/tags/>Tags</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight wallpaper"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>Podman</h1><div class=post-meta><time datetime=2025-09-19 class=post-time>2025-09-19</time><div class=post-category><a href=https://blog.winsphinx.top/categories/%E6%8A%80%E6%9C%AF/>技术</a></div><span class=more-meta>1559 words</span>
 <span class=more-meta>4 min read</span>
-<span id=busuanzi_container_page_pv>| 阅读 <span id=busuanzi_value_page_pv></span></span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Table of Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#创建-pod>创建 pod</a></li><li><a href=#保存-pod>保存 pod</a></li><li><a href=#自启动-pod>自启动 pod</a></li><li><a href=#自动更新镜像>自动更新镜像</a></li><li><a href=#一个问题><span class="org-todo todo TODO">TODO</span> 一个问题</a></li></ul></li></ul></nav></div></div><div class=post-content><p>Podman 是一个开源的容器引擎工具，由 Red Hat 开发，主要用于在 Linux 系统上构建、运行和管理容器镜像。它是 Docker 的一个轻量级替代品，支持 OCI（Open Container Initiative）标准容器格式。<br>它有以下特点：<br>主要特点：<br></p><ul><li>无守护进程：不像 Docker 需要一个后台 daemon 进程，Podman 以用户级进程运行，减少了复杂性和安全风险。<br></li><li>Rootless 支持：可以以非 root 用户身份运行容器，提高安全性，避免特权容器带来的潜在问题。<br></li><li>兼容 Docker：Podman 的命令行接口（CLI）与 Docker 高度兼容，许多 docker 命令可以直接用 podman 替换（如 podman run、podman build）。<br></li><li>Pod 支持：受 Kubernetes 启发，可以管理多个容器的“Pod”，便于编排。<br></li><li>其他功能：支持容器镜像构建、推送、拉取；集成 systemd 用于容器服务管理；适用于开发、测试和生产环境。<br></li></ul><p>如图可以看到：<br></p><ul><li>docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。<br></li><li>podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。<br></li><li>k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd 通信，也可以与最新的 CRIO 通信。<br></li></ul><p><link rel=stylesheet href=https://blog.winsphinx.top/css/hugo-easy-gallery.css><div class=box><figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject><div class=img><img itemprop=thumbnail src=https://blog.winsphinx.top/ox-hugo/podman.png></div><a href=https://blog.winsphinx.top/ox-hugo/podman.png itemprop=contentUrl></a></figure></div><br></p><p>podman 的大部分命令和 docker 一致<sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup>，甚至可以直接用 <code>alias docker=podman</code> 创建别名。本文记录一些与 docker 不同的特性。<br></p><h2 id=创建-pod>创建 pod</h2><p>pod 是 k8s 的核心调度单元，它由若干个相互关联的容器构成。同一个 pod 里的容器，IP 地址相同，共享挂载卷和命名空间。<br>以下以创建一个多媒体 pod 为例，它包含三个容器：qbittorrent 用于下载，radarr 用于管理电影，sonarr 用于管理剧集。<br>首先，创建一个 pod：<br></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=lnt>1
+<span id=busuanzi_container_page_pv>| 阅读 <span id=busuanzi_value_page_pv></span></span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Table of Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#创建-pod>创建 pod</a></li><li><a href=#保存-pod>保存 pod</a></li><li><a href=#自启动-pod>自启动 pod</a></li><li><a href=#自动更新镜像>自动更新镜像</a></li><li><a href=#一个问题><span class="org-todo todo TODO">TODO</span> 一个问题</a></li></ul></li></ul></nav></div></div><div class=post-content><p>Podman 是一个开源的容器引擎工具，由 Red Hat 开发，主要用于在 Linux 系统上构建、运行和管理容器镜像。它是 Docker 的一个轻量级替代品，支持 OCI（Open Container Initiative）标准容器格式。<br>它有以下特点：<br>主要特点：<br></p><ul><li>无守护进程：不像 Docker 需要一个后台 daemon 进程，Podman 以用户级进程运行，减少了复杂性和安全风险。<br></li><li>Rootless 支持：可以以非 root 用户身份运行容器，提高安全性，避免特权容器带来的潜在问题。<br></li><li>兼容 Docker：Podman 的命令行接口（CLI）与 Docker 高度兼容，许多 docker 命令可以直接用 podman 替换（如 podman run、podman build）。<br></li><li>Pod 支持：受 Kubernetes 启发，可以管理多个容器的“Pod”，便于编排。<br></li><li>其他功能：支持容器镜像构建、推送、拉取；集成 systemd 用于容器服务管理；适用于开发、测试和生产环境。<br></li></ul><p><link rel=stylesheet href=https://blog.winsphinx.top/css/hugo-easy-gallery.css><div class=box><figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject><div class=img><img itemprop=thumbnail src=https://blog.winsphinx.top/ox-hugo/podman.png></div><a href=https://blog.winsphinx.top/ox-hugo/podman.png itemprop=contentUrl></a></figure></div><br></p><p>如图可以看到：<br></p><ul><li>docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。<br></li><li>podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。<br></li><li>k8s 可以与支持 CRI 标准接口的进程通信，如既可以 containerd 通信，也可以与最新的 CRIO 通信。<br></li></ul><p>podman 的大部分命令和 docker 一致<sup class=footnote-ref id=fnref:1><a href=#fn:1>1</a></sup>，甚至可以直接用 <code>alias docker=podman</code> 创建别名。本文记录一些与 docker 不同的特性。<br></p><h2 id=创建-pod>创建 pod</h2><p>pod 是来自 k8s 的概念，它由若干个相互关联的容器构成。同一个 pod 里的容器，IP 地址相同，共享挂载卷和命名空间。<br>以下以创建一个多媒体 pod 为例，它包含三个容器：qbittorrent 用于下载，radarr 用于管理电影，sonarr 用于管理剧集。<br>首先，创建一个 pod：<br></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 创建</span>
 podman pod create --name multimediacenter -p <span class=m>8988</span>:8988 -p <span class=m>7878</span>:7878 -p <span class=m>8989</span>:8989
+
 <span class=c1># 查看</span>
 podman pod list
+
 <span class=c1># 停止/启动</span>
 podman stop/start multimediacenter</code></pre></td></tr></table></div></div><p>然后将三个容器加入到 pod（提前创建好相应目录）：<br></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=lnt> 1
 </span><span class=lnt> 2
@@ -189,23 +193,29 @@ podman ps --all --pod  <span class=c1># 简写成 -ap</span></code></pre></td></
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
+</span><span class=lnt>5
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 导出</span>
 podman generate kube multimediacenter &gt; multimediacenter.yaml
+
 <span class=c1># 导入</span>
-podman play kube multimediacenter.yaml</code></pre></td></tr></table></div></div><h2 id=自启动-pod>自启动 pod</h2><p>由于 podman 没有守护进程，如果要实现开机自启动，可以使用以下方式：<br></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span><span class=lnt>8
-</span><span class=lnt>9
+podman play kube multimediacenter.yaml</code></pre></td></tr></table></div></div><h2 id=自启动-pod>自启动 pod</h2><p>由于 podman 没有守护进程，如果要实现开机自启动，可以使用以下方式：<br></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 创建文件</span>
 podman generate systemd --new --files --name multimediacenter
+
 <span class=c1># 创建服务</span>
 mkdir -p ~/.config/systemd/user/
 cp *.service ~/.config/systemd/user/
+
 <span class=c1># 启动服务</span>
 systemctl --user daemon-reload
 systemctl --user <span class=nb>enable</span> --now pod-multimediacenter.service
@@ -224,6 +234,7 @@ loginctl enable-linger <span class=k>$(</span>whoami<span class=k>)</span></code
 </span><span class=lnt>13
 </span><span class=lnt>14
 </span><span class=lnt>15
+</span><span class=lnt>16
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 加上自动更新标识</span>
 podman run -d <span class=se>\
 </span><span class=se></span>       --pod multimediacenter <span class=se>\
@@ -236,13 +247,14 @@ podman run -d <span class=se>\
 </span><span class=se></span>       -v <span class=nv>$HOME</span>/config/qbittorrent:/config <span class=se>\
 </span><span class=se></span>       -v <span class=nv>$HOME</span>/Downloads:/downloads <span class=se>\
 </span><span class=se></span>       docker.io/linuxserver/qbittorrent:latest
+
 <span class=c1># 启用自动更新服务</span>
 systemctl --user <span class=nb>enable</span> podman-auto-update.timer
 systemctl --user start podman-auto-update.timer</code></pre></td></tr></table></div></div><h2 id=一个问题><span class="org-todo todo TODO">TODO</span> 一个问题</h2><p>在创建 systemd 服务文件是， <code>--new</code> 参数的作用是：它根据当前的 pod 被 <strong>创建</strong> 时的命令和参数来生成服务，如镜像名称、端口映射、挂载卷等，生成的服务文件会包含像等信息。而不加 <code>--new</code> 参数，则仅根据 <strong>当前正在运行</strong> 的 Pod 的状态，如容器名称、镜像、挂载卷等信息来生成一个 systemd 文件，它不会尝试记录或重现创建命令。<br>即，不加 <code>--new</code> 参数生成的服务文件，仅仅对于运行的容器有效，如果该容器被删除后，则无法启动。然而，对于自动更新时来说，运行的容器会被删除，重新创建一个新版本的容器来替代，这时是必须需要 <code>--new</code> 参数的。于是便产生了一个逻辑冲突：<br>设想这样的场景：从网上找到一个 yaml 配置文件，它配置了自动更新标识。如果用 <code>podman play kube</code> 导入运行，此时由于本地没有相关的创建命令，因此在 <code>podman generate kube</code> 时使用 <code>--new</code> 会报错:<br></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-text data-lang=text><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-text data-lang=text>Error: cannot use --new on pod &#34;...&#34;: no create command found</code></pre></td></tr></table></div></div><p>那么这样的 pod 如何实现开机自启动呢？<br></p><div class=footnotes><hr><ol><li id=fn:1>在改写 docker 命令时要注意一点，podman 需要显式调用 dockerhub 镜像，毕竟不是一家子。如果是官方镜像，则 docker.io/library/，非官方镜像加 docker.io/。<br><a class=footnote-return href=#fnref:1><sup>[return]</sup></a></li></ol></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
 <span class=item-content>winsphinx</span></p><p class=copyright-item><span class=item-title>LastMod</span>
 <span class=item-content>2025-09-20
-<a href=https://github.com/winsphinx/blog/commit/767b7b1309beab18115991c975d11f4ff33cf3c4 title="[原创] podman">(767b7b13)</a><br>[原创] podman</span></p><p class=copyright-item><span class=item-title>License</span>
+<a href=https://github.com/winsphinx/blog/commit/d825137203ecb3ab97830150069f098cccf32ce2 title="[原创] podman">(d8251372)</a><br>[原创] podman</span></p><p class=copyright-item><span class=item-title>License</span>
 <span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank><img alt="CC BY-NC-SA 4.0" style=border-width:0 src=https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png></a></span></p></div><footer class=post-footer><div class=post-tags><a href=https://blog.winsphinx.top/tags/docker/>Docker</a>
 <a href=https://blog.winsphinx.top/tags/podman/>podman</a></div><nav class=post-nav><a class=next href=https://blog.winsphinx.top/post/method-of-triple-division-and-augmentation/><span class="next-text nav-default">三分损益法</span>
 <span class="prev-text nav-mobile">Next</span>
