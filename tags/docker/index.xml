@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on Cogito, ergo sum</title><link>https://blog.winsphinx.top/tags/docker/</link><description>Recent content in Docker on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 19 Sep 2025 21:14:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>Podman</title><link>https://blog.winsphinx.top/post/podman/</link><pubDate>Fri, 19 Sep 2025 21:14:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/podman/</guid><description>&lt;p&gt;Podman 是一个开源的容器引擎工具，由 Red Hat 开发，主要用于在 Linux 系统上构建、运行和管理容器镜像。它是 Docker 的一个轻量级替代品，支持 OCI（Open Container Initiative）标准容器格式。 &lt;br/&gt;
-它有以下特点： &lt;br/&gt;
-主要特点： &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on Cogito, ergo sum</title><link>https://blog.winsphinx.top/tags/docker/</link><description>Recent content in Docker on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 19 Sep 2025 21:14:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>Podman</title><link>https://blog.winsphinx.top/post/podman/</link><pubDate>Fri, 19 Sep 2025 21:14:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/podman/</guid><description>&lt;p&gt;Podman 是一个开源的容器引擎工具，由 Red Hat 开发，主要用于在 Linux 系统上构建、运行和管理容器镜像。它是 Docker 的一个轻量级替代品，支持 OCI（Open Container Initiative）标准容器格式。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;它有以下特点： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;无守护进程：不像 Docker 需要一个后台 daemon 进程，Podman 以用户级进程运行，减少了复杂性和安全风险。 &lt;br/&gt;&lt;/li&gt;
 &lt;li&gt;Rootless 支持：可以以非 root 用户身份运行容器，提高安全性，避免特权容器带来的潜在问题。 &lt;br/&gt;&lt;/li&gt;
@@ -19,7 +18,7 @@ itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
 &lt;/figure&gt;
 &lt;/div&gt;
 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;如图可以看到： &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;可以看到： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。 &lt;br/&gt;&lt;/li&gt;
 &lt;li&gt;podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。 &lt;br/&gt;&lt;/li&gt;

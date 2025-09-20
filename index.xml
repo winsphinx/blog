@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 19 Sep 2025 21:14:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>Podman</title><link>https://blog.winsphinx.top/post/podman/</link><pubDate>Fri, 19 Sep 2025 21:14:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/podman/</guid><description>&lt;p&gt;Podman 是一个开源的容器引擎工具，由 Red Hat 开发，主要用于在 Linux 系统上构建、运行和管理容器镜像。它是 Docker 的一个轻量级替代品，支持 OCI（Open Container Initiative）标准容器格式。 &lt;br/&gt;
-它有以下特点： &lt;br/&gt;
-主要特点： &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 19 Sep 2025 21:14:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>Podman</title><link>https://blog.winsphinx.top/post/podman/</link><pubDate>Fri, 19 Sep 2025 21:14:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/podman/</guid><description>&lt;p&gt;Podman 是一个开源的容器引擎工具，由 Red Hat 开发，主要用于在 Linux 系统上构建、运行和管理容器镜像。它是 Docker 的一个轻量级替代品，支持 OCI（Open Container Initiative）标准容器格式。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;它有以下特点： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;无守护进程：不像 Docker 需要一个后台 daemon 进程，Podman 以用户级进程运行，减少了复杂性和安全风险。 &lt;br/&gt;&lt;/li&gt;
 &lt;li&gt;Rootless 支持：可以以非 root 用户身份运行容器，提高安全性，避免特权容器带来的潜在问题。 &lt;br/&gt;&lt;/li&gt;
@@ -19,7 +18,7 @@ itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
 &lt;/figure&gt;
 &lt;/div&gt;
 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;如图可以看到： &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;可以看到： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;docker 需要开启 dockerd 的守护进程，与高级容器进行时 containerd 通信，再调用低级容器进行时 runc。 &lt;br/&gt;&lt;/li&gt;
 &lt;li&gt;podman 没有守护进程，直接调用 runc，从而与内核交互，管理容器。 &lt;br/&gt;&lt;/li&gt;
@@ -27,9 +26,9 @@ itemscope itemtype=&#34;http://schema.org/ImageObject&#34; &gt;
 &lt;/ul&gt;
 &lt;p&gt;podman 的大部分命令和 docker 一致&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;，甚至可以直接用 &lt;code&gt;alias docker=podman&lt;/code&gt; 创建别名。本文记录一些与 docker 不同的特性。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;创建-pod&#34;&gt;创建 pod&lt;/h2&gt;
-&lt;p&gt;pod 是来自 k8s 的概念，它由若干个相互关联的容器构成。同一个 pod 里的容器，IP 地址相同，共享挂载卷和命名空间。 &lt;br/&gt;
-以下以创建一个多媒体 pod 为例，它包含三个容器：qbittorrent 用于下载，radarr 用于管理电影，sonarr 用于管理剧集。 &lt;br/&gt;
-首先，创建一个 pod： &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;pod 是来自 k8s 的概念，它由若干个相互关联的容器构成。同一个 pod 里的容器，IP 地址相同，共享挂载卷和命名空间。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;以下以创建一个多媒体 pod 为例，它包含三个容器：qbittorrent 用于下载，radarr 用于管理电影，sonarr 用于管理剧集。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;首先，创建一个 pod： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -50,7 +49,7 @@ podman pod list
 podman stop/start multimediacenter&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;然后将三个容器加入到 pod（提前创建好相应目录）： &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;然后，将三个容器加入到 pod（提前创建好相应目录）： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -191,6 +190,14 @@ loginctl enable-linger &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;whoami&lt;sp
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 加上自动更新标识&lt;/span&gt;
@@ -205,15 +212,22 @@ podman run -d &lt;span class=&#34;se&#34;&gt;\
 &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/config/qbittorrent:/config &lt;span class=&#34;se&#34;&gt;\
 &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/Downloads:/downloads &lt;span class=&#34;se&#34;&gt;\
 &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; docker.io/linuxserver/qbittorrent:latest
+&lt;span class=&#34;c1&#34;&gt;# 按照上一步生成服务&lt;/span&gt;
+podman generate systemd --new --files --name multimediacenter
+cp *.service ~/.config/systemd/user/
+systemctl --user daemon-reload
+systemctl --user &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; --now pod-multimediacenter.service
 &lt;span class=&#34;c1&#34;&gt;# 启用自动更新服务&lt;/span&gt;
 systemctl --user &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; podman-auto-update.timer
-systemctl --user start podman-auto-update.timer&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+systemctl --user start podman-auto-update.timer
+&lt;span class=&#34;c1&#34;&gt;# 验证&lt;/span&gt;
+podman auto-update --dry-run&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id=&#34;一个问题&#34;&gt;&lt;span class=&#34;org-todo todo TODO&#34;&gt;TODO&lt;/span&gt; 一个问题&lt;/h2&gt;
-&lt;p&gt;在创建 systemd 服务文件是， &lt;code&gt;--new&lt;/code&gt; 参数的作用是：它根据当前的 pod 被 &lt;strong&gt;创建&lt;/strong&gt; 时的命令和参数来生成服务，如镜像名称、端口映射、挂载卷等，生成的服务文件会包含像等信息。而不加 &lt;code&gt;--new&lt;/code&gt; 参数，则仅根据 &lt;strong&gt;当前正在运行&lt;/strong&gt; 的 Pod 的状态，如容器名称、镜像、挂载卷等信息来生成一个 systemd 文件，它不会尝试记录或重现创建命令。 &lt;br/&gt;
-即，不加 &lt;code&gt;--new&lt;/code&gt; 参数生成的服务文件，仅仅对于运行的容器有效，如果该容器被删除后，则无法启动。然而，对于自动更新时来说，运行的容器会被删除，重新创建一个新版本的容器来替代，这时是必须需要 &lt;code&gt;--new&lt;/code&gt; 参数的。于是便产生了一个逻辑冲突： &lt;br/&gt;
-设想这样的场景：从网上找到一个 yaml 配置文件，它配置了自动更新标识。如果用 &lt;code&gt;podman play kube&lt;/code&gt; 导入运行，此时由于本地没有相关的创建命令，因此在 &lt;code&gt;podman generate kube&lt;/code&gt; 时使用 &lt;code&gt;--new&lt;/code&gt; 会报错: &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;在创建 systemd 服务文件是， &lt;code&gt;--new&lt;/code&gt; 参数的作用是：它根据当前的 pod &lt;strong&gt;被创建时&lt;/strong&gt; 的命令和参数来生成服务，如镜像名称、端口映射、挂载卷等。而不加 &lt;code&gt;--new&lt;/code&gt; 参数，则仅根据 &lt;strong&gt;当前正在运行&lt;/strong&gt; 的 Pod 的状态，如容器名称、镜像、挂载卷等信息来生成一个 systemd 文件，它不会尝试记录或重现创建命令。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;即，不加 &lt;code&gt;--new&lt;/code&gt; 参数生成的服务文件，对应运行的容器 ID，仅对于运行的容器有效，如果该容器被删除后，则无法启动。然而，对于自动更新时来说，当前运行的容器会被删除，重新创建一个新版本的容器来替代，这时是必须需要 &lt;code&gt;--new&lt;/code&gt; 参数的。于是便产生了一个逻辑冲突： &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;设想这样的场景：从网上找到一个 yaml 配置文件，它配置了自动更新标识。如果用 &lt;code&gt;podman play kube&lt;/code&gt; 导入运行，此时由于本地没有相关的创建命令，因此在 &lt;code&gt;podman generate kube&lt;/code&gt; 时使用 &lt;code&gt;--new&lt;/code&gt; 会报错: &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
