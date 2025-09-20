@@ -198,6 +198,7 @@ loginctl enable-linger &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;whoami&lt;sp
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 加上自动更新标识&lt;/span&gt;
@@ -212,7 +213,7 @@ podman run -d &lt;span class=&#34;se&#34;&gt;\
 &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/config/qbittorrent:/config &lt;span class=&#34;se&#34;&gt;\
 &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; -v &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/Downloads:/downloads &lt;span class=&#34;se&#34;&gt;\
 &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; docker.io/linuxserver/qbittorrent:latest
-&lt;span class=&#34;c1&#34;&gt;# 按照上一步生成服务&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 参照上一步生成服务&lt;/span&gt;
 podman generate systemd --new --files --name multimediacenter
 cp *.service ~/.config/systemd/user/
 systemctl --user daemon-reload
