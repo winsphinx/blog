@@ -1,4 +1,263 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 19 Sep 2025 21:14:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>Podman</title><link>https://blog.winsphinx.top/post/podman/</link><pubDate>Fri, 19 Sep 2025 21:14:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/podman/</guid><description>&lt;p&gt;Podman 是一个开源的容器引擎工具，由 Red Hat 开发，主要用于在 Linux 系统上构建、运行和管理容器镜像。它是 Docker 的一个轻量级替代品，支持 OCI（Open Container Initiative）标准容器格式。 &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 01 Oct 2025 13:09:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>Quadlet</title><link>https://blog.winsphinx.top/post/quadlet/</link><pubDate>Wed, 01 Oct 2025 13:09:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/quadlet/</guid><description>&lt;p&gt;在上一篇遗留了&lt;a href=&#34;https://blog.winsphinx.top/post/podman/#一个问题&#34;&gt;一个问题&lt;/a&gt;，查了各种资料，可以用 Quadlet 来处理。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Quadlet 是 Podman 4.4 版本引入的扩展，它用简单的文本文件来定义和启动容器、Pod（容器组）或其他资源。它支持四种主要文件类型：.container、.pod、.volume 和 .network。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;以下通过 quanlet 实现一个 wordpress 的应用，它包括一个 Pod，两个容器：mariadb 实现数据库、wordpress 实现前端，以及两个命名卷分别存储对应的容器。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Quadlet 文件，全局配置存储在 &lt;code&gt;/etc/containers/systemd/&lt;/code&gt; 目录，用户级配置在 &lt;code&gt;~/.config/containers/systemd&lt;/code&gt; 目录。 &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;首先定义相应的资源&#34;&gt;首先定义相应的资源&lt;/h2&gt;
+&lt;h3 id=&#34;wordpress-dot-pod&#34;&gt;wordpress.pod&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Unit]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;WordPress Pod&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;[Pod]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;PodName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;PublishPort&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;8088:80&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;[Install]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;default.target&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;该文件定义了 pod，其中： &lt;br/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;PublishPort=&lt;/code&gt; 字段暴露了相应端口，端口映射必须在 pod 级实现，而不是容器级，否则外部无法访问。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;WantedBy=&lt;/code&gt; 字段用于实现开机自启动 &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;wordpress-db-dot-volume&#34;&gt;wordpress-db.volume&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Unit]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;WordPress DB Volume&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;[Volume]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;VolumeName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-db&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;[Install]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;default.target&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;该文件定义了一个命名卷，用于存储数据库。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;wordpress-ui-dot-volume&#34;&gt;wordpress-ui.volume&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Unit]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;WordPress UI Volume&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;[Volume]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;VolumeName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-ui&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;[Install]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;default.target&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;该文件定义了另一个命名卷，用于存储前端。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;wordpress-db-dot-container&#34;&gt;wordpress-db.container&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Unit]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;WordPress DB Container&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;BindsTo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-pod.service&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Requires&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-db-volume.service&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;After&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-db-volume.service&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;[Container]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Image&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;docker.io/library/mariadb:latest&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;ContainerName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-db&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Pod&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress.pod&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;MARIADB_DATABASE=wordpress&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;MARIADB_USER=wordpress&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;MARIADB_PASSWORD=wordpress&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;MARIADB_RANDOM_ROOT_PASSWORD=yes&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Volume&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-db:/var/lib/mysql&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;AutoUpdate&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;registry&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;[Install]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;default.target&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;该文件定义了 mariadb 数据库容器。其中： &lt;br/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;BindsTo=&lt;/code&gt; 绑定到对应的 pod &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Required=&lt;/code&gt; 和 &lt;code&gt;After=&lt;/code&gt; 保证了容器的依赖关系和启动顺序 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;AutoUpdate=&lt;/code&gt; 启用了自动更新 &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;wordpress-ui-dot-container&#34;&gt;wordpress-ui.container&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Unit]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;WordPress UI Container&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;BindsTo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-pod.service&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Requires&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-ui-volume.service&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;After&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-ui-volume.service&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Requires&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-db.service&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;After&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-db.service&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;[Container]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Image&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;docker.io/library/wordpress:latest&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;ContainerName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-ui&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Pod&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress.pod&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;WORDPRESS_DB_HOST=wordpress-db&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;WORDPRESS_DB_USER=wordpress&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;WORDPRESS_DB_PASSWORD=wordpress&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;WORDPRESS_DB_NAME=wordpress&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;Volume&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-ui:/var/www/html&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;AutoUpdate&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;registry&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;[Install]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;default.target&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;该文件定义了 wordpress 前端容器。它依赖于上述资源。 &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;然后生成相应的服务&#34;&gt;然后生成相应的服务&lt;/h2&gt;
+&lt;p&gt;先重新加载 systemd 来生成相关服务： &lt;code&gt;systemctl --user daemon-reexec &amp;amp;&amp;amp; systemctl --user daemon-reload&lt;/code&gt; &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;再用 &lt;code&gt;systemctl --user list-unit-files | grep wordpress&lt;/code&gt; 列出对应的服务，它们位于 &lt;code&gt;/run/user/($UID)/systemd/generator/&lt;/code&gt; 目录。正常的话，会显示如下： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;wordpress-db-volume.service generated -
+wordpress-db.service generated -
+wordpress-pod.service generated -
+wordpress-ui-volume.service generated -
+wordpress-ui.service generated -&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;不正常的话，可以使用生成器 &lt;code&gt;/usr/lib/systemd/user-generators/podman-user-generator --user --dryrun&lt;/code&gt;&amp;nbsp;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;尝试生成并查看错误。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;然后使用 &lt;code&gt;systemctl --user start wordpress-ui.service&lt;/code&gt; 启动服务。因为这个服务处于最上游，它会自动启动依赖服务。最后使用 &lt;code&gt;systemctl --user status wordpress-ui.service&lt;/code&gt; 查看服务状态。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;使用 &lt;code&gt;podman ps -ap&lt;/code&gt; 查看： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES POD ID PODNAME
+0c4238d0ab09 8 hours ago Up 8 hours 0.0.0.0:8088-&amp;gt;80/tcp wordpress-infra f5d74fdea66c wordpress
+3f943e724192 docker.io/library/mariadb:latest mariadbd 8 hours ago Up 8 hours 0.0.0.0:8088-&amp;gt;80/tcp, 3306/tcp wordpress-db f5d74fdea66c wordpress
+1d0a81791a2c docker.io/library/wordpress:latest apache2-foregroun... 8 hours ago Up 8 hours 0.0.0.0:8088-&amp;gt;80/tcp wordpress-ui f5d74fdea66c wordpress&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;其中的名称为 &lt;code&gt;wordpress-infra&lt;/code&gt; 的容器为自动生成的架构容器，用来提供共享的基础资源。它是 Pod 的核心，名称是自动生成的。不可修改。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;此外，对于 rootless 用户，确保已经启用了 linger 功能： &lt;code&gt;loginctl enable-linger $USER&lt;/code&gt; 以允许容器在用户登出后继续运行。 &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;实现自动更新容器&#34;&gt;实现自动更新容器&lt;/h2&gt;
+&lt;p&gt;Podman 有一个专门的 Systemd 服务来处理自动更新，名为 podman-auto-update.timer。 &lt;br/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;启用并启动定时器： &lt;code&gt;systemctl --user enable --now podman-auto-update.timer&lt;/code&gt; &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;检查定时器状态: &lt;code&gt;systemctl --user status podman-auto-update.timer&lt;/code&gt; &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;查看定时器服务状态，它会记录自动更新的状态: &lt;code&gt;systemctl --user status podman-auto-update.service&lt;/code&gt; &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;附-1-dot-podman-镜像配置&#34;&gt;附 1. podman 镜像配置&lt;/h2&gt;
+&lt;p&gt;全局配置在 &lt;code&gt;/etc/containers/registries.conf&lt;/code&gt; ，用户配置在 &lt;code&gt;~/.config/containers/registries.conf&lt;/code&gt; ，内容如下： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cfg&#34; data-lang=&#34;cfg&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cfg&#34; data-lang=&#34;cfg&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 取消默认搜索地址&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;unqualified-search-registries&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;[&amp;#34;docker.io&amp;#34;]&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 自定义仓库&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;[[registry]]&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 仓库前缀&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;prefix&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;docker.io&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 镜像地址&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;location&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;docker.m.daocloud.io&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 运行http&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;insecure&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;使用 &lt;code&gt;podman auto-update --dry-run&lt;/code&gt; 命令手工验证。 &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;附-2-dot-podman-卷管理&#34;&gt;附 2. podman 卷管理&lt;/h2&gt;
+&lt;p&gt;命名卷是 Podman 管理的独立存储单元，默认存储在 &lt;code&gt;/var/lib/containers/storage/volumes/&lt;/code&gt; (系统级)，或 &lt;code&gt;~/.local/share/containers/storage/volumes/&lt;/code&gt; (用户级)。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;优点是数据更隔离，不直接暴露宿主机文件系统。数据持久化，即使容器删除，卷仍保留。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;缺点是不易直接编辑（需 &lt;code&gt;podman volume mount&lt;/code&gt; 或容器内访问），备份需用 &lt;code&gt;podman volume export&lt;/code&gt; 。 &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;生成器可能在其他位置，通过 &lt;code&gt;find /usr/lib/systemd/ -name &amp;quot;*-user-generator&amp;quot; 2&amp;gt;/dev/null | grep podman&lt;/code&gt; 查找。 &lt;br/&gt;
+&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item><item><title>Podman</title><link>https://blog.winsphinx.top/post/podman/</link><pubDate>Fri, 19 Sep 2025 21:14:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/podman/</guid><description>&lt;p&gt;Podman 是一个开源的容器引擎工具，由 Red Hat 开发，主要用于在 Linux 系统上构建、运行和管理容器镜像。它是 Docker 的一个轻量级替代品，支持 OCI（Open Container Initiative）标准容器格式。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;它有以下特点： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;无守护进程：不像 Docker 需要一个后台 daemon 进程，Podman 以用户级进程运行，减少了复杂性和安全风险。 &lt;br/&gt;&lt;/li&gt;
@@ -4210,184 +4469,4 @@ break-pane (breakp) # 把一个pane拆分为window
 join-pane (joinp) -s 编号 # 把编号所在的window合并到当前window
 join-pane (joinp) -t 编号 # 把当前window合并到编号所在的window&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>frp</title><link>https://blog.winsphinx.top/post/frp/</link><pubDate>Sun, 11 Feb 2024 09:54:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/frp/</guid><description>&lt;p&gt;由于 IPv4 地址的短缺，工作环境从原来的独立公网 IP 地址改变成了 NAT 内网。为方便远程访问，实践了一下 frp&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; 内网穿透，记录如下： &lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;frps&#34;&gt;frps&lt;/h2&gt;
-&lt;p&gt;frps 是服务器端的程序。配置文件&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;如下： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;nx&#34;&gt;bindAddr&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;0.0.0.0&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;bindPort&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xxx&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;auth&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;method&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;token&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;auth&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;token&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;my_token&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;webServer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;addr&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;0.0.0.0&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;webServer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;port&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;yyy&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;webServer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;user&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;user&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;webServer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;password&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;password&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;使用​&lt;code&gt;frps -c frps.toml&lt;/code&gt;​启动服务，在浏览器登录 &lt;a href=&#34;http://server_ip:yyy&#34;&gt;http://server_ip:yyy&lt;/a&gt; 可以查看 frp 的运行情况。防火墙要放行上述端口 xxx、yyy。 &lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;frpc&#34;&gt;frpc&lt;/h2&gt;
-&lt;p&gt;frpc 是客户端的程序。配置文件如下： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;nx&#34;&gt;serverAddr&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;SERVER_IP&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;serverPort&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xxx&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;auth&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;method&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;token&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;auth&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;token&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;my_token&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;[[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;proxies&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;rdp_win&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;tcp&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;localIP&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;192.168.1.1&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;localPort&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3389&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;remotePort&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;nnn&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;transport&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;useEncryption&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;transport&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;useCompression&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;[[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;proxies&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;ssh_linux&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;tcp&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;localIP&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;192.168.1.2&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;localPort&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;22&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;remotePort&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;mmm&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;使用​&lt;code&gt;frpc -c frpc.toml&lt;/code&gt;​启动客户端，之后就可以通过​​&lt;code&gt;SERVER_IP:端口&lt;/code&gt;​访问相应业务。如访问​&lt;code&gt;ssh server -p mmm&lt;/code&gt;​，实际访问的就是​&lt;code&gt;ssh 192.168.1.2&lt;/code&gt;​。其中： &lt;br/&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;客户端 token 必须与服务器端一致才能正确连接； &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;在服务器端的防火墙要放行上述端口 nnn、mmm； &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;如果在局域网内有多个主机，可以只在其中一台上配置客户端，通过指定地址来实现多个主机的穿透； &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;每一个代理业务配置一个 proxies 字段，其下的 name 作为区别标识，必须唯一； &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;默认关闭传输数据加密和压缩，按需配置​&lt;code&gt;transport.useEncryption&lt;/code&gt;​、​&lt;code&gt;transport.useCompression&lt;/code&gt;​来开启。 &lt;br/&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;service&#34;&gt;service&lt;/h2&gt;
-&lt;p&gt;上述使用的是命令行开启服务，为方便起见可配置成自启动模式。 &lt;br/&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;在 Linux 下可以使用 systemd 将其配置为服务，从而用 systemd 命令来方便地管理。以 frps 为例，frpc 类似参考： &lt;br/&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ sudo vim /etc/systemd/system/frps.service&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;内容为： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;[Unit]
-# 服务名称，可自定义
-Description = frp server
-After = network.target syslog.target
-Wants = network.target
-[Service]
-Type = simple
-Restart=on-failure
-RestartSec=5s
-ExecStart = /path/to/frps -c /path/to/frps.toml
-[Install]
-WantedBy = multi-user.target&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;在 Windows 下，可以用开机启动脚本，或者将其注册为系统服务来实现。 &lt;br/&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!--listend--&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;sc.exe create fprc &lt;span class=&#34;nv&#34;&gt;binPath&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/path/to/frpc.exe -c /path/to/frpc.toml&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;DisplayName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;frp client&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;sc 的配置比较容易出错，Windows 下更简单方便地注册、管理服务，推荐使用 NSSM&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;。 &lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;docker&#34;&gt;docker&lt;/h2&gt;
-&lt;p&gt;还可以用 docker 方式安装&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;，以 frps 举例，frpc 可参考修改： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;services&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;frps&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;image&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;snowdreamtech/frps&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;container_name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;frps&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;network_mode&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;host&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;restart&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;unless-stopped&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;volumes&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;./config&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;/etc/frp&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;配置文件存放在 config 下的 frps.toml。&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;frp 是一个使用 go 语言开发的反向代理服务，可用于内网穿透，支持 tcp, udp 协议。项目地址为&lt;a href=&#34;https://github.com/fatedier/frp&#34;&gt;https://github.com/fatedier/frp&lt;/a&gt; &lt;br/&gt;
-&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:2&#34;&gt;frp 的配置文件曾经为 ini 格式，现官方推荐使用 toml 格式。 &lt;br/&gt;
-&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:3&#34;&gt;NSSM 的项目地址为 &lt;a href=&#34;https://nssm.cc/&#34;&gt;https://nssm.cc/&lt;/a&gt; &lt;br/&gt;
-&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:4&#34;&gt;docker 镜像分别在 &lt;a href=&#34;https://hub.docker.com/r/snowdreamtech/frps&#34;&gt;https://hub.docker.com/r/snowdreamtech/frps&lt;/a&gt; 和 &lt;a href=&#34;https://hub.docker.com/r/snowdreamtech/frpc&#34;&gt;https://hub.docker.com/r/snowdreamtech/frpc&lt;/a&gt; &lt;br/&gt;
-&lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:4&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
 &lt;/div&gt;</description></item></channel></rss>
