@@ -12,24 +12,18 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Unit]&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;WordPress Pod&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;[Pod]&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;PodName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;PublishPort&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;8088:80&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;[Install]&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;default.target&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;span class=&#34;na&#34;&gt;PublishPort&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;8088:80&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;该文件定义了 pod，其中： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;PublishPort=&lt;/code&gt; 字段暴露了相应端口，端口映射必须在 pod 级实现，而不是容器级，否则外部无法访问。 &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;WantedBy=&lt;/code&gt; 字段用于实现开机自启动 &lt;br/&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;wordpress-db-dot-volume&#34;&gt;wordpress-db.volume&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -39,17 +33,12 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Unit]&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;WordPress DB Volume&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;[Volume]&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;VolumeName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-db&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;[Install]&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;default.target&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;span class=&#34;na&#34;&gt;VolumeName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-db&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;该文件定义了一个命名卷，用于存储数据库。 &lt;br/&gt;&lt;/p&gt;
@@ -61,17 +50,12 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Unit]&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;WordPress UI Volume&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;[Volume]&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;VolumeName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-ui&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;[Install]&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;default.target&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;span class=&#34;na&#34;&gt;VolumeName&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-ui&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;该文件定义了另一个命名卷，用于存储前端。 &lt;br/&gt;&lt;/p&gt;
@@ -94,9 +78,6 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;k&#34;&gt;[Unit]&lt;/span&gt;
@@ -113,9 +94,7 @@
 &lt;span class=&#34;na&#34;&gt;Environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;MARIADB_PASSWORD=wordpress&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;Environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;MARIADB_RANDOM_ROOT_PASSWORD=yes&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;Volume&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;wordpress-db:/var/lib/mysql&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;AutoUpdate&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;registry&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;[Install]&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;default.target&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;span class=&#34;na&#34;&gt;AutoUpdate&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;registry&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;该文件定义了 mariadb 数据库容器。其中： &lt;br/&gt;&lt;/p&gt;
@@ -171,7 +150,10 @@
 &lt;span class=&#34;na&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;default.target&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;该文件定义了 wordpress 前端容器。它依赖于上述资源。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;该文件定义了 wordpress 前端容器。它依赖于上述资源。其中： &lt;br/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WantedBy=&lt;/code&gt; 字段用于实现开机自启动，因为这是最上游的资源，它会拉起其他资源。当然也可以每个资源都加上这一字段。 &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;然后生成相应的服务&#34;&gt;然后生成相应的服务&lt;/h2&gt;
 &lt;p&gt;先重新加载 systemd 来生成相关服务： &lt;code&gt;systemctl --user daemon-reexec &amp;amp;&amp;amp; systemctl --user daemon-reload&lt;/code&gt; &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;再用 &lt;code&gt;systemctl --user list-unit-files | grep wordpress&lt;/code&gt; 列出对应的服务，它们位于 &lt;code&gt;/run/user/($UID)/systemd/generator/&lt;/code&gt; 目录。正常的话，会显示如下： &lt;br/&gt;&lt;/p&gt;
@@ -208,7 +190,7 @@ wordpress-ui.service generated -&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&
 1d0a81791a2c docker.io/library/wordpress:latest apache2-foregroun... 8 hours ago Up 8 hours 0.0.0.0:8088-&amp;gt;80/tcp wordpress-ui f5d74fdea66c wordpress&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;其中的名称为 &lt;code&gt;wordpress-infra&lt;/code&gt; 的容器为自动生成的架构容器，用来提供共享的基础资源。它是 Pod 的核心，名称是自动生成的。不可修改。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;其中的名称为 &lt;code&gt;wordpress-infra&lt;/code&gt; 的容器为自动生成的架构容器，用来提供共享的基础资源。它是 Pod 的核心，名称是自动生成的，不可修改。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;此外，对于 rootless 用户，确保已经启用了 linger 功能： &lt;code&gt;loginctl enable-linger $USER&lt;/code&gt; 以允许容器在用户登出后继续运行。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;实现自动更新容器&#34;&gt;实现自动更新容器&lt;/h2&gt;
 &lt;p&gt;Podman 有一个专门的 Systemd 服务来处理自动更新，名为 podman-auto-update.timer。 &lt;br/&gt;&lt;/p&gt;
@@ -242,7 +224,7 @@ wordpress-ui.service generated -&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&
 &lt;span class=&#34;na&#34;&gt;prefix&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;docker.io&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# 镜像地址&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;location&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;docker.m.daocloud.io&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# 运行http&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 允许http&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;insecure&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
