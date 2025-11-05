@@ -1,4 +1,173 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 01 Oct 2025 13:09:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>Quadlet</title><link>https://blog.winsphinx.top/post/quadlet/</link><pubDate>Wed, 01 Oct 2025 13:09:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/quadlet/</guid><description>&lt;p&gt;在上一篇遗留了&lt;a href=&#34;https://blog.winsphinx.top/post/podman/#一个问题&#34;&gt;一个问题&lt;/a&gt;，查了各种资料，可以用 Quadlet 来处理。 &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 01 Nov 2025 13:32:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>InfluxDB and Grafana over Proxmox</title><link>https://blog.winsphinx.top/post/influxdb-and-grafana-over-proxmox/</link><pubDate>Sat, 01 Nov 2025 13:32:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/influxdb-and-grafana-over-proxmox/</guid><description>&lt;p&gt;Proxmox 虽然有自带的系统性能监控，但没法长期保存，故此我采用了 InfluxDB 和 Grafana 组合来监控 VM 和 LXC。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;首先我创建一台 LXC 来作为基座，使用的是 Alpine Linux，它占用资源非常少，1核+512M 内存足够。 &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;influxdb&#34;&gt;InfluxDB&lt;/h2&gt;
+&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
+&lt;p&gt;由于 Alpine Linux 仓库里没有 InfluxDB，而 InfluxDB 官方主推是 3.x 版本，因此需要在 &lt;a href=&#34;https://github.com/influxdata/influxdb/releases/tag/v2.7.12&#34;&gt;GitHub&lt;/a&gt; 自行下载。然后解压并配置可执行文件路径： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;tar -zxvf influxdb2-2.7.12_linux_amd64.tar.gz -C /opt
+mv /opt/influxdb2-2.7.12/ /opt/influxdb2
+ln -s /opt/influxdb2/usr/bin/influxd /usr/local/bin/influxd&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;创建数据与配置目录&#34;&gt;创建数据与配置目录&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;mkdir -p /var/lib/influxdb
+mkdir -p /etc/influxdb&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;测试启动&#34;&gt;测试启动&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;influxd --bolt-path /var/lib/influxdb/influxd.bolt &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --engine-path /var/lib/influxdb/engine &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt; --http-bind-address :8086&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;浏览器访问 &lt;a href=&#34;http://&amp;lt;服务器ip&#34;&gt;http://&amp;lt;服务器ip&lt;/a&gt;:8086&amp;gt;, 首次会要求设置用户名、密码、组织和 bucket，并记下密钥。这些信息后面 Proxmox 要用到。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;创建服务&#34;&gt;创建服务&lt;/h3&gt;
+&lt;p&gt;测试正常后，在 /etc/init.d/influxdb 写入： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/sbin/openrc-run
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;influxdb&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;InfluxDB time series database&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;command&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/usr/local/bin/influxd&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;command_args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;--bolt-path /var/lib/influxdb/influxd.bolt --engine-path /var/lib/influxdb/engine --http-bind-address :8086&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;command_background&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;yes&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;pidfile&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/run/&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;RC_SVCNAME&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;.pid&amp;#34;&lt;/span&gt;
+depend&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+need net
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;然后赋权并启动服务： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;chmod +x /etc/init.d/influxdb
+rc-update add influxdb default
+rc-service influxdb start&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;proxmox&#34;&gt;Proxmox&lt;/h2&gt;
+&lt;p&gt;在 proxmox 的“指标服务器”中，添加 InfluxDB，其中：服务器填写 LXC 的地址，端口填 8086，协议是 HTTP，组织、插槽和令牌根据上面信息填写。 &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;grafana&#34;&gt;Grafana&lt;/h2&gt;
+&lt;h3 id=&#34;安装与配置&#34;&gt;安装与配置&lt;/h3&gt;
+&lt;p&gt;Alpine Linux 可以直接安装 Grafana： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;apk add grafana&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;配置&#34;&gt;配置&lt;/h3&gt;
+&lt;p&gt;修改 &lt;code&gt;/etc/conf.d/grafana&lt;/code&gt; 其中一行，使其能通过外部访问： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;cfg:server.http_addr&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;.0.0.0&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;如果要启用 HTTPS 访问，还要修改 &lt;code&gt;/etc/grafana.ini&lt;/code&gt; 中的一些参数（密钥文件生成见附 1）： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;...
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;server&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# Protocol (http, https, h2, socket)&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;protocol&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; https
+...
+&lt;span class=&#34;c1&#34;&gt;# https certs &amp;amp; key file&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;cert_file&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; /etc/ssl/grafana.crt
+&lt;span class=&#34;nv&#34;&gt;cert_key&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; /etc/ssl/grafana.key&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;启动服务&#34;&gt;启动服务&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;rc-update add grafana default
+rc-service grafana start&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;浏览器访问 &lt;a href=&#34;http://&amp;lt;服务器ip&#34;&gt;http://&amp;lt;服务器ip&lt;/a&gt;:3000&amp;gt;, 默认用户名、密码均为 admin，首次会要求更新密码。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;添加数据源&#34;&gt;添加数据源&lt;/h3&gt;
+&lt;p&gt;在 Connections - Data sources 选择 InfluxDB，URL 设置成&lt;a href=&#34;http://localhost:3000&#34;&gt;http://localhost:3000&lt;/a&gt;, 选择 Basic auth，用户名留空，密码设置前述的令牌，Database 设置前述的 bucket。点击 Save&amp;amp;Test 绿色即为配置正常。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;配置面板&#34;&gt;配置面板&lt;/h3&gt;
+&lt;p&gt;在 Dashboard 中，选择导入模板，ID 为 10048，数据源选上述创建的名称即可。 &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;附-1-生成密钥文件&#34;&gt;附 1 生成密钥文件&lt;/h2&gt;
+&lt;p&gt;使用自签名证书来启用 HTTPS 访问，具体步骤如下： &lt;br/&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;openssl req -x509 -newkey rsa:2048 -keyout grafana.key -out grafana.crt -days &lt;span class=&#34;m&#34;&gt;365&lt;/span&gt; -nodes -subj &lt;span class=&#34;s2&#34;&gt;&amp;#34;/C=CN/ST=State/L=City/O=Organization/CN=grafana.local&amp;#34;&lt;/span&gt;
+chown grafana:grafana grafana.crt grafana.key
+chmod &lt;span class=&#34;m&#34;&gt;644&lt;/span&gt; grafana.crt
+chmod &lt;span class=&#34;m&#34;&gt;600&lt;/span&gt; grafana.key&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;然后放到相应目录。 &lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&#34;附-2-使用域名访问&#34;&gt;附 2 使用域名访问&lt;/h2&gt;
+&lt;p&gt;为了避免使用 IP 地址访问，套上了 CloudFlare，具体步骤如下： &lt;br/&gt;
+首先，创建一条 DNS 记录，为它绑定一个域名； &lt;br/&gt;
+然后，在规则选项中，创建一条 Origin Rule：当“主机名 等于 本域名”时，目标端口改写到 3000。 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>Quadlet</title><link>https://blog.winsphinx.top/post/quadlet/</link><pubDate>Wed, 01 Oct 2025 13:09:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/quadlet/</guid><description>&lt;p&gt;在上一篇遗留了&lt;a href=&#34;https://blog.winsphinx.top/post/podman/#一个问题&#34;&gt;一个问题&lt;/a&gt;，查了一些资料后，发现可以用 Quadlet 来处理。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;Quadlet 是 Podman 4.4 版本引入的扩展，它用简单的文本文件来定义和启动容器、Pod（容器组）或其他资源。它支持四种主要文件类型：.container、.pod、.volume 和 .network。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;以下通过 quanlet 实现一个 wordpress 的应用，它包括一个 Pod，两个容器：mariadb 实现数据库、wordpress 实现前端，以及两个命名卷分别存储对应的容器。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;Quadlet 文件，全局配置存储在 &lt;code&gt;/etc/containers/systemd/&lt;/code&gt; 目录，用户级配置在 &lt;code&gt;~/.config/containers/systemd&lt;/code&gt; 目录。 &lt;br/&gt;&lt;/p&gt;
@@ -232,7 +401,7 @@ wordpress-ui.service generated -&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&
 &lt;h2 id=&#34;附-2-dot-podman-卷管理&#34;&gt;附 2. podman 卷管理&lt;/h2&gt;
 &lt;p&gt;命名卷是 Podman 管理的独立存储单元，默认存储在 &lt;code&gt;/var/lib/containers/storage/volumes/&lt;/code&gt; (系统级)，或 &lt;code&gt;~/.local/share/containers/storage/volumes/&lt;/code&gt; (用户级)。 &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;优点是数据更隔离，不直接暴露宿主机文件系统。数据持久化，即使容器删除，卷仍保留。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;缺点是不易直接编辑（需 &lt;code&gt;podman volume mount&lt;/code&gt; 或容器内访问），备份需用 &lt;code&gt;podman volume export&lt;/code&gt; 。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;缺点是不易直接编辑（需 &lt;code&gt;podman volume mount&lt;/code&gt; 或容器内访问），备份需用 &lt;code&gt;podman volume export&lt;/code&gt; 。&lt;/p&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
@@ -4181,274 +4350,4 @@ nohup ./block-ip.sh &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&amp;gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt; rsync -avz --backup /source /destination&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>tmux</title><link>https://blog.winsphinx.top/post/tmux/</link><pubDate>Thu, 28 Mar 2024 19:31:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/tmux/</guid><description>&lt;p&gt;tmux（也称为终端多路复用器）是一个在终端窗口中创建和管理多个终端会话的工具。它允许您在单个终端窗口中同时运行多个终端会话或窗格，并在它们之间轻松切换。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;tmux 的主要功能包括： &lt;br/&gt;&lt;/p&gt;
-&lt;h2 id=&#34;会话-sessions&#34;&gt;会话（Sessions）&lt;/h2&gt;
-&lt;p&gt;可以创建、重命名、关闭会话，以及在不同会话之间切换。每个会话可以包含多个窗口和窗格。会话可以在后台运行，即使您断开连接也可以保持会话状态。 &lt;br/&gt;
-最简单的方式直接创建，默认的会话名称是 &lt;code&gt;0&lt;/code&gt; ，再次创建则编号顺延： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;tmux&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;如果需要指定会话名称创建： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;tmux new-session -s &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;要更改会话名称： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;tmux rename-session -t &amp;lt;old-name&amp;gt; &amp;lt;new-name&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;要重新进入某个会话： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;tmux attach -t &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;要删除某个会话： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;tmux kill-session -t &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;窗口-windows&#34;&gt;窗口（Windows）&lt;/h2&gt;
-&lt;p&gt;每个会话可以包含多个窗口，每个窗口都可以分割为多个窗格。您可以在窗口之间切换，创建新窗口，关闭窗口等。 &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;lt;prefix&amp;gt; s # 选择session
-&amp;lt;prefix&amp;gt; $ # 重命名当前session
-&amp;lt;prefix&amp;gt; C-z # 挂起session
-&amp;lt;prefix&amp;gt; d # 分离session
-&amp;lt;prefix&amp;gt; ( # 切换上一个session
-&amp;lt;prefix&amp;gt; ) # 切换下一个session
-&amp;lt;prefix&amp;gt; c # 创建window
-&amp;lt;prefix&amp;gt; w # 选择window
-&amp;lt;prefix&amp;gt; , # 重命名当前window
-&amp;lt;prefix&amp;gt; &amp;amp; # 关闭当前 window
-&amp;lt;prefix&amp;gt; 数字键 # 根据编号（0-9）选择相应window
-&amp;lt;prefix&amp;gt; &amp;#39; # 输入名称或者数字选择window，因为当大于9时无法直接输入&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;窗格-panes&#34;&gt;窗格（Panes）&lt;/h2&gt;
-&lt;p&gt;窗格是窗口的分割部分，允许您在同一个窗口中同时查看多个终端。您可以水平或垂直分割窗格，并在窗格之间移动。 &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;lt;prefix&amp;gt; ! # 把pane提升为window
-&amp;lt;prefix&amp;gt; &amp;#34; # 垂直分割window
-&amp;lt;prefix&amp;gt; % # 水平分割window
-&amp;lt;prefix&amp;gt; o # 轮选pane
-&amp;lt;prefix&amp;gt; f # 选择pane
-&amp;lt;prefix&amp;gt; 方向键 # 根据方向键选择相应pane
-&amp;lt;prefix&amp;gt; z # 放大/缩小pane
-&amp;lt;prefix&amp;gt; x # 关闭当前pane
-&amp;lt;prefix&amp;gt; q # 显示pane编号&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id=&#34;配置和插件&#34;&gt;配置和插件&lt;/h2&gt;
-&lt;p&gt;tmux 可以通过配置文件进行自定义设置，您可以根据自己的需求定制 tmux 的外观、行为和功能。 &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;# options
-set -g prefix C-b
-set -g prefix2 C-a
-set -g mouse on
-set -g mode-keys vi
-set -g set-clipboard on
-# keys
-bind r source-file ~/.tmux.conf
-bind - split-window -v
-bind | split-window -h
-bind -T copy-mode-vi v send -X begin-selection
-bind -T copy-mode-vi C-v send -X rectangle-toggle
-bind -T copy-mode-vi y send -X copy-selection-and-cancel
-bind -T copy-mode-vi Escape send -X cancel
-# plugins
-## tmux plugin manager
-set -g @plugin &amp;#39;tmux-plugins/tpm&amp;#39;
-## theme
-set -g @plugin &amp;#39;dracula/tmux&amp;#39;
-set -g @dracula-show-powerline true
-set -g @dracula-show-empty-plugins false
-set -g @dracula-show-left-icon &amp;#39;session&amp;#39;
-set -g @dracula-plugins &amp;#39;cpu-usage network network-bandwidth continuum time git attached-clients&amp;#39;
-set -g @dracula-cpu-usage-label &amp;#39; &amp;#39;
-set -g @dracula-cpu-display-load true
-set -g @dracula-network-bandwidth &amp;#39;eth0&amp;#39;
-set -g @dracula-network-bandwidth-interval 0
-set -g @dracula-network-bandwidth-show-interface true
-set -g @dracula-time-format &amp;#39;%b-%d %H:%M&amp;#39;
-set -g @dracula-clients-minimum 2
-## &amp;lt;prefix&amp;gt; + P to start/stop logging, + alt-p to capture screen, + alt-P to save history
-set -g @plugin &amp;#39;tmux-plugins/tmux-logging&amp;#39;
-## persist tmux sessions after computer restart
-set -g @plugin &amp;#39;tmux-plugins/tmux-resurrect&amp;#39;
-set -g @resurrect-capture-pane-contents &amp;#39;on&amp;#39;
-## automatically saves sessions every 15 minutes
-set -g @plugin &amp;#39;tmux-plugins/tmux-continuum&amp;#39;
-set -g @continuum-save-interval &amp;#39;15&amp;#39;
-set -g @continuum-restore &amp;#39;on&amp;#39;
-## automatically resize focus pane
-set -g @plugin &amp;#39;graemedavidson/tmux-pane-focus&amp;#39;
-set -g @pane-focus-size &amp;#39;62&amp;#39;
-set -g @pane-focus-direction &amp;#39;+&amp;#39;
-## run all plugins
-run &amp;#39;~/.tmux/plugins/tpm/tpm&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;这是我的配置文件，调整了一些常用键，启用了鼠标（虽然我是键盘党，但也不排斥鼠标，毕竟选择窗口、拖动窗口大小之类的操作，用鼠标是最方便的，这也是在上面我没提到此类快捷键的原因），安装了主题和插件。其中： &lt;br/&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;tmux plugin manager 来管理插件: &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt; &amp;lt;prefix&amp;gt; I # 安装插件
-&amp;lt;prefix&amp;gt; U # 升级插件
-&amp;lt;prefix&amp;gt; alt+u # 清理插件&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;tmux-logging 用来记录 tmux 的文本： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt; &amp;lt;prefix&amp;gt; P # 按一次开始记录当前pane，再按一次停止
-&amp;lt;prefix&amp;gt; alt+p # 获取当前pane当前内容，相当于截屏
-&amp;lt;prefix&amp;gt; alt+P # 获取当前pane全部内容，包括历史内容&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;tmux-resurrect 和 tmux-continuum 用来保存和恢复会话，这样即使重启了机器，打开 tmux 后 session 仍然和之前一样。 &lt;br/&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
-&lt;p&gt;其他一些命令有： &lt;br/&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;lt;prefix&amp;gt; [ # 进入复制模式，用光标定位到起点，按空格开始，移动光标选择，按回车结束
-&amp;lt;prefix&amp;gt; ] # 进入粘贴模式
-&amp;lt;prefix&amp;gt; = # 选择剪切板条目
-&amp;lt;prefix&amp;gt; : # 进入命令行
-## 一些有用的命令行
-break-pane (breakp) # 把一个pane拆分为window
-join-pane (joinp) -s 编号 # 把编号所在的window合并到当前window
-join-pane (joinp) -t 编号 # 把当前window合并到编号所在的window&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description></item></channel></rss>
+&lt;/ul&gt;</description></item></channel></rss>
