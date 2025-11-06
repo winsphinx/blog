@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 01 Nov 2025 13:32:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>InfluxDB and Grafana over Proxmox</title><link>https://blog.winsphinx.top/post/influxdb-and-grafana-over-proxmox/</link><pubDate>Sat, 01 Nov 2025 13:32:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/influxdb-and-grafana-over-proxmox/</guid><description>&lt;p&gt;Proxmox 虽然有自带的系统性能监控，但没法长期保存，故此我采用了 InfluxDB 和 Grafana 组合来监控 VM 和 LXC。 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;首先我创建一台 LXC 来作为基座，使用的是 Alpine Linux，它占用资源非常少，1核+512M 内存足够。 &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 01 Nov 2025 13:32:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>InfluxDB and Grafana over Proxmox</title><link>https://blog.winsphinx.top/post/influxdb-and-grafana-over-proxmox/</link><pubDate>Sat, 01 Nov 2025 13:32:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/influxdb-and-grafana-over-proxmox/</guid><description>&lt;p&gt;Proxmox 虽然自带系统性能监控，但没法长期保存，故此我采用了 InfluxDB 和 Grafana 的组合来监控 VM 和 LXC。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;首先我创建了一台 LXC 来作为基座，使用的是 Alpine Linux，它占用资源非常少，1核+512M 内存足够，实占 3%CPU，60%MEM。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;influxdb&#34;&gt;InfluxDB&lt;/h2&gt;
 &lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
 &lt;p&gt;由于 Alpine Linux 仓库里没有 InfluxDB，而 InfluxDB 官方主推是 3.x 版本，因此需要在 &lt;a href=&#34;https://github.com/influxdata/influxdb/releases/tag/v2.7.12&#34;&gt;GitHub&lt;/a&gt; 自行下载。然后解压并配置可执行文件路径： &lt;br/&gt;&lt;/p&gt;
@@ -86,10 +86,11 @@ rc-service influxdb start&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tab
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id=&#34;proxmox&#34;&gt;Proxmox&lt;/h2&gt;
-&lt;p&gt;在 proxmox 的“指标服务器”中，添加 InfluxDB，其中：服务器填写 LXC 的地址，端口填 8086，协议是 HTTP，组织、插槽和令牌根据上面信息填写。 &lt;br/&gt;&lt;/p&gt;
+&lt;h3 id=&#34;配置信息&#34;&gt;配置信息&lt;/h3&gt;
+&lt;p&gt;在 Proxmox 的 &lt;code&gt;指标服务器&lt;/code&gt; 中，添加 InfluxDB，其中：服务器填写 LXC 的地址，端口填 8086，协议是 HTTP，组织、插槽和令牌根据上面信息填写。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;grafana&#34;&gt;Grafana&lt;/h2&gt;
 &lt;h3 id=&#34;安装与配置&#34;&gt;安装与配置&lt;/h3&gt;
-&lt;p&gt;Alpine Linux 可以直接安装 Grafana： &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Alpine Linux 仓库有 Grafana，可以直接安装： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -98,7 +99,7 @@ rc-service influxdb start&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tab
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;apk add grafana&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h3 id=&#34;配置&#34;&gt;配置&lt;/h3&gt;
+&lt;h3 id=&#34;修改配置&#34;&gt;修改配置&lt;/h3&gt;
 &lt;p&gt;修改 &lt;code&gt;/etc/conf.d/grafana&lt;/code&gt; 其中一行，使其能通过外部访问： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -144,9 +145,9 @@ rc-service grafana start&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tabl
 &lt;/div&gt;
 &lt;p&gt;浏览器访问 &lt;a href=&#34;http://&amp;lt;服务器ip&#34;&gt;http://&amp;lt;服务器ip&lt;/a&gt;:3000&amp;gt;, 默认用户名、密码均为 admin，首次会要求更新密码。 &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;添加数据源&#34;&gt;添加数据源&lt;/h3&gt;
-&lt;p&gt;在 Connections - Data sources 选择 InfluxDB，URL 设置成&lt;a href=&#34;http://localhost:3000&#34;&gt;http://localhost:3000&lt;/a&gt;, 选择 Basic auth，用户名留空，密码设置前述的令牌，Database 设置前述的 bucket。点击 Save&amp;amp;Test 绿色即为配置正常。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;在 Connections - Data sources 选择 InfluxDB，自定义一个名字，URL 设置成&lt;a href=&#34;http://localhost:3000&#34;&gt;http://localhost:3000&lt;/a&gt;, 选择 Basic auth，用户名留空，密码设置前述的令牌，Database 设置前述的 bucket。点击 Save&amp;amp;Test 显示绿色即为配置正常。 &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;配置面板&#34;&gt;配置面板&lt;/h3&gt;
-&lt;p&gt;在 Dashboard 中，选择导入模板，ID 为 10048，数据源选上述创建的名称即可。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;在 Dashboard 中，选择导入模板，ID 为 10048，数据源选上述创建的名字即可。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;附-1-生成密钥文件&#34;&gt;附 1 生成密钥文件&lt;/h2&gt;
 &lt;p&gt;使用自签名证书来启用 HTTPS 访问，具体步骤如下： &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -163,7 +164,7 @@ chmod &lt;span class=&#34;m&#34;&gt;644&lt;/span&gt; grafana.crt
 chmod &lt;span class=&#34;m&#34;&gt;600&lt;/span&gt; grafana.key&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;然后放到相应目录。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;然后放到相应目录，与 &lt;code&gt;/etc/grafana.ini&lt;/code&gt; 配置一致。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;附-2-使用域名访问&#34;&gt;附 2 使用域名访问&lt;/h2&gt;
 &lt;p&gt;为了避免使用 IP 地址访问，套上了 CloudFlare，具体步骤如下： &lt;br/&gt;
 首先，创建一条 DNS 记录，为它绑定一个域名； &lt;br/&gt;
