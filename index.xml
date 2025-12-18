@@ -42,7 +42,7 @@ ssh-copy-id -i ~/.ssh/id_ed25519_tunnel root@B_IP&lt;/code&gt;&lt;/pre&gt;&lt;/t
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;na&#34;&gt;Host ssh-tunnel&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;# ==================== 基本连接信息 =====================&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;HostName xx.xx.xx.xx # B机器的 IP 或域名&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;User root # B 机器上的SSH用户名&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;User root # B机器的 SSH 用户名&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;Port 22 # B机器的 SSH 端口&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;IdentityFile ~/.ssh/id_ed25519_tunnel&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;IdentitiesOnly yes&lt;/span&gt;
