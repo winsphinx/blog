@@ -88,7 +88,7 @@ ssh-copy-id -i ~/.ssh/id_ed25519_tunnel root@B_IP&lt;/code&gt;&lt;/pre&gt;&lt;/t
 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Service&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
 &lt;span class=&#34;nv&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;YOUR_USERNAME
 &lt;span class=&#34;nv&#34;&gt;Group&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;YOUR_GROUP
-&lt;span class=&#34;nv&#34;&gt;ExecStart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/bin/ssh -NC ssh-tunnel &lt;span class=&#34;c1&#34;&gt;# ssh-tunnel 和配置文件中Host定义一致&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;ExecStart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/bin/ssh -CNT ssh-tunnel &lt;span class=&#34;c1&#34;&gt;# ssh-tunnel 和配置文件中Host定义一致&lt;/span&gt;
 &lt;span class=&#34;nv&#34;&gt;Restart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;always
 &lt;span class=&#34;nv&#34;&gt;RestartSec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;5s
 &lt;span class=&#34;nv&#34;&gt;SuccessExitStatus&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;255&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 确保能自动重连&lt;/span&gt;
