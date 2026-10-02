@@ -3,3 +3,14 @@
 .logo {
     font-family: 'UnifrakturMaguntia' !important;
 }
+
+div.highlight { position: relative; }
+.copy-btn {
+  position: absolute; top: 24px; right: 4px;
+  padding: 4px 10px; font-size: 14px;
+  color: #a8a8a8; background: #f8f5ec;
+  border: none; cursor: pointer;
+}
+.copy-btn:hover {
+  color: #666;
+}

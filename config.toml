@@ -66,7 +66,10 @@ PygmentsOptions = "linenos=table"
   weight = 60
   identifier = "search"
   url = "./search/"
-  
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
 [params]
   debug = false             # If true, load `eruda.min.js`. See https://github.com/liriliri/eruda
   since = "2019"            # Site creation time          # 站点建立时间
@@ -117,7 +120,7 @@ PygmentsOptions = "linenos=table"
   # Link custom CSS and JS assets
   #   (relative to /static/css and /static/js respectively)
   customCSS = ['custom.css'] # if ['custom.css'], load '/static/css/custom.css' file
-  customJS = []              # if ['custom.js'], load '/static/js/custom.js' file
+  customJS = ['custom.js']   # if ['custom.js'], load '/static/js/custom.js' file
 
   # enable 'fork me on github', see https://blog.github.com/2008-12-19-github-ribbons/
   # forkMeOnGithub = "https://github.com/winsphinx/blog/"
@@ -183,6 +186,3 @@ PygmentsOptions = "linenos=table"
     d-bilibili = "https://space.bilibili.com/479162469"
     e-twitter = "https://twitter.com/winsphinx"
     f-facebook = "https://facebook.com/winsphinx"
-
-[outputs]
-  home = ["HTML", "RSS", "JSON"]
