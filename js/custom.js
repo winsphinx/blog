@@ -2,8 +2,8 @@
 (function () {
   function copyText(text, btn) {
     function done(ok) {
-      btn.textContent = ok ? '✔ Copied' : '✘ Failed';
-      setTimeout(function () { btn.textContent = '⧉ Copy'; }, 1500);
+      btn.textContent = ok ? '✔' : '✘';
+      setTimeout(function () { btn.textContent = '⧉'; }, 1500);
     }
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
@@ -28,7 +28,7 @@
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'copy-btn';
-    btn.textContent = '⧉ Copy';
+    btn.textContent = '⧉';
     btn.addEventListener('click', function () {
       copyText(codeEl.innerText, btn);
     });
