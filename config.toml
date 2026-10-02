@@ -56,7 +56,17 @@ PygmentsOptions = "linenos=table"
   weight = 40
   identifier = "tags"
   url = "./tags/"
-
+[[menu.main]]
+  name = "About"
+  weight = 50
+  identifier = "about"
+  url = "./about/"
+[[menu.main]]
+  name = "Search"
+  weight = 60
+  identifier = "search"
+  url = "./search/"
+  
 [params]
   debug = false             # If true, load `eruda.min.js`. See https://github.com/liriliri/eruda
   since = "2019"            # Site creation time          # 站点建立时间
@@ -66,7 +76,7 @@ PygmentsOptions = "linenos=table"
   # site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）
   # logoTitle = ""          # default: the title value    # 默认值: 上面设置的title值
   # keywords = ["","",""]
-  # description = ""
+  description = "我思故我在"
 
   # paginate of archives, tags and categories             # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值
   archive-paginate = 16
@@ -127,8 +137,8 @@ PygmentsOptions = "linenos=table"
     photoswipeSKIN = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css" integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin="anonymous">'
 
   [params.utteranc]         # utteranc is a comment system based on GitHub issues. see https://utteranc.es
-    enable = true
-    repo = "winsphinx/blog"    # The repo to store comments
+    enable = false
+    repo = "winsphinx/blog" # The repo to store comments
     issueTerm = "pathname"
 
   [params.gitment]          # Gitment is a comment system based on GitHub issues. see https://github.com/imsun/gitment
@@ -142,7 +152,7 @@ PygmentsOptions = "linenos=table"
 
   [params.search.google]    # google custom search, see https://cse.google.com
     enable = false
-    id = ""
+    id = "6458bafa5648e4806"
 
   [params.reward]                                         # 文章打赏
     enable = false
@@ -150,7 +160,7 @@ PygmentsOptions = "linenos=table"
     alipay = "/path/to/your/alipay-qr-code.png"           # 支付宝二维码
 
   [params.counter.busuanzi]   # a Chinese visitor counter # 不蒜子计数器
-    enable = true
+    enable = false
 
   [params.counter.leancloud]  # Chinese leancloud visitor counter  # leancloud 计数器
     enable = false
@@ -167,13 +177,12 @@ PygmentsOptions = "linenos=table"
     showCommitMessage = true
 
   [params.social]                                         # 社交链接
-    a-email = "mailto:winsphinx@gmail.com"
-    b-github = "https://github.com/winsphinx"
-    c-gitlab = "https://gitlab.com/winsphinx"
-    d-weibo = "https://weibo.com/u/1831407990"
-    e-zhihu = "https://www.zhihu.com/people/winsphinx"
-    f-bilibili = "https://space.bilibili.com/479162469"
-    g-pocket = "https://app.getpocket.com"
-    h-tumblr = "https://winsphinx.tumblr.com"
-    i-twitter = "https://twitter.com/winsphinx"
-    j-facebook = "https://facebook.com/winsphinx"
+    a-github = "https://github.com/winsphinx"
+    b-weibo = "https://weibo.com/u/1831407990"
+    c-zhihu = "https://www.zhihu.com/people/winsphinx"
+    d-bilibili = "https://space.bilibili.com/479162469"
+    e-twitter = "https://twitter.com/winsphinx"
+    f-facebook = "https://facebook.com/winsphinx"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

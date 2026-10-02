@@ -1,0 +1,87 @@
+{{ define "content" }}
+<div class="search-page">
+  <input type="search" id="search-input" placeholder="Type to search…" autocomplete="off">
+  <p id="search-count"></p>
+  <div id="search-results"></div>
+</div>
+
+<style>
+.search-page { max-width: 760px; margin: 0 auto; padding: 10px 0 30px; }
+.search-page h1 { text-align: center; }
+#search-input {
+  width: 100%; padding: 12px 16px; font-size: 16px;
+  border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;
+}
+#search-input:focus { outline: none; border-color: #a63d40; }
+#search-count { color: #999; font-size: 14px; min-height: 20px; }
+.search-item { margin: 20px 0; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+.search-item a { font-size: 18px; text-decoration: none; }
+.search-item a:hover { text-decoration: underline; }
+.search-meta { color: #999; font-size: 13px; margin: 4px 0; }
+.search-snippet { color: #555; font-size: 14px; line-height: 1.7; margin: 6px 0 0; }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
+<script>
+(function () {
+  var input = document.getElementById('search-input');
+  var resultsEl = document.getElementById('search-results');
+  var countEl = document.getElementById('search-count');
+  var fuse = null;
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function doSearch(q) {
+    q = (q || '').trim();
+    if (!fuse) {
+      countEl.textContent = q.length >= 2 ? '索引加载中…' : '';
+      resultsEl.innerHTML = '';
+      return;
+    }
+    if (q.length < 2) {
+      countEl.textContent = '';
+      resultsEl.innerHTML = '';
+      return;
+    }
+    var res = fuse.search(q).slice(0, 20);
+    countEl.textContent = '找到 ' + res.length + ' 篇相关文章';
+    resultsEl.innerHTML = res.map(function (r) {
+      var p = r.item;
+      var snippet = p.content.replace(/\s+/g, ' ').substring(0, 140) + '…';
+      var tags = (p.tags || []).map(escapeHtml).join(' / ');
+      return '<div class="search-item">'
+        + '<a href="' + p.permalink + '">' + escapeHtml(p.title) + '</a>'
+        + '<div class="search-meta">' + escapeHtml(p.date)
+        + (tags ? ' · ' + tags : '') + '</div>'
+        + '<p class="search-snippet">' + escapeHtml(snippet) + '</p>'
+        + '</div>';
+    }).join('');
+  }
+
+  fetch('{{ "index.json" | absURL }}')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      fuse = new Fuse(data, {
+        threshold: 0.4,
+        ignoreLocation: true,
+        minMatchCharLength: 2,
+        keys: [
+          { name: 'title', weight: 3 },
+          { name: 'tags', weight: 2 },
+          { name: 'categories', weight: 1.5 },
+          { name: 'content', weight: 1 }
+        ]
+      });
+      var q = new URLSearchParams(window.location.search).get('q');
+      if (q) { input.value = q; doSearch(q); }
+    })
+    .catch(function () { countEl.textContent = '搜索索引加载失败，请稍后重试'; });
+
+  input.addEventListener('input', function () { doSearch(input.value); });
+})();
+</script>
+{{ end }}
