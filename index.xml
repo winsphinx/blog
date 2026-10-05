@@ -304,7 +304,7 @@
 &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;providers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;providers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;models&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;providers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;models&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;nvidia&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;providers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;models&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;nvidia&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;zeroclaw&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;providers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;models&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;nvidia&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;default&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;api_key&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;enc2:......&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;model&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;......&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;context_window&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;256000&lt;/span&gt;
@@ -316,7 +316,7 @@
 &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;channels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;session_ttl_hours&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;168&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;channels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;qq&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;channels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;qq&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;zeroclaw&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;channels&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;qq&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;default&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;enabled&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;app_id&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;......&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;app_secret&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;enc2:......&amp;#34;&lt;/span&gt;
@@ -326,8 +326,8 @@
 &lt;span class=&#34;nx&#34;&gt;external_peers&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;*&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;agents&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;agents&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;zeroclaw&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;channels&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;qq.zeroclaw&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;model_provider&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;nvidia.zeroclaw&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;channels&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;qq.default&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;model_provider&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;nvidia.default&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;runtime_profile&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;unbounded&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;risk_profile&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;balanced&amp;#34;&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;runtime_profiles&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
@@ -393,8 +393,8 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;用 &lt;code&gt;zeroclaw doctor&lt;/code&gt; 检查配置，无误后用 &lt;code&gt;zeroclaw service install&lt;/code&gt; 安装为系统服务，再用 &lt;code&gt;zeroclaw service start&lt;/code&gt; 启动。也可以用系统自带的命令 &lt;code&gt;systemctl --user start|stop|status zeroclaw&lt;/code&gt; 来执行。 &lt;br/&gt;
-先用这个配置跑起来，然后就可以让 zeroclaw 自己逐项修改、完善配置了。 &lt;br/&gt;
-我没有配网关，直接用 QQ 接入来控制，我用下来的感受是，它只占用 3~5M 内存，就能媲美那些动辄占用几百 M 甚至几 G 的大块头智能体。 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>中外音乐调式</title><link>https://blog.winsphinx.top/post/musical-modes/</link><pubDate>Sun, 20 Sep 2026 14:41:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/musical-modes/</guid><description>&lt;p&gt;本文整理了中外主要音乐调式。 &lt;br/&gt;&lt;/p&gt;
+先用这个配置跑起来，然后就可以让 zeroclaw 按需调整配置了。 &lt;br/&gt;
+我直接用 QQ 接入来控制，我用下来的感受是，它只占用 3~5M 内存，就能媲美那些动辄占用几百 M 甚至几 G 的大块头智能体。 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>中外音乐调式</title><link>https://blog.winsphinx.top/post/musical-modes/</link><pubDate>Sun, 20 Sep 2026 14:41:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/musical-modes/</guid><description>&lt;p&gt;本文整理了中外主要音乐调式。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;中国调式&#34;&gt;中国调式&lt;/h2&gt;
 &lt;p&gt;五声为骨，七声为用 &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;五声音阶&#34;&gt;五声音阶&lt;/h3&gt;
