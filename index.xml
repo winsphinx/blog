@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 04 Oct 2026 18:36:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>ZeroClaw</title><link>https://blog.winsphinx.top/post/zeroclaw/</link><pubDate>Sun, 04 Oct 2026 18:36:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/zeroclaw/</guid><description>&lt;p&gt;我自己用的 AI Agent 是 &lt;a href=&#34;https://github.com/zeroclaw-labs/zeroclaw/&#34;&gt;ZeroClaw&lt;/a&gt;，主要看中它体积小巧，性能强悍，不过需要折腾的地方也不少，特此记录。 &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 04 Oct 2026 18:36:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>ZeroClaw</title><link>https://blog.winsphinx.top/post/zeroclaw/</link><pubDate>Sun, 04 Oct 2026 18:36:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/zeroclaw/</guid><description>&lt;p&gt;我自用的 AI Agent 是 &lt;a href=&#34;https://github.com/zeroclaw-labs/zeroclaw/&#34;&gt;ZeroClaw&lt;/a&gt;，主要看中它体积小巧，性能强悍，不过需要折腾的地方也不少，特此记录。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
-&lt;p&gt;安装官方下载的版本，但它内置接入通道是不带 QQ 的，而对我而言用 QQ 作为接入是最适合的，因此需要带参数 &lt;code&gt;--features channel-qq&lt;/code&gt; 自己编译后替换。但是自己搭建 rust 环境也比较麻烦，我借用了 GitHub Action 来实现。 &lt;br/&gt;
-首先 fork 官方的仓库，把它自带的 Github Action 脚本删除（为了给 Github 节省资源），然后添加下面这个脚本： &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;根据官方提示安装，不过默认版本的内置接入通道是不包含 QQ 的，而对我而言用 QQ 作为接入是最适合的，因此需要带参数 &lt;code&gt;--features channel-qq&lt;/code&gt; 编译后自行替换。但是自己搭建 rust 环境也比较麻烦，我借用了 GitHub Action 来实现。 &lt;br/&gt;
+首先 fork 官方的仓库，把原仓库自带的 Github Action 脚本删除（为了给 Github 节省资源），然后添加下面这个脚本： &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;我的脚本&#34;&gt;我的脚本&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -393,7 +393,8 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;用 &lt;code&gt;zeroclaw doctor&lt;/code&gt; 检查配置，无误后用 &lt;code&gt;zeroclaw service install&lt;/code&gt; 安装为系统服务，再用 &lt;code&gt;zeroclaw service start&lt;/code&gt; 启动。也可以用系统自带的命令 &lt;code&gt;systemctl --user start|stop|status zeroclaw&lt;/code&gt; 来执行。 &lt;br/&gt;
-我没有配网关，直接用 QQ 接入来控制，我用下来的感受是，它只占用 3~5M 内存，就能媲美那些动辄占用几百 M 甚至几 G 的智能体。 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>中外调式</title><link>https://blog.winsphinx.top/post/musical-modes/</link><pubDate>Sun, 20 Sep 2026 14:41:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/musical-modes/</guid><description>&lt;p&gt;本文整理了中外主要音乐调式。 &lt;br/&gt;&lt;/p&gt;
+先用这个配置跑起来，然后就可以让 zeroclaw 自己逐项修改、完善配置了。 &lt;br/&gt;
+我没有配网关，直接用 QQ 接入来控制，我用下来的感受是，它只占用 3~5M 内存，就能媲美那些动辄占用几百 M 甚至几 G 的大块头智能体。 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>中外音乐调式</title><link>https://blog.winsphinx.top/post/musical-modes/</link><pubDate>Sun, 20 Sep 2026 14:41:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/musical-modes/</guid><description>&lt;p&gt;本文整理了中外主要音乐调式。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;中国调式&#34;&gt;中国调式&lt;/h2&gt;
 &lt;p&gt;五声为骨，七声为用 &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;五声音阶&#34;&gt;五声音阶&lt;/h3&gt;
@@ -581,7 +582,7 @@
 &lt;h2 id=&#34;其他调式&#34;&gt;其他调式&lt;/h2&gt;
 &lt;h3 id=&#34;布鲁斯音阶&#34;&gt;布鲁斯音阶&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;小调布鲁斯：1 b3 4 b5 5 b7 —— 那个 b5 叫&amp;rdquo;蓝音&amp;rdquo;（blue note），是布鲁斯的灵魂 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;小调布鲁斯：1 b3 4 b5 5 b7 —— 其中 b5 叫&amp;rdquo;蓝音&amp;rdquo;（blue note），是布鲁斯的灵魂 &lt;br/&gt;&lt;/li&gt;
 &lt;li&gt;大调布鲁斯：1 2 b3 3 5 6 &lt;br/&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;爵士音阶&#34;&gt;爵士音阶&lt;/h3&gt;
@@ -616,10 +617,10 @@
 &lt;li id=&#34;fn:1&#34;&gt;注意区分&amp;rdquo;宫系统&amp;rdquo;和&amp;rdquo;调式&amp;rdquo;：宫系统指整首曲子用的是哪一套五声音阶（以何音为宫），调式指以哪个音为主音收束。同一宫系统内轮换主音，叫&amp;rdquo;旋宫转调&amp;rdquo;。 &lt;br/&gt;
 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description></item><item><title>为一个 Dockers 应用加上访问密码</title><link>https://blog.winsphinx.top/post/add-access-for-a-docker-app/</link><pubDate>Sat, 08 Aug 2026 18:08:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/add-access-for-a-docker-app/</guid><description>&lt;p&gt;我搭建了一个 Docker Web App，想要在访问时做个简单的认证。要实现这个目的，最简单的方法是用“反向代理 + Basic Auth”，即在 app 上面套一层 caddy&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;作为代理。这样简单、安全、灵活，且不修改原有代码，适合生产部署。 &lt;br/&gt;&lt;/p&gt;
+&lt;/div&gt;</description></item><item><title>为一个 Docker 应用加上访问密码</title><link>https://blog.winsphinx.top/post/add-access-for-a-docker-app/</link><pubDate>Sat, 08 Aug 2026 18:08:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/add-access-for-a-docker-app/</guid><description>&lt;p&gt;我搭建了一个 Docker Web App，想要在访问时做个简单的认证。要实现这个目的，最简单的方法是用“反向代理 + Basic Auth”，即在 app 上面套一层 caddy&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;作为代理。这样简单、安全、灵活，且不修改原有代码，适合生产部署。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;生成密码&#34;&gt;生成密码&lt;/h2&gt;
 &lt;p&gt;如果是本地安装的 caddy，直接使用 &lt;code&gt;caddy hash-password –plaintext &amp;quot;密码&amp;quot;&lt;/code&gt; 即可。 &lt;br/&gt;
-如果是 docker 安装的 caddy，使用 &lt;code&gt;docker run –rm caddy caddy hash-password –plaintext &amp;quot;密码&amp;quot;&lt;/code&gt; 来生成密码。 &lt;br/&gt;
+如果是 docker 安装的 caddy，使用 &lt;code&gt;docker run –rm caddy:2 caddy hash-password –plaintext &amp;quot;密码&amp;quot;&lt;/code&gt; 来生成密码。 &lt;br/&gt;
 这时候会得到一个类似 &lt;code&gt;$2a$14$xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&lt;/code&gt; 格式的密码。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;编写配置文件&#34;&gt;编写配置文件&lt;/h2&gt;
 &lt;h3 id=&#34;dot-env&#34;&gt;.env&lt;/h3&gt;

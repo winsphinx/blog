@@ -7,8 +7,10 @@
 div.highlight { position: relative; }
 .copy-btn {
   position: absolute; top: 24px; right: 4px;
-  padding: 4px 10px; font-size: 12px;
+  padding: 4px 10px; font-size: 14px;
   color: #a8a8a8; background: #f8f5ec;
-  border: 1px solid #ddd; border-radius: 4px; cursor: pointer;
+  border: none; cursor: pointer;
 }
-.copy-btn:hover { color: #666; border-color: #aaa; }
+.copy-btn:hover {
+  color: #666;
+}
