@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 04 Oct 2026 18:36:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>ZeroClaw</title><link>https://blog.winsphinx.top/post/zeroclaw/</link><pubDate>Sun, 04 Oct 2026 18:36:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/zeroclaw/</guid><description>&lt;p&gt;我自用的 AI Agent 是 &lt;a href=&#34;https://github.com/zeroclaw-labs/zeroclaw/&#34;&gt;ZeroClaw&lt;/a&gt;，主要看中它体积小巧，性能强悍，不过需要折腾的地方也不少，特此记录。 &lt;br/&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 04 Oct 2026 18:36:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>ZeroClaw</title><link>https://blog.winsphinx.top/post/zeroclaw/</link><pubDate>Sun, 04 Oct 2026 18:36:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/zeroclaw/</guid><description>&lt;p&gt;我把 AI Agent 部署在 armbian 小主机上，比较下来选中了 &lt;a href=&#34;https://github.com/zeroclaw-labs/zeroclaw/&#34;&gt;ZeroClaw&lt;/a&gt;，主要看中它体积小巧，性能强悍，不过需要折腾的地方也不少，特此记录。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
-&lt;p&gt;根据官方提示安装，不过默认版本的内置接入通道是不包含 QQ 的，而对我而言用 QQ 作为接入是最适合的，因此需要带参数 &lt;code&gt;--features channel-qq&lt;/code&gt; 编译后自行替换。但是自己搭建 rust 环境也比较麻烦，我借用了 GitHub Action 来实现。 &lt;br/&gt;
+&lt;p&gt;先根据官方提示安装，不过默认版本的内置接入通道是不包含 QQ 的，而对我而言用 QQ 作为接入是最适合的，因此需要带参数 &lt;code&gt;--features channel-qq&lt;/code&gt; 编译后自行替换。但是自己搭建 rust 环境也比较麻烦，我借用了 GitHub Action 来实现。 &lt;br/&gt;
 首先 fork 官方的仓库，把原仓库自带的 Github Action 脚本删除（为了给 Github 节省资源），然后添加下面这个脚本： &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;我的脚本&#34;&gt;我的脚本&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -393,8 +393,7 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;用 &lt;code&gt;zeroclaw doctor&lt;/code&gt; 检查配置，无误后用 &lt;code&gt;zeroclaw service install&lt;/code&gt; 安装为系统服务，再用 &lt;code&gt;zeroclaw service start&lt;/code&gt; 启动。也可以用系统自带的命令 &lt;code&gt;systemctl --user start|stop|status zeroclaw&lt;/code&gt; 来执行。 &lt;br/&gt;
-先用这个配置跑起来，然后就可以让 zeroclaw 按需调整配置了。 &lt;br/&gt;
-我直接用 QQ 接入来控制，我用下来的感受是，它只占用 3~5M 内存，就能媲美那些动辄占用几百 M 甚至几 G 的大块头智能体。 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>中外音乐调式</title><link>https://blog.winsphinx.top/post/musical-modes/</link><pubDate>Sun, 20 Sep 2026 14:41:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/musical-modes/</guid><description>&lt;p&gt;本文整理了中外主要音乐调式。 &lt;br/&gt;&lt;/p&gt;
+先用这个配置跑起来，然后就可以让 zeroclaw 按需调整配置了。 &lt;br/&gt;&lt;/p&gt;</description></item><item><title>中外音乐调式</title><link>https://blog.winsphinx.top/post/musical-modes/</link><pubDate>Sun, 20 Sep 2026 14:41:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/musical-modes/</guid><description>&lt;p&gt;本文整理了中外主要音乐调式。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;中国调式&#34;&gt;中国调式&lt;/h2&gt;
 &lt;p&gt;五声为骨，七声为用 &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;五声音阶&#34;&gt;五声音阶&lt;/h3&gt;
