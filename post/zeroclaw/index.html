@@ -1,11 +1,11 @@
 <!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>ZeroClaw - Cogito, ergo sum</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,user-scalable=yes"><meta name=MobileOptimized content="width"><meta name=HandheldFriendly content="true"><meta name=applicable-device content="pc,mobile"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=mobile-web-app-capable content="yes"><meta name=author content="winsphinx"><meta name=description content="我要在我的 armbian 小主机上部署一个 AI Agent，虽然当下能用的个人 Agent 很多，但是动辄需要几百兆甚至上千兆的内存，我的小主机根本吃不消。  比较下来最终选中了 ZeroClaw，主要看中它体积小巧，性能强悍，不过需要折腾的地方也不少，特此记录。"><meta name=generator content="Hugo 0.59.1"><link rel=canonical href=https://blog.winsphinx.top/post/zeroclaw/><link rel=icon href=https://blog.winsphinx.top/favicon.ico><link rel=stylesheet href=https://blog.winsphinx.top/sass/jane.min.b3a8813c06e6d785beba22bf8264e174fa2cb3a396b22f9ba24e2c00c18aaf7f.css integrity="sha256-s6iBPAbm14W&#43;uiK/gmThdPoss6OWsi&#43;bok4sAMGKr38=" media=screen crossorigin=anonymous><link rel=stylesheet href=https://blog.winsphinx.top/css/custom.css><meta property="og:title" content="ZeroClaw"><meta property="og:description" content="我要在我的 armbian 小主机上部署一个 AI Agent，虽然当下能用的个人 Agent 很多，但是动辄需要几百兆甚至上千兆的内存，我的小主机根本吃不消。 
 比较下来最终选中了 ZeroClaw，主要看中它体积小巧，性能强悍，不过需要折腾的地方也不少，特此记录。"><meta property="og:type" content="article"><meta property="og:url" content="https://blog.winsphinx.top/post/zeroclaw/"><meta property="article:published_time" content="2026-10-04T18:36:00+08:00"><meta property="article:modified_time" content="2026-10-04T21:50:50+08:00"><meta itemprop=name content="ZeroClaw"><meta itemprop=description content="我要在我的 armbian 小主机上部署一个 AI Agent，虽然当下能用的个人 Agent 很多，但是动辄需要几百兆甚至上千兆的内存，我的小主机根本吃不消。 
-比较下来最终选中了 ZeroClaw，主要看中它体积小巧，性能强悍，不过需要折腾的地方也不少，特此记录。"><meta itemprop=datePublished content="2026-10-04T18:36:00&#43;08:00"><meta itemprop=dateModified content="2026-10-04T21:50:50&#43;08:00"><meta itemprop=wordCount content="1866"><meta itemprop=keywords content="linux,zeroclaw,"><meta name=twitter:card content="summary"><meta name=twitter:title content="ZeroClaw"><meta name=twitter:description content="我要在我的 armbian 小主机上部署一个 AI Agent，虽然当下能用的个人 Agent 很多，但是动辄需要几百兆甚至上千兆的内存，我的小主机根本吃不消。 
+比较下来最终选中了 ZeroClaw，主要看中它体积小巧，性能强悍，不过需要折腾的地方也不少，特此记录。"><meta itemprop=datePublished content="2026-10-04T18:36:00&#43;08:00"><meta itemprop=dateModified content="2026-10-04T21:50:50&#43;08:00"><meta itemprop=wordCount content="1964"><meta itemprop=keywords content="linux,zeroclaw,"><meta name=twitter:card content="summary"><meta name=twitter:title content="ZeroClaw"><meta name=twitter:description content="我要在我的 armbian 小主机上部署一个 AI Agent，虽然当下能用的个人 Agent 很多，但是动辄需要几百兆甚至上千兆的内存，我的小主机根本吃不消。 
 比较下来最终选中了 ZeroClaw，主要看中它体积小巧，性能强悍，不过需要折腾的地方也不少，特此记录。"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=https://blog.winsphinx.top/ class=logo>Cogito, ergo sum</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=https://blog.winsphinx.top/>Home</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://blog.winsphinx.top/post/>Archives</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://blog.winsphinx.top/categories/>Categories</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://blog.winsphinx.top/tags/>Tags</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://blog.winsphinx.top/about/>About</a></li><li class=mobile-menu-item><a class=menu-item-link href=https://blog.winsphinx.top/search/>Search</a></li></ul></nav><link rel=stylesheet href=https://blog.winsphinx.top/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=https://blog.winsphinx.top/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=https://blog.winsphinx.top/ class=logo>Cogito, ergo sum</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/>Home</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/about/>About</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/search/>Search</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight wallpaper"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>ZeroClaw</h1><div class=post-meta><time datetime=2026-10-04 class=post-time>2026-10-04</time><div class=post-category><a href=https://blog.winsphinx.top/categories/%E6%8A%80%E6%9C%AF/>技术</a></div><span class=more-meta>1866 words</span>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=https://blog.winsphinx.top/ class=logo>Cogito, ergo sum</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/>Home</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/about/>About</a></li><li class=menu-item><a class=menu-item-link href=https://blog.winsphinx.top/search/>Search</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight wallpaper"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>ZeroClaw</h1><div class=post-meta><time datetime=2026-10-04 class=post-time>2026-10-04</time><div class=post-category><a href=https://blog.winsphinx.top/categories/%E6%8A%80%E6%9C%AF/>技术</a></div><span class=more-meta>1964 words</span>
 <span class=more-meta>4 min read</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Table of Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#安装>安装</a><ul><li><a href=#我的脚本>我的脚本</a></li></ul></li><li><a href=#配置>配置</a><ul><li><a href=#我的配置>我的配置</a></li></ul></li></ul></li></ul></nav></div></div><div class=post-content><p>我要在我的 armbian 小主机上部署一个 AI Agent，虽然当下能用的个人 Agent 很多，但是动辄需要几百兆甚至上千兆的内存，我的小主机根本吃不消。<br>比较下来最终选中了 <a href=https://github.com/zeroclaw-labs/zeroclaw/>ZeroClaw</a>，主要看中它体积小巧，性能强悍，不过需要折腾的地方也不少，特此记录。<br></p><h2 id=安装>安装</h2><p>先根据官方提示安装，不过默认版本的内置接入通道是不包含 QQ 的，而对我而言用 QQ 作为接入是最适合的，因此需要带参数 <code>--features channel-qq</code> 编译后自行替换。但是自己搭建 rust 环境也比较麻烦，我借用了 GitHub Action 来实现。<br>首先 fork 官方的仓库，把原仓库自带的 Github Action 脚本删除（为了给 Github 节省资源），然后添加下面这个脚本：<br></p><h3 id=我的脚本>我的脚本</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
@@ -285,6 +285,27 @@
 </span><span class=lnt>114
 </span><span class=lnt>115
 </span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-toml data-lang=toml><span class=nx>schema_version</span> <span class=p>=</span> <span class=mi>3</span>
 
 <span class=p>[</span><span class=nx>onboard_state</span><span class=p>]</span>
@@ -297,25 +318,53 @@
 <span class=p>[</span><span class=nx>providers</span><span class=p>.</span><span class=nx>models</span><span class=p>.</span><span class=nx>nvidia</span><span class=p>]</span>
 
 <span class=p>[</span><span class=nx>providers</span><span class=p>.</span><span class=nx>models</span><span class=p>.</span><span class=nx>nvidia</span><span class=p>.</span><span class=nx>default</span><span class=p>]</span>
-<span class=nx>api_key</span> <span class=p>=</span> <span class=s2>&#34;enc2:......&#34;</span>
-<span class=nx>model</span> <span class=p>=</span> <span class=s2>&#34;......&#34;</span>
-<span class=nx>context_window</span> <span class=p>=</span> <span class=mi>256000</span>
+<span class=nx>api_key</span> <span class=p>=</span> <span class=s2>&#34;enc2:...&#34;</span>
+<span class=nx>model</span> <span class=p>=</span> <span class=s2>&#34;...&#34;</span>
+<span class=nx>fallback_models</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;...&#34;</span><span class=p>]</span>
+<span class=nx>fallback</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;openrouter.default&#34;</span><span class=p>]</span>
+<span class=nx>context_window</span> <span class=p>=</span> <span class=mi>1000000</span>
+<span class=nx>temperature</span> <span class=p>=</span> <span class=mf>0.3</span>
+<span class=nx>think</span> <span class=p>=</span> <span class=kc>true</span>
+<span class=nx>live_pricing</span> <span class=p>=</span> <span class=kc>true</span>
+
+<span class=p>[</span><span class=nx>providers</span><span class=p>.</span><span class=nx>models</span><span class=p>.</span><span class=nx>openrouter</span><span class=p>]</span>
+
+<span class=p>[</span><span class=nx>providers</span><span class=p>.</span><span class=nx>models</span><span class=p>.</span><span class=nx>openrouter</span><span class=p>.</span><span class=nx>default</span><span class=p>]</span>
+<span class=nx>api_key</span> <span class=p>=</span> <span class=s2>&#34;enc2:..&#34;</span>
+<span class=nx>model</span> <span class=p>=</span> <span class=s2>&#34;...&#34;</span>
+<span class=nx>fallback_models</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;...&#34;</span><span class=p>]</span>
+<span class=nx>context_window</span> <span class=p>=</span> <span class=mi>1000000</span>
+<span class=nx>temperature</span> <span class=p>=</span> <span class=mf>0.3</span>
+<span class=nx>think</span> <span class=p>=</span> <span class=kc>true</span>
+<span class=nx>live_pricing</span> <span class=p>=</span> <span class=kc>true</span>
+
+<span class=p>[[</span><span class=nx>embedding_routes</span><span class=p>]]</span>
+<span class=nx>hint</span> <span class=p>=</span> <span class=s2>&#34;embedding&#34;</span>
+<span class=nx>model_provider</span> <span class=p>=</span> <span class=s2>&#34;custom:https://...&#34;</span>
+<span class=nx>api_key</span> <span class=p>=</span> <span class=s2>&#34;enc2:...&#34;</span>
+<span class=nx>model</span> <span class=p>=</span> <span class=s2>&#34;...&#34;</span>
+<span class=nx>dimensions</span> <span class=p>=</span> <span class=mi>1536</span>
 
 <span class=p>[</span><span class=nx>memory</span><span class=p>]</span>
 <span class=nx>backend</span> <span class=p>=</span> <span class=s2>&#34;sqlite&#34;</span>
-<span class=nx>embedding_model</span> <span class=p>=</span> <span class=s2>&#34;......&#34;</span>
-<span class=nx>embedding_api_key</span> <span class=p>=</span> <span class=s2>&#34;enc2:......&#34;</span>
-<span class=nx>embedding_provider</span> <span class=p>=</span> <span class=s2>&#34;custom:https://....../v1&#34;</span>
+<span class=nx>embedding_model</span> <span class=p>=</span> <span class=s2>&#34;hint:embedding&#34;</span>
+<span class=nx>vector_weight</span> <span class=p>=</span> <span class=mf>0.75</span>
+<span class=nx>keyword_weight</span> <span class=p>=</span> <span class=mf>0.25</span>
+<span class=nx>min_relevance_score</span> <span class=p>=</span> <span class=mf>0.35</span>
+<span class=nx>conversation_retention_days</span> <span class=p>=</span> <span class=mi>30</span>
+<span class=nx>daily_retention_days</span> <span class=p>=</span> <span class=mi>30</span>
 
 <span class=p>[</span><span class=nx>channels</span><span class=p>]</span>
-<span class=nx>session_ttl_hours</span> <span class=p>=</span> <span class=mi>168</span>
+<span class=nx>session_ttl_hours</span> <span class=p>=</span> <span class=mi>24</span>
+<span class=nx>debounce_ms</span> <span class=p>=</span> <span class=mi>2000</span>
+<span class=nx>show_tool_calls</span> <span class=p>=</span> <span class=kc>true</span>
 
 <span class=p>[</span><span class=nx>channels</span><span class=p>.</span><span class=nx>qq</span><span class=p>]</span>
 
 <span class=p>[</span><span class=nx>channels</span><span class=p>.</span><span class=nx>qq</span><span class=p>.</span><span class=nx>default</span><span class=p>]</span>
 <span class=nx>enabled</span> <span class=p>=</span> <span class=kc>true</span>
-<span class=nx>app_id</span> <span class=p>=</span> <span class=s2>&#34;......&#34;</span>
-<span class=nx>app_secret</span> <span class=p>=</span> <span class=s2>&#34;enc2:......&#34;</span>
+<span class=nx>app_id</span> <span class=p>=</span> <span class=s2>&#34;...&#34;</span>
+<span class=nx>app_secret</span> <span class=p>=</span> <span class=s2>&#34;enc2:...&#34;</span>
 
 <span class=p>[</span><span class=nx>peer_groups</span><span class=p>]</span>
 
@@ -328,20 +377,20 @@
 <span class=p>[</span><span class=nx>agents</span><span class=p>.</span><span class=nx>zeroclaw</span><span class=p>]</span>
 <span class=nx>channels</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;qq.default&#34;</span><span class=p>]</span>
 <span class=nx>model_provider</span> <span class=p>=</span> <span class=s2>&#34;nvidia.default&#34;</span>
-<span class=nx>runtime_profile</span> <span class=p>=</span> <span class=s2>&#34;unbounded&#34;</span>
+<span class=nx>runtime_profile</span> <span class=p>=</span> <span class=s2>&#34;default&#34;</span>
 <span class=nx>risk_profile</span> <span class=p>=</span> <span class=s2>&#34;balanced&#34;</span>
 
 <span class=p>[</span><span class=nx>runtime_profiles</span><span class=p>]</span>
 
-<span class=p>[</span><span class=nx>runtime_profiles</span><span class=p>.</span><span class=nx>unbounded</span><span class=p>]</span>
+<span class=p>[</span><span class=nx>runtime_profiles</span><span class=p>.</span><span class=nx>default</span><span class=p>]</span>
 <span class=nx>agentic</span> <span class=p>=</span> <span class=kc>true</span>
 <span class=nx>agentic_timeout_secs</span> <span class=p>=</span> <span class=mi>1800</span>
-<span class=nx>compact_context</span> <span class=p>=</span> <span class=kc>false</span>
+<span class=nx>compact_context</span> <span class=p>=</span> <span class=kc>true</span>
 <span class=nx>delegation_timeout_secs</span> <span class=p>=</span> <span class=mi>900</span>
 <span class=nx>keep_tool_context_turns</span> <span class=p>=</span> <span class=mi>8</span>
-<span class=nx>max_actions_per_hour</span> <span class=p>=</span> <span class=mi>4294967295</span>
-<span class=nx>max_context_tokens</span> <span class=p>=</span> <span class=mi>256000</span>
-<span class=nx>max_cost_per_day_cents</span> <span class=p>=</span> <span class=mi>4294967295</span>
+<span class=nx>max_actions_per_hour</span> <span class=p>=</span> <span class=mi>120</span>
+<span class=nx>max_context_tokens</span> <span class=p>=</span> <span class=mi>1000000</span>
+<span class=nx>max_cost_per_day_cents</span> <span class=p>=</span> <span class=mi>0</span>
 <span class=nx>max_delegation_depth</span> <span class=p>=</span> <span class=mi>8</span>
 <span class=nx>max_history_messages</span> <span class=p>=</span> <span class=mi>200</span>
 <span class=nx>max_system_prompt_chars</span> <span class=p>=</span> <span class=mi>64000</span>
@@ -349,38 +398,22 @@
 <span class=nx>max_tool_result_chars</span> <span class=p>=</span> <span class=mi>64000</span>
 <span class=nx>memory_recall_limit</span> <span class=p>=</span> <span class=mi>10</span>
 <span class=nx>parallel_tools</span> <span class=p>=</span> <span class=kc>true</span>
+<span class=nx>prompt_injection_mode</span> <span class=p>=</span> <span class=s2>&#34;compact&#34;</span>
 <span class=nx>shell_timeout_secs</span> <span class=p>=</span> <span class=mi>600</span>
 <span class=nx>strict_tool_parsing</span> <span class=p>=</span> <span class=kc>false</span>
 
-<span class=p>[</span><span class=nx>runtime_profiles</span><span class=p>.</span><span class=nx>unbounded</span><span class=p>.</span><span class=nx>context_compression</span><span class=p>]</span>
-<span class=nx>enabled</span> <span class=p>=</span> <span class=kc>false</span>
-<span class=nx>identifier_policy</span> <span class=p>=</span> <span class=s2>&#34;strict&#34;</span>
-<span class=nx>max_passes</span> <span class=p>=</span> <span class=mi>3</span>
-<span class=nx>protect_first_n</span> <span class=p>=</span> <span class=mi>3</span>
-<span class=nx>protect_last_n</span> <span class=p>=</span> <span class=mi>4</span>
-<span class=nx>source_max_chars</span> <span class=p>=</span> <span class=mi>50000</span>
-<span class=nx>summary_max_chars</span> <span class=p>=</span> <span class=mi>4000</span>
-<span class=nx>threshold_ratio</span> <span class=p>=</span> <span class=mf>0.5</span>
-<span class=nx>timeout_secs</span> <span class=p>=</span> <span class=mi>60</span>
-<span class=nx>tool_result_retrim_chars</span> <span class=p>=</span> <span class=mi>2000</span>
-
-<span class=p>[</span><span class=nx>runtime_profiles</span><span class=p>.</span><span class=nx>unbounded</span><span class=p>.</span><span class=nx>eval</span><span class=p>]</span>
-<span class=nx>enabled</span> <span class=p>=</span> <span class=kc>false</span>
-<span class=nx>max_retries</span> <span class=p>=</span> <span class=mi>1</span>
-<span class=nx>min_quality_score</span> <span class=p>=</span> <span class=mf>0.5</span>
-
-<span class=p>[</span><span class=nx>runtime_profiles</span><span class=p>.</span><span class=nx>unbounded</span><span class=p>.</span><span class=nx>history_pruning</span><span class=p>]</span>
+<span class=p>[</span><span class=nx>runtime_profiles</span><span class=p>.</span><span class=nx>default</span><span class=p>.</span><span class=nx>history_pruning</span><span class=p>]</span>
 <span class=nx>collapse_tool_results</span> <span class=p>=</span> <span class=kc>true</span>
-<span class=nx>enabled</span> <span class=p>=</span> <span class=kc>false</span>
+<span class=nx>enabled</span> <span class=p>=</span> <span class=kc>true</span>
 <span class=nx>keep_recent</span> <span class=p>=</span> <span class=mi>4</span>
 <span class=nx>max_tokens</span> <span class=p>=</span> <span class=mi>8192</span>
 
-<span class=p>[</span><span class=nx>runtime_profiles</span><span class=p>.</span><span class=nx>unbounded</span><span class=p>.</span><span class=nx>thinking</span><span class=p>]</span>
+<span class=p>[</span><span class=nx>runtime_profiles</span><span class=p>.</span><span class=nx>default</span><span class=p>.</span><span class=nx>thinking</span><span class=p>]</span>
 <span class=nx>default_level</span> <span class=p>=</span> <span class=s2>&#34;medium&#34;</span>
 <span class=nx>native_thinking</span> <span class=p>=</span> <span class=kc>false</span>
 
-<span class=p>[</span><span class=nx>runtime_profiles</span><span class=p>.</span><span class=nx>unbounded</span><span class=p>.</span><span class=nx>tool_receipts</span><span class=p>]</span>
-<span class=nx>enabled</span> <span class=p>=</span> <span class=kc>false</span>
+<span class=p>[</span><span class=nx>runtime_profiles</span><span class=p>.</span><span class=nx>default</span><span class=p>.</span><span class=nx>tool_receipts</span><span class=p>]</span>
+<span class=nx>enabled</span> <span class=p>=</span> <span class=kc>true</span>
 <span class=nx>inject_system_prompt</span> <span class=p>=</span> <span class=kc>true</span>
 <span class=nx>show_in_response</span> <span class=p>=</span> <span class=kc>false</span>
 
@@ -390,20 +423,29 @@
 <span class=nx>allowed_commands</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;*&#34;</span><span class=p>]</span>
 <span class=nx>auto_approve</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;*&#34;</span><span class=p>]</span>
 <span class=nx>block_high_risk_commands</span> <span class=p>=</span> <span class=kc>true</span>
-<span class=nx>forbidden_paths</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;/etc&#34;</span><span class=p>,</span> <span class=s2>&#34;/root&#34;</span><span class=p>,</span> <span class=s2>&#34;/home&#34;</span><span class=p>,</span> <span class=s2>&#34;/usr&#34;</span><span class=p>,</span> <span class=s2>&#34;/bin&#34;</span><span class=p>,</span> <span class=s2>&#34;/sbin&#34;</span><span class=p>,</span> <span class=s2>&#34;/lib&#34;</span><span class=p>,</span> <span class=s2>&#34;/opt&#34;</span><span class=p>,</span> <span class=s2>&#34;/boot&#34;</span><span class=p>,</span> <span class=s2>&#34;/dev&#34;</span><span class=p>,</span> <span class=s2>&#34;/proc&#34;</span><span class=p>,</span> <span class=s2>&#34;/sys&#34;</span><span class=p>,</span> <span class=s2>&#34;/var&#34;</span><span class=p>,</span> <span class=s2>&#34;/tmp&#34;</span><span class=p>,</span> <span class=s2>&#34;~/.ssh&#34;</span><span class=p>,</span> <span class=s2>&#34;~/.gnupg&#34;</span><span class=p>,</span> <span class=s2>&#34;~/.aws&#34;</span><span class=p>,</span> <span class=s2>&#34;~/.config&#34;</span><span class=p>]</span>
-<span class=nx>level</span> <span class=p>=</span> <span class=s2>&#34;supervised&#34;</span>
 <span class=nx>require_approval_for_medium_risk</span> <span class=p>=</span> <span class=kc>false</span>
-<span class=nx>sandbox_enabled</span> <span class=p>=</span> <span class=kc>true</span>
-<span class=nx>workspace_only</span> <span class=p>=</span> <span class=kc>true</span>
+<span class=nx>forbidden_paths</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;/boot&#34;</span><span class=p>,</span> <span class=s2>&#34;/dev&#34;</span><span class=p>,</span> <span class=s2>&#34;/etc&#34;</span><span class=p>,</span> <span class=s2>&#34;/mnt&#34;</span><span class=p>,</span> <span class=s2>&#34;/opt&#34;</span><span class=p>,</span> <span class=s2>&#34;srv&#34;</span><span class=p>,</span> <span class=s2>&#34;/sys&#34;</span><span class=p>,</span> <span class=s2>&#34;/usr&#34;</span><span class=p>,</span> <span class=s2>&#34;/var&#34;</span><span class=p>,</span> <span class=s2>&#34;~/.ssh&#34;</span><span class=p>]</span>
+<span class=nx>level</span> <span class=p>=</span> <span class=s2>&#34;supervised&#34;</span>
+<span class=nx>workspace_only</span> <span class=p>=</span> <span class=kc>false</span>
+<span class=nx>sandbox_enabled</span> <span class=p>=</span> <span class=kc>false</span>
 
 <span class=p>[</span><span class=nx>risk_profiles</span><span class=p>.</span><span class=nx>balanced</span><span class=p>.</span><span class=nx>delegation_policy</span><span class=p>]</span>
 <span class=nx>mode</span> <span class=p>=</span> <span class=s2>&#34;allow&#34;</span>
 
+<span class=p>[</span><span class=nx>web_search</span><span class=p>]</span>
+<span class=nx>enabled</span> <span class=p>=</span> <span class=kc>true</span>
+<span class=nx>search_provider</span> <span class=p>=</span> <span class=s2>&#34;tavily&#34;</span>
+<span class=nx>tavily_api_key</span> <span class=p>=</span> <span class=s2>&#34;enc2:...&#34;</span>
+
 <span class=p>[</span><span class=nx>data_retention</span><span class=p>]</span>
-<span class=nx>enabled</span> <span class=p>=</span> <span class=kc>true</span></code></pre></td></tr></table></div></div><p>用 <code>zeroclaw doctor</code> 检查配置，无误后用 <code>zeroclaw service install</code> 安装为系统服务，再用 <code>zeroclaw service start</code> 启动。也可以用系统自带的命令 <code>systemctl --user start|stop|status zeroclaw</code> 来执行。<br>先用这个配置跑起来，然后就可以让 zeroclaw 按需调整配置了。<br></p></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=nx>enabled</span> <span class=p>=</span> <span class=kc>true</span>
+<span class=nx>retention_days</span> <span class=p>=</span> <span class=mi>90</span>
+
+<span class=p>[</span><span class=nx>gateway</span><span class=p>]</span>
+<span class=nx>session_ttl_hours</span> <span class=p>=</span> <span class=mi>24</span></code></pre></td></tr></table></div></div><p>用 <code>zeroclaw doctor</code> 检查配置，无误后用 <code>zeroclaw service install</code> 安装为系统服务，再用 <code>zeroclaw service start</code> 启动。也可以用系统自带的命令 <code>systemctl --user start|stop|status zeroclaw</code> 来执行。<br>先用这个配置跑起来，然后就可以让 zeroclaw 按需调整配置了。要查看全部参数，可以用 <code>zeroclaw config list</code> ，也可以用 <code>zecocode</code> 在 TUI 下配置，还可以用 <code>http://127.0.0.1:42617</code> 在 WebUI 下使用。<br></p></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
 <span class=item-content>winsphinx</span></p><p class=copyright-item><span class=item-title>LastMod</span>
 <span class=item-content>2026-10-04
-<a href=https://github.com/winsphinx/blog/commit/ec530b159434d49c672c11b2ae743bc8d1a71389 title="[原创] zeroclaw">(ec530b15)</a><br>[原创] zeroclaw</span></p><p class=copyright-item><span class=item-title>License</span>
+<a href=https://github.com/winsphinx/blog/commit/923af2c51ce5b3a1049ec839bfb0e0fc3af8067b title="[原创] zeroclaw">(923af2c5)</a><br>[原创] zeroclaw</span></p><p class=copyright-item><span class=item-title>License</span>
 <span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank><img alt="CC BY-NC-SA 4.0" style=border-width:0 src=https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png></a></span></p></div><footer class=post-footer><div class=post-tags><a href=https://blog.winsphinx.top/tags/linux/>linux</a>
 <a href=https://blog.winsphinx.top/tags/zeroclaw/>zeroclaw</a></div><nav class=post-nav><a class=next href=https://blog.winsphinx.top/post/musical-modes/><span class="next-text nav-default">中外音乐调式</span>
 <span class="prev-text nav-mobile">Next</span>
