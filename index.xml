@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 04 Oct 2026 18:36:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>ZeroClaw</title><link>https://blog.winsphinx.top/post/zeroclaw/</link><pubDate>Sun, 04 Oct 2026 18:36:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/zeroclaw/</guid><description>&lt;p&gt;我要在我的 armbian 小主机上部署一个 AI Agent，虽然当下能用的个人 Agent 很多，但是动辄需要几百兆甚至上千兆的内存，我的小主机根本吃不消。 &lt;br/&gt;
 比较下来最终选中了 &lt;a href=&#34;https://github.com/zeroclaw-labs/zeroclaw/&#34;&gt;ZeroClaw&lt;/a&gt;，主要看中它体积小巧，性能强悍，不过需要折腾的地方也不少，特此记录。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
-&lt;p&gt;先根据官方提示安装，不过默认版本的内置接入通道是不包含 QQ 的，而对我而言用 QQ 作为接入是最适合的，因此需要带参数 &lt;code&gt;--features channel-qq&lt;/code&gt; 编译后自行替换。但是自己搭建 rust 环境也比较麻烦，我借用了 GitHub Action 来实现。 &lt;br/&gt;
-首先 fork 官方的仓库，把原仓库自带的 Github Action 脚本删除（为了给 Github 节省资源），然后添加下面这个脚本： &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;先根据官方提示安装，不过默认版本的内置接入通道是不包含 QQ 的，而对我而言用 QQ 作为接入是最适合的，因此需要带参数 &lt;code&gt;--features channel-qq&lt;/code&gt; 编译后自行替换（根据需要可以使用其他 channel，比如 wechat 等）。但是自己搭建 rust 环境也比较麻烦，我借用了 GitHub Action 来实现。 &lt;br/&gt;
+首先 fork 官方的仓库，把原仓库自带的 Github Action 脚本 disable（为了给 Github 节省资源），然后添加下面这个脚本： &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;我的脚本&#34;&gt;我的脚本&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -176,7 +176,7 @@
 &lt;/div&gt;
 &lt;p&gt;手工触发这个 Action，大约 10 分钟后编译完成，下载后替换官方版本即可。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
-&lt;p&gt;配置 QQ 要先在 bot.q.qq.com 注册开发者（实名），创建机器人应用，拿到 AppID 和 AppSecret。还要在应用后台“事件订阅”开消息权限：单聊开 C2C 消息事件，群聊开群 @ 消息事件。 &lt;br/&gt;
+&lt;p&gt;配置 QQ 要先在 bot.q.qq.com 注册开发者（实名），创建机器人应用，拿到 AppID 和 AppSecret。还要在应用后台“事件订阅”开消息权限：单聊开“C2C 消息事件”，群聊开“群 @ 消息事件”。 &lt;br/&gt;
 安装完后，用 &lt;code&gt;zeroclaw quickstart&lt;/code&gt; 按照提示配置，需要微调参数可以用 &lt;code&gt;zerocode&lt;/code&gt; 作为 TUI 来修改，也可以直接修改 &lt;code&gt;~/.zeroclaw/config.toml&lt;/code&gt; 配置文件。我的配置如下： &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;我的配置&#34;&gt;我的配置&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
