@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cogito, ergo sum</title><link>https://blog.winsphinx.top/</link><description>Recent content on Cogito, ergo sum</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 05 Nov 2026 18:51:00 +0800</lastBuildDate><atom:link href="https://blog.winsphinx.top/index.xml" rel="self" type="application/rss+xml"/><item><title>xray 的伪装</title><link>https://blog.winsphinx.top/post/xray-disguised/</link><pubDate>Thu, 05 Nov 2026 18:51:00 +0800</pubDate><guid>https://blog.winsphinx.top/post/xray-disguised/</guid><description>&lt;p&gt;xray 需要监听 443 端口，如果之前有网站运行在服务器上，此时就会发生端口冲突。最简单的解决办法就是让 xray 监听其他常用端口（如 22、3389、8443），但不够完美。而网上的方案&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;是针对 TLS，不适合我所用的 realiity。经过一系列实验，完成了 reality 下的 xray 伪装，实现 443 端口的共用。 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id=&#34;架构&#34;&gt;架构&lt;/h2&gt;
-&lt;p&gt;网上那个方案是用 xray 内置的 fallback 实现伪装和分流的，而 fallback 只对 TLS 有效。因此我用 caddy 来实现分流。此外，我当前的&lt;a href=&#34;#xray&#34;&gt;xray&lt;/a&gt;是正常运行的，因此希望能尽量保持原来架构，尽可能少的改动来实现我的目的。 &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;网上那个方案是用 xray 内置的 fallback 实现伪装和分流的，而 fallback 只对 TLS 有效。因此我用 nginx 来实现分流，用 caddy 来实现伪装。此外，我当前的&lt;a href=&#34;#xray&#34;&gt;xray&lt;/a&gt;是正常运行的，因此希望能尽量保持原来架构，尽可能少的改动来实现我的目的。 &lt;br/&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -9,7 +9,7 @@
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;:443 ── 分流器（只偷看 ClientHello 的 SNI，原样转发字节流）
-├─ SNI = &amp;lt;target&amp;gt; ──► Xray REALITY 入站（target为reality中的实际配置）
+├─ SNI = &amp;lt;serverName&amp;gt; ──► Xray REALITY 入站（reality中实际配置的serverName）
 └─ 其他 SNI / 无 SNI ──────► Caddy（TLS 仍由它自己终止）&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -110,10 +110,10 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;resolver 127.0.0.11&lt;/code&gt; 是 docker 内置 DNS， &lt;code&gt;proxy_pass&lt;/code&gt; 用变量时必须靠它运行时解析服务名； &lt;br/&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;proxy_timeout 24h&lt;/code&gt; 是因为 stream 默认只给 10 分钟，不改的话长连接会被分流器掐掉； &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;proxy_protocol on&lt;/code&gt; 是为了实现能在 xray 的日志里看到真实主机 IP 地址，否则会传递容器的私网地址。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;proxy_protocol on&lt;/code&gt; 是为了实现能在 xray 的日志里看到真实客户端 IP 地址，否则会传递容器的私网地址。 &lt;br/&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;caddy&#34;&gt;caddy&lt;/h2&gt;
-&lt;p&gt;为什么有了 nginx 做反代，还要用 caddy？一是 nginx 的功能不如 caddy 强大，特别是 caddy 可以自动申请、自动续期站点的证书；二是 nginx 没有压缩模块，性能不如 caddy。 &lt;br/&gt;
+&lt;p&gt;为什么有了 nginx 做反代，还要用 caddy？一是 nginx 的功能不如 caddy 强大，特别是 caddy 可以自动申请、自动续期站点的证书；二是 nginx 只有基础的压缩模块，性能不如 caddy。 &lt;br/&gt;
 反过来，只用 caddy 做分流，那么需要对官方的 caddy 自行编译，增加 layer4 插件，不方便随时更新维护。 &lt;br/&gt;&lt;/p&gt;
 &lt;h3 id=&#34;caddy-的-docker-compose&#34;&gt;caddy 的 docker compose&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -199,8 +199,8 @@
 &lt;p&gt;在原 Caddyfile 文件最前面插入以上三块内容： &lt;br/&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;default_sni&lt;/code&gt; 是实现当不带 SNI 的连接进来时，默认添加一个 SNI，这样当访问服务器时，避免出现 &lt;code&gt;ERR_SSL_PROTOCOL_ERROR&lt;/code&gt; 的错误； &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;listener_wrappers&lt;/code&gt; 是只允许容器进来的连接，不是容器来的连接不走代理； &lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;redir&lt;/code&gt; 是为了实现真正跳转到伪装网址，这样更真实：比如当访问 server 的 443 端口时，打开一个自己的博客页面，那么就会认为这是一个博客网站；只有通过认证的连接来访问时才会进入代理。 &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;listener_wrappers&lt;/code&gt; 是只信任容器进来的 PROXY 头； &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;redir&lt;/code&gt; 是为了实现真正跳转到目标网址，这样更真实：比如当访问 server 的 443 端口时，就会认为这是一个博客网站。 &lt;br/&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;xray&#34;&gt;xray&lt;/h2&gt;
 &lt;p&gt;xray 只要在 server 端稍作修改，client 端不用调整。 &lt;br/&gt;&lt;/p&gt;
