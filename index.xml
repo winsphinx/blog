@@ -10,7 +10,7 @@
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;:443 ── 分流器（只偷看 ClientHello 的 SNI，原样转发字节流）
 ├─ SNI = &amp;lt;serverName&amp;gt; ──► Xray REALITY 入站（reality中实际配置的serverName）
-└─ 其他 SNI / 无 SNI ──────► Caddy（TLS 仍由它自己终止）&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+└─ 其他 SNI / 无 SNI ──► Caddy（TLS 仍由它自己终止）&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;即，当有 443 的访问时，分流器 nginx 看一下 SNI，如果和 xray 配的一致，送到 xray 代理；如果不一致，送到 caddy 走反代。为了后续方便迁移，我用了三个 docker 来实现。 &lt;br/&gt;&lt;/p&gt;
